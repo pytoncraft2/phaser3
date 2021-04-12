@@ -2,15 +2,15 @@
 
 ## Jeu réalisé avec Phaser 3
 
-### Requirements
+### Requis
 
-We need [Node.js](https://nodejs.org) to install and run scripts.
+Nodejs [Node.js](https://nodejs.org) pour installer et executer le jeu.
 
-## Install and run
+## Installation & execution
 
-Run next commands in your terminal:
+Commandes :
 
-| Command | Description |
+| Description | Commandes |
 |---------|-------------|
 | `npm install` | Installation des dépendances.|
 | `npm start` | Executer le jeu. <br> Taper:  `Ctrl + c` pour arrêter le **http-server** serveur. |
