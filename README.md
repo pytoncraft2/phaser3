@@ -4,7 +4,7 @@
 
 ### Requis
 
-Installation de [Node.js](https://nodejs.org) nécessaire pour installer et executer le jeu.
+Installation de [Node.js](https://nodejs.org) nécessaire pour l'éxecution du jeu.
 
 ## Installation & execution
 
