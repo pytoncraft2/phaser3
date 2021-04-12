@@ -24,7 +24,7 @@ const config = {
 
 function preload() {
 
-  // this.load.atlas('atlas', 'http://localhost/phaser3/node_modules/phaser3-project-template/server/authoritative_server/assets/personnages/dessinatrice/deuxrow.png', 'http://localhost/phaser3/node_modules/phaser3-project-template/server/authoritative_server/assets/personnages/dessinatrice/deuxrow_atlas.json');
+  // this.load.atlas('atlas', 'http://localhost/phaser3/server/authoritative_server/assets/personnages/dessinatrice/deuxrow.png', 'http://localhost/phaser3/server/authoritative_server/assets/personnages/dessinatrice/deuxrow_atlas.json');
 
 }
 
