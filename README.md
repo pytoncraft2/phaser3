@@ -1,6 +1,6 @@
-# Phaser 3 GAME
+# Steam-fighter
 
-A Phaser 3 Project
+## Jeu réalisé avec Phaser 3
 
 ### Requirements
 
