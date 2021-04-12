@@ -10,7 +10,7 @@ Installation de [Node.js](https://nodejs.org) nécessaire pour l'éxecution du j
 
 Commandes :
 
-| Description | Commandes |
+| Commandes | Description |
 |---------|-------------|
 | `npm install` | Installation des dépendances.|
 | `npm start` | Executer le jeu. <br> Taper:  `Ctrl + c` pour arrêter le **http-server** serveur. |
