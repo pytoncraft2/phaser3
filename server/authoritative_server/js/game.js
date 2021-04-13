@@ -69,7 +69,7 @@ function create() {
       // remove this player from our players object
       delete players[socket.id];
       // emit a message to all players to remove this player
-      io.emit('disconnect', socket.id);
+      io.emit('disconnection', socket.id);
     });
 
     // when a player moves, update the player data

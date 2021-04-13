@@ -69,7 +69,7 @@ function create() {
     displayPlayers(self, playerInfo, 'atlas','profil2');
   });
 
-  this.socket.on('disconnect', function(playerId) {
+  this.socket.on('disconnection', function(playerId) {
     self.players.getChildren().forEach(function(player) {
       if (playerId === player.playerId) player.destroy();
     });
