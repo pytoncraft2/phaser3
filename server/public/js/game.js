@@ -14,8 +14,8 @@ var game = new Phaser.Game(config);
 
 function preload() {
 
-  this.load.atlas('atlas', 'http://localhost/phaser3/server/authoritative_server/assets/personnages/dessinatrice/deuxrow.png', 'http://localhost/phaser3/server/authoritative_server/assets/personnages/dessinatrice/deuxrow_atlas.json');
-  this.load.image('bg', 'http://localhost/phaser3/server/authoritative_server/assets/fond/bg.png');
+  this.load.atlas('atlas', 'https://steam-fighter.servegame.com/server/authoritative_server/assets/personnages/dessinatrice/deuxrow.png', 'https://steam-fighter.servegame.com/server/authoritative_server/assets/personnages/dessinatrice/deuxrow_atlas.json');
+  this.load.image('bg', 'https://steam-fighter.servegame.com/server/authoritative_server/assets/fond/bg.png');
 
 }
 

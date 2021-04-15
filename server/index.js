@@ -1,8 +1,26 @@
+const fs = require('fs');
+//const http = require('http');
+//const https = require('https');
+const privateKey  = fs.readFileSync('server/sslcert/selfsigned.key', 'utf8');
+const certificate = fs.readFileSync('server/sslcert/selfsigned.crt', 'utf8');
+
+const credentials = {key: privateKey, cert: certificate};
+//const express = require('express');
+//const app = express();
+
 const path = require('path');
 const jsdom = require('jsdom');
 const express = require('express');
 const app = express();
-const server = require('http').Server(app);
+
+//const httpServer = http.createServer(app);
+//const httpsServer = https.createServer(credentials, app);
+
+//httpServer.listen(8080);
+//httpsServer.listen(8443);
+
+
+const server = require('https').createServer(credentials, app);
 const io = require('socket.io')(server);
 const datauri = require('datauri');
 const { JSDOM } = jsdom;
@@ -29,7 +47,7 @@ function setupAuthoritativePhaser() {
     };
     dom.window.URL.revokeObjectURL = (objectURL) => {};
     dom.window.gameLoaded = () => {
-      server.listen(8000, function () {
+      server.listen(8443, function () {
         console.log(`Listening on ${server.address().port}`);
       });
     };
