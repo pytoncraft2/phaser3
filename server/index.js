@@ -1,10 +1,23 @@
 const fs = require('fs');
 //const http = require('http');
 //const https = require('https');
-//const privateKey  = fs.readFileSync('server/sslcert/selfsigned.key', 'utf8');
-//const certificate = fs.readFileSync('server/sslcert/selfsigned.crt', 'utf8');
 
-//const credentials = {key: privateKey, cert: certificate};
+
+const privateKey = fs.readFileSync('server/ssl/privkey.pem', 'utf8');
+const certificate = fs.readFileSync('server/ssl/cert.pem', 'utf8');
+const ca = fs.readFileSync('server/ssl/chain.pem', 'utf8');
+
+
+/*
+const privateKey  = fs.readFileSync('server/sslcert/key.pem', 'utf8');
+const certificate = fs.readFileSync('server/sslcert/cert.pem', 'utf8');
+*/
+
+const credentials = {
+	key: privateKey, 
+	cert: certificate,
+	ca: ca
+};
 //const express = require('express');
 //const app = express();
 
@@ -20,7 +33,7 @@ const app = express();
 //httpsServer.listen(8443);
 
 
-const server = require('http').createServer(app);
+const server = require('https').createServer(credentials, app);
 const io = require('socket.io')(server);
 const datauri = require('datauri');
 const { JSDOM } = jsdom;
