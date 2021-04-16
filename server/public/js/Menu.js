@@ -25,26 +25,16 @@ export default class Menu extends Phaser.Scene {
     var bg = this.add.image(750, 350, 'bg');
     console.log(this.width);
     const self = this;
-    this.goSelectionS = this.add.text(695, 300, ['Solo']).setFontSize(38).setFontFamily('Trebuchet MS').setColor('#00ffff');
-    this.goSelectionM = this.add.text(650, 400, ['Multijoueur']).setFontSize(38).setFontFamily('Trebuchet MS').setColor('#00ffff');
+    this.goSelectionS = this.add.text(695, 300, ['Solo']).setFontSize(38).setFontFamily('Trebuchet MS').setColor('#00ffff').setShadow(2, 2, "#333333", 2, true, true);
+    this.goSelectionM = this.add.text(650, 400, ['Multijoueur']).setFontSize(38).setFontFamily('Trebuchet MS').setColor('#00ffff').setShadow(2, 2, "#333333", 2, true, true);
+    this.fullscreen = this.add.text(640, 500, ['Pleine Ecran']).setFontSize(38).setFontFamily('Trebuchet MS').setColor('#00ffff').setShadow(2, 2, "#333333", 2, true, true);
+    // this.fullscreen.setShadow(2, 2, "#333333", 2, true, true);
 
-    this.goSelectionM.on('pointerup', function () {
+    this.fullscreen.setInteractive().on('pointerup', function () {
 
-        if (this.scale.isFullscreen)
-        {
-            // button.setFrame(0);
-
-            this.scale.stopFullscreen();
-        }
-        else
-        {
-            // button.setFrame(1);
-
-            this.scale.startFullscreen();
-        }
+        this.scale.isFullscreen ? this.scale.stopFullscreen() : this.scale.startFullscreen()
 
     }, this);
-
 
 
     this.goSelectionM.setInteractive().on('pointerdown', function(pointer, localX, localY, event) {

@@ -5,7 +5,7 @@ var config = {
   // autoCenter: Phaser.Scale.CENTER_BOTH,
   type: Phaser.AUTO,
   parent: 'phaser-example',
-  width: 1500,
+  width: 1920,
   height: 720,
   // active:true,
   // mode: Phaser.Scale.FIT,
