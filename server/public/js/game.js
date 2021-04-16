@@ -1,17 +1,19 @@
+import Menu from './Menu.js'
+
 var config = {
   type: Phaser.AUTO,
   parent: 'phaser-example',
   width: 1500,
   height: 720,
-  scene: {
-    preload: preload,
-    create: create,
-    update: update
-  }
+  scene: [ Menu ]
+    // preload: preload,
+    // create: create,
+    // update: update
+  // }
 };
 
 var game = new Phaser.Game(config);
-
+/*
 function preload() {
 
   this.load.atlas('atlas', 'http://localhost/phaser3/server/authoritative_server/assets/personnages/dessinatrice/deuxrow.png', 'http://localhost/phaser3/server/authoritative_server/assets/personnages/dessinatrice/deuxrow_atlas.json');
@@ -136,10 +138,10 @@ function update() {
 }
 
 function displayPlayers(self, playerInfo, atlas, nom) {
-  self.player = self.add.sprite(playerInfo.x, playerInfo.y, atlas, nom).setScale(0.38).setOrigin(0.5, 0.5)/*.setDisplaySize(368, 496)*/ ;
-  self.player.playerId = playerInfo.playerId;
-  self.players.add(self.player);
-}
-
+  self.player = self.add.sprite(playerInfo.x, playerInfo.y, atlas, nom).setScale(0.38).setOrigin(0.5, 0.5) ;
+  // self.player.playerId = playerInfo.playerId;
+  // self.players.add(self.player);
+// }
 // NOTES
 // image3.setDepth(1);
+*/
