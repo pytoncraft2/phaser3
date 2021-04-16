@@ -12,22 +12,46 @@ export default class Menu extends Phaser.Scene {
     this.i = 0;
   }
 
-  preload() {}
+  preload() {
+
+    this.load.image('bg', 'assets/fond/bg.png');
+  }
 
   /**
    * Affiche texte menu
    * @return {String} [description]
    */
   create() {
+    var bg = this.add.image(750, 350, 'bg');
     console.log(this.width);
     const self = this;
     this.goSelectionS = this.add.text(695, 300, ['Solo']).setFontSize(38).setFontFamily('Trebuchet MS').setColor('#00ffff');
     this.goSelectionM = this.add.text(650, 400, ['Multijoueur']).setFontSize(38).setFontFamily('Trebuchet MS').setColor('#00ffff');
+
+    this.goSelectionM.on('pointerup', function () {
+
+        if (this.scale.isFullscreen)
+        {
+            // button.setFrame(0);
+
+            this.scale.stopFullscreen();
+        }
+        else
+        {
+            // button.setFrame(1);
+
+            this.scale.startFullscreen();
+        }
+
+    }, this);
+
+
+
     this.goSelectionM.setInteractive().on('pointerdown', function(pointer, localX, localY, event) {
       // self.scene.scale.toggleFullscreen();
-      self.scene.start('Multijoueur', {
-        character: this.selectedKey
-      });
+      // self.scene.start('Multijoueur', {
+        // character: this.selectedKey
+      // });
       // console.log(pointer);
     });
 
