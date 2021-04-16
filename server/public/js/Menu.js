@@ -21,14 +21,25 @@ export default class Menu extends Phaser.Scene {
   create() {
     console.log(this.width);
     const self = this;
-    this.goSelection = this.add.text(650, 300, ['Choisir un personnages']).setFontSize(18).setFontFamily('Trebuchet MS').setColor('#00ffff');
-    this.goSelection.setInteractive().on('pointerdown', function(pointer, localX, localY, event) {
+    this.goSelectionS = this.add.text(695, 300, ['Solo']).setFontSize(38).setFontFamily('Trebuchet MS').setColor('#00ffff');
+    this.goSelectionM = this.add.text(650, 400, ['Multijoueur']).setFontSize(38).setFontFamily('Trebuchet MS').setColor('#00ffff');
+    this.goSelectionM.setInteractive().on('pointerdown', function(pointer, localX, localY, event) {
       // self.scene.scale.toggleFullscreen();
       self.scene.start('Multijoueur', {
         character: this.selectedKey
       });
       // console.log(pointer);
     });
+
+
+  this.goSelectionS.setInteractive().on('pointerdown', function(pointer, localX, localY, event) {
+      // self.scene.scale.toggleFullscreen();
+      self.scene.start('Multijoueur', {
+        character: this.selectedKey
+      });
+      // console.log(pointer);
+    });
+
     this.hsv = Phaser.Display.Color.HSVColorWheel();
 
     //  Rainbow Text
