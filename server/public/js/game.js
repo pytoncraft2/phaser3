@@ -1,11 +1,22 @@
 import Menu from './Menu.js'
+import Multijoueur from './Multijoueur.js'
 
 var config = {
+  autoCenter: Phaser.Scale.CENTER_BOTH,
   type: Phaser.AUTO,
   parent: 'phaser-example',
   width: 1500,
   height: 720,
-  scene: [ Menu ]
+  active:true,
+  mode: Phaser.Scale.FIT,
+  physics: {
+    default: 'arcade',
+    arcade: {
+        gravity: { y: 0 },
+        debug: false
+    }
+},
+  scene: [ Menu, Multijoueur ]
     // preload: preload,
     // create: create,
     // update: update
