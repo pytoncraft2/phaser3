@@ -21,7 +21,7 @@ export default class Menu extends Phaser.Scene {
   create() {
     console.log(this.width);
     const self = this;
-    this.goSelection = this.add.text(75, 550, ['Choisir un personnages']).setFontSize(18).setFontFamily('Trebuchet MS').setColor('#00ffff');
+    this.goSelection = this.add.text(650, 300, ['Choisir un personnages']).setFontSize(18).setFontFamily('Trebuchet MS').setColor('#00ffff');
     this.goSelection.setInteractive().on('pointerdown', function(pointer, localX, localY, event) {
       // self.scene.scale.toggleFullscreen();
       self.scene.start('Multijoueur', {
@@ -32,9 +32,9 @@ export default class Menu extends Phaser.Scene {
     this.hsv = Phaser.Display.Color.HSVColorWheel();
 
     //  Rainbow Text
-    this.text1 = this.add.text(50, 100, 'Steam-Fighter', { font: "74px Arial Black", fill: "#fff" });
-    this.text1.setStroke('#00f', 16);
-    this.text1.setShadow(2, 2, "#333333", 2, true, true);
+    this.logo = this.add.text(530, 30, 'Steam-Fighter', { font: "74px Arial Black", fill: "#fff" });
+    this.logo.setStroke('#00f', 16);
+    this.logo.setShadow(2, 2, "#333333", 2, true, true);
 
   }
 
@@ -45,7 +45,7 @@ export default class Menu extends Phaser.Scene {
     const top = this.hsv[this.i].color;
     const bottom = this.hsv[359 - this.i].color;
 
-    this.text1.setTint(top, top, bottom, bottom);
+    this.logo.setTint(top, top, bottom, bottom);
 
     this.i++;
 
