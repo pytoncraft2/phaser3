@@ -12,7 +12,7 @@ export default class Multijoueur extends Phaser.Scene {
   }
 
   preload() {
-    // this.load.atlas('atlas', 'assets/personnages/dessinatrice/deuxrow.png', 'assets/personnages/dessinatrice/deuxrow_atlas.json');
+    this.load.atlas('atlas', 'assets/personnages/dessinatrice/deuxrow.png', 'assets/personnages/dessinatrice/deuxrow_atlas.json');
     this.load.image('bg', 'assets/fond/bg.png');
   }
 
