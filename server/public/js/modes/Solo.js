@@ -4,10 +4,10 @@
  * @type {String}
  */
 
-export default class Selection extends Phaser.Scene {
+export default class Solo extends Phaser.Scene {
   constructor() {
     super({
-      key: "Selection"
+      key: "Solo"
     });
   }
 
@@ -23,7 +23,7 @@ export default class Selection extends Phaser.Scene {
   create() {
     const self = this;
     var bg = this.add.image(750, 350, 'bg');
-    this.text = this.add.text(75, 350, ['Selection']).setFontSize(18).setFontFamily('Trebuchet MS').setColor('#00ffff');
+    this.text = this.add.text(75, 350, ['Solo']).setFontSize(18).setFontFamily('Trebuchet MS').setColor('#00ffff');
     // this.fullscreen = this.add.text(95, 350, ['Fullscreen']).setFontSize(18).setFontFamily('Trebuchet MS').setColor('#00ffff');
 
     this.text.setInteractive().on('pointerdown', function(pointer, localX, localY, event) {

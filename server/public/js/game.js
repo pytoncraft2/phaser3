@@ -1,5 +1,7 @@
 import Menu from './Menu.js'
-import Multijoueur from './Multijoueur.js'
+import Selection from './Selection.js'
+import Solo from './modes/Solo.js'
+import Multijoueur from './modes/Multijoueur.js'
 
 var config = {
   // autoCenter: Phaser.Scale.CENTER_BOTH,
@@ -18,7 +20,7 @@ var config = {
         debug: false
     }
 },
-  scene: [ Menu, Multijoueur ]
+  scene: [ Menu, Multijoueur, Solo, Selection ]
     // preload: preload,
     // create: create,
     // update: update
