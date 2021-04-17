@@ -40,7 +40,7 @@ export default class Menu extends Phaser.Scene {
     this.goSelectionM.setInteractive().on('pointerdown', function(pointer, localX, localY, event) {
       // self.scene.scale.toggleFullscreen();
       self.scene.start('Selection', {
-        character: this.selectedKey
+        mode: 'Multijoueur'
       });
       // console.log(pointer);
     });
@@ -48,8 +48,8 @@ export default class Menu extends Phaser.Scene {
 
   this.goSelectionS.setInteractive().on('pointerdown', function(pointer, localX, localY, event) {
       // self.scene.scale.toggleFullscreen();
-      self.scene.start('Multijoueur', {
-        character: this.selectedKey
+      self.scene.start('Selection', {
+        mode: 'Solo'
       });
       // console.log(pointer);
     });

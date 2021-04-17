@@ -11,9 +11,19 @@ export default class Selection extends Phaser.Scene {
     });
   }
 
+/**
+ * Recupere le mode Multijoueur | Solo passé en paramètre de la class menu
+ * @param {{ mode: string }} data
+ */
+
+init(data)
+{
+  this.mode = data.mode
+  console.log(this.mode);
+}
+
   preload() {
-    // this.load.atlas('atlas', 'assets/personnages/dessinatrice/deuxrow.png', 'assets/personnages/dessinatrice/deuxrow_atlas.json');
-    this.load.image('bg', 'assets/fond/bg.png');
+    this.load.image('perso', 'assets/selection/dessinatrice.png');
   }
 
   /**
@@ -22,9 +32,9 @@ export default class Selection extends Phaser.Scene {
    */
   create() {
     const self = this;
-    var bg = this.add.image(750, 350, 'bg');
     this.text = this.add.text(75, 350, ['Selection']).setFontSize(18).setFontFamily('Trebuchet MS').setColor('#00ffff');
     // this.fullscreen = this.add.text(95, 350, ['Fullscreen']).setFontSize(18).setFontFamily('Trebuchet MS').setColor('#00ffff');
+    self.player = self.add.image(400, 400,'perso').setScale(0.38).setOrigin(0.5, 0.5).setInteractive();
 
     this.text.setInteractive().on('pointerdown', function(pointer, localX, localY, event) {
       self.scene.start('Menu', {
