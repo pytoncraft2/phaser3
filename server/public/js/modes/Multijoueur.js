@@ -11,9 +11,15 @@ export default class Multijoueur extends Phaser.Scene {
     });
   }
 
+  init(data) {
+    this.personnage = data.personnage
+    console.log(this.personnage);
+  }
+
   preload() {
-    this.load.atlas('atlas', 'assets/personnages/dessinatrice/deuxrow.png', 'assets/personnages/dessinatrice/deuxrow_atlas.json');
+    this.load.atlas('atlas', `assets/personnages/${this.personnage}/${this.personnage}.png`, `assets/personnages/${this.personnage}/${this.personnage}_atlas.json`);
     this.load.image('bg', 'assets/fond/bg.png');
+
   }
 
   /**
@@ -23,6 +29,7 @@ export default class Multijoueur extends Phaser.Scene {
   create() {
     const self = this;
     var bg = this.add.image(750, 350, 'bg');
+    self.player = self.add.sprite(400, 400, 'atlas', 'profil2').setScale(0.38).setOrigin(0.5, 0.5).setInteractive();
     this.text = this.add.text(75, 350, ['Multijoueur']).setFontSize(18).setFontFamily('Trebuchet MS').setColor('#00ffff');
     // this.fullscreen = this.add.text(95, 350, ['Fullscreen']).setFontSize(18).setFontFamily('Trebuchet MS').setColor('#00ffff');
 
@@ -34,7 +41,7 @@ export default class Multijoueur extends Phaser.Scene {
 
     // this.fullscreen.setInteractive().on('pointerdown', function(pointer, localX, localY, event) {
 
-      // TODO: fullscreen mode
+    // TODO: fullscreen mode
 
     // });
 

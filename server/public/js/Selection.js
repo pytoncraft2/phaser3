@@ -44,9 +44,9 @@ init(data)
 
     this.player1.setInteractive().on('pointerdown', function(pointer, localX, localY, event) {
       self.scene.start('Multijoueur', {
-        character: this.selectedKey
+        personnage: this.frame.texture.key
       });
-      console.log(this.frame.texture.key);
+      // console.log(this.frame.texture.key);
     });
 
     this.player2.setInteractive().on('pointerdown', function(pointer, localX, localY, event) {
@@ -64,10 +64,13 @@ init(data)
     });
 
     this.player4.setInteractive().on('pointerdown', function(pointer, localX, localY, event) {
+      self.scene.start('Multijoueur', {
+        personnage: this.frame.texture.key
+      });
       // self.scene.start('Menu', {
         // character: this.selectedKey
       // });
-      console.log(this.frame.texture.key);
+      // console.log(this.frame.texture.key);
     });
 
 
