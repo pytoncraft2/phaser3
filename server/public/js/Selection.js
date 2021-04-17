@@ -1,5 +1,5 @@
 /**
- * Jeu en ligne
+ * Selection des personnage
  * Identifiant de la class Solo
  * @type {String}
  */
@@ -12,7 +12,7 @@ export default class Selection extends Phaser.Scene {
   }
 
 /**
- * Recupere le mode Multijoueur | Solo passé en paramètre de la class menu
+ * Recupere le mode passé en paramètre (Multijoueur | Solo) de la class menu
  * @param {{ mode: string }} data
  */
 
@@ -29,10 +29,11 @@ init(data)
     this.load.image('dessinatrice4', 'assets/selection/dessinatrice4.png');
   }
 
-  /**
-   * Affiche texte menu
-   * @return {String} [description]
-   */
+
+   /**
+    * Selectionne la clé de l'image lors du clique et l'envoie dans la class Multijoueur pour afficher le bon skin dans le jeu
+    * @return {[type]} [description]
+    */
   create() {
     const self = this;
     this.text = this.add.text(75, 350, ['Selection']).setFontSize(18).setFontFamily('Trebuchet MS').setColor('#00ffff');
@@ -46,17 +47,12 @@ init(data)
       self.scene.start('Multijoueur', {
         personnage: this.frame.texture.key
       });
-      // console.log(this.frame.texture.key);
     });
 
     this.player2.setInteractive().on('pointerdown', function(pointer, localX, localY, event) {
       self.scene.start('Multijoueur', {
         personnage: this.frame.texture.key
       });
-
-      // self.scene.start('Menu', {
-        // character: this.selectedKey
-      // });
       console.log(this.frame.texture.key);
     });
 
@@ -64,20 +60,12 @@ init(data)
       self.scene.start('Multijoueur', {
         personnage: this.frame.texture.key
       });
-      // self.scene.start('Menu', {
-        // character: this.selectedKey
-      // });
-      console.log(this.frame.texture.key);
     });
 
     this.player4.setInteractive().on('pointerdown', function(pointer, localX, localY, event) {
       self.scene.start('Multijoueur', {
         personnage: this.frame.texture.key
       });
-      // self.scene.start('Menu', {
-        // character: this.selectedKey
-      // });
-      // console.log(this.frame.texture.key);
     });
 
 
