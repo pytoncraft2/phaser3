@@ -5,15 +5,16 @@ var config = {
   // autoCenter: Phaser.Scale.CENTER_BOTH,
   type: Phaser.AUTO,
   parent: 'phaser-example',
-  width: 1920,
+  width: 1500,
   height: 720,
   // active:true,
   // mode: Phaser.Scale.FIT,
   // backgroundColor: '#11a0d4',
+
   physics: {
     default: 'arcade',
     arcade: {
-        // gravity: { y: 0 },
+        gravity: { y: 0 },
         debug: false
     }
 },
