@@ -50,6 +50,10 @@ init(data)
     });
 
     this.player2.setInteractive().on('pointerdown', function(pointer, localX, localY, event) {
+      self.scene.start('Multijoueur', {
+        personnage: this.frame.texture.key
+      });
+
       // self.scene.start('Menu', {
         // character: this.selectedKey
       // });
@@ -57,6 +61,9 @@ init(data)
     });
 
     this.player3.setInteractive().on('pointerdown', function(pointer, localX, localY, event) {
+      self.scene.start('Multijoueur', {
+        personnage: this.frame.texture.key
+      });
       // self.scene.start('Menu', {
         // character: this.selectedKey
       // });
