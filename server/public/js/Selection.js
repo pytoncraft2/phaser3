@@ -24,6 +24,7 @@ init(data)
 
   preload() {
     this.load.image('perso', 'assets/selection/dessinatrice.png');
+    this.load.image('perso', 'assets/selection/dessinatrice.png');
   }
 
   /**
