@@ -20,13 +20,17 @@ init(data)
 {
   this.mode = data.mode
   console.log(this.mode);
+  this.liste = ['dessinatrice1','dessinatrice2','dessinatrice3','dessinatrice4'];
+  // TODO: implémenter automatisation l'ajout d'un nouveau joueur
 }
 
   preload() {
-    this.load.image('dessinatrice1', 'assets/selection/dessinatrice1.png');
-    this.load.image('dessinatrice2', 'assets/selection/dessinatrice2.png');
-    this.load.image('dessinatrice3', 'assets/selection/dessinatrice3.png');
-    this.load.image('dessinatrice4', 'assets/selection/dessinatrice4.png');
+    this.liste.forEach((item, i) => {
+    this.load.image(item, 'assets/selection/'+item+'.png');
+});
+
+
+
   }
 
 
