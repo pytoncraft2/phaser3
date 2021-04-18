@@ -148,44 +148,4 @@ displayPlayers(self, playerInfo, atlas, nom) {
      self.player.playerId = playerInfo.playerId;
      self.players.add(self.player);
    }
-
-
-
-
-
-
-
-
-/*
-
-
-  create() {
-    const self = this;
-    var bg = this.add.image(750, 350, 'bg');
-    self.player = self.add.sprite(400, 400, 'atlas', 'profil2').setScale(0.38).setOrigin(0.5, 0.5).setInteractive();
-    this.text = this.add.text(75, 350, ['Multijoueur']).setFontSize(18).setFontFamily('Trebuchet MS').setColor('#00ffff');
-    // this.fullscreen = this.add.text(95, 350, ['Fullscreen']).setFontSize(18).setFontFamily('Trebuchet MS').setColor('#00ffff');
-
-
-
-    this.text.setInteractive().on('pointerdown', function(pointer, localX, localY, event) {
-      self.scene.start('Menu', {
-        character: this.selectedKey
-      });
-    });
-
-
-    // this.fullscreen.setInteractive().on('pointerdown', function(pointer, localX, localY, event) {
-
-    // TODO: fullscreen mode
-
-    // });
-
-  }
-
-  update() {
-
-  }
-}
-*/
 }
