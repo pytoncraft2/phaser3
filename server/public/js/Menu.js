@@ -58,7 +58,7 @@ export default class Menu extends Phaser.Scene {
 
     //  Rainbow Text
     this.logo = this.add.text(530, 30, 'Steam-Fighter', { font: "74px Arial Black", fill: "#fff" });
-    this.logo.setStroke('#00f', 16);
+    this.logo.setStroke('#00f', 8);
     this.logo.setShadow(2, 2, "#333333", 2, true, true);
 
   }
