@@ -35,6 +35,7 @@ export default class Selection extends Phaser.Scene {
    * @return {[type]} [description]
    */
   create() {
+
     const self = this;
     var x = 400;
     var y = 400;
@@ -53,52 +54,13 @@ export default class Selection extends Phaser.Scene {
       });
     });
 
-
   });
-    // self.player1 = self.add.image(400, 400, 'dessinatrice1').setScale(0.38).setOrigin(0.5, 0.5).setInteractive();
-    // self.player2 = self.add.image(600, 400, 'dessinatrice2').setScale(0.38).setOrigin(0.5, 0.5).setInteractive();
-    // self.player3 = self.add.image(800, 400, 'dessinatrice3').setScale(0.38).setOrigin(0.5, 0.5).setInteractive();
-    // self.player4 = self.add.image(1000, 400, 'dessinatrice4').setScale(0.38).setOrigin(0.5, 0.5).setInteractive();
-/*
-    this.player0.setInteractive().on('pointerdown', function(pointer, localX, localY, event) {
-      self.scene.start('Multijoueur', {
-        personnage: this.frame.texture.key
-      });
-    });
-
-    this.player1.setInteractive().on('pointerdown', function(pointer, localX, localY, event) {
-      self.scene.start('Multijoueur', {
-        personnage: this.frame.texture.key
-      });
-      console.log(this.frame.texture.key);
-    });
-
-    this.player2.setInteractive().on('pointerdown', function(pointer, localX, localY, event) {
-      self.scene.start('Multijoueur', {
-        personnage: this.frame.texture.key
-      });
-    });
-
-    this.player3.setInteractive().on('pointerdown', function(pointer, localX, localY, event) {
-      self.scene.start('Multijoueur', {
-        personnage: this.frame.texture.key
-      });
-    });
-    */
-
-
-
-
 
     // this.fullscreen.setInteractive().on('pointerdown', function(pointer, localX, localY, event) {
 
     // TODO: fullscreen mode
 
     // });
-
-  }
-
-  update() {
 
   }
 }
