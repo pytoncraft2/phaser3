@@ -14,7 +14,7 @@ export default class Menu extends Phaser.Scene {
 
   preload() {
 
-    this.load.image('bg', 'assets/fond/bg.png');
+    this.load.image('bgMenu', 'assets/fond/bgMenu.png');
   }
 
   /**
@@ -22,7 +22,7 @@ export default class Menu extends Phaser.Scene {
    * @return {String} [description]
    */
   create() {
-    var bg = this.add.image(750, 350, 'bg');
+    var bgMenu = this.add.image(750, 350, 'bgMenu');
     console.log(this.width);
     const self = this;
     this.goSelectionS = this.add.text(695, 300, ['Solo']).setFontSize(38).setFontFamily('Trebuchet MS').setColor('#00ffff').setShadow(2, 2, "#333333", 2, true, true);
