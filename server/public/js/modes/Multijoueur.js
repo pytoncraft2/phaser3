@@ -59,7 +59,7 @@ export default class Multijoueur extends Phaser.Scene {
        repeat: 0
      });
 
-     this.add.image(750, 350, 'bg').setDepth(-54);
+     this.add.image(750, 390, 'bg').setDepth(-54);
 
 
      this.socket = io();
