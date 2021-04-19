@@ -96,6 +96,10 @@ export default class Multijoueur extends Phaser.Scene {
              player.setScale(players[id].scale);
              player.setPosition(players[id].x, players[id].y);
              player.setDepth(players[id].depth);
+             self.cameras.main.scrollX = players[id].x - 400;
+              self.cameras.main.scrollY = players[id].y- 300;
+             // self.cameras.main.scrollX = this.cameraTargetSprite.x - 400;
+// self.cameras.main.scrollY = this.cameraTargetSprite.y - 300;
              if (players[id].anim && players[id].anim !== false) {
                player.play('' + players[id].anim + '', 5);
              }
