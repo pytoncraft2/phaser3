@@ -120,7 +120,7 @@ function update() {
     players[player.playerId].anim = player.anim;
     players[player.playerId].depth = player.depth;
   });
-  this.physics.world.wrap(this.players, 5);
+  // this.physics.world.wrap(this.players, 5);
   //envoi mise à jour de tout les players
   io.emit('playerUpdates', players);
 }
