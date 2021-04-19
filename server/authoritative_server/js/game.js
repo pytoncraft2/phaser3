@@ -41,6 +41,7 @@ function create() {
     console.log('a user connected');
     // create a new player and add it to our players object
     players[socket.id] = {
+      depth: 30,
       anim: 'profil2',
       scale: 0.38,
       x: Math.floor(Math.random() * 700) + 50,
@@ -83,6 +84,7 @@ function update() {
   this.players.getChildren().forEach((player) => {
     const input = players[player.playerId].input;
     player.setVelocity(0);
+    // player.setDepth(11);
     player.anim = false;
 
     input.left ? (player.setVelocityX(-300), player.flipX = true, player.anim = 'walk') :
@@ -93,6 +95,7 @@ function update() {
     if (input.up && player.scale >= 0.223) {
       player.scale = player.scale - 0.003;
       player.y -= 2;
+      player.depth = player.depth - 1;
       player.anim = 'goback';
     }
 
@@ -100,8 +103,10 @@ function update() {
     if (input.down && player.scale <= 2) {
       player.scale = player.scale + 0.003;
       player.y += 2;
+      player.depth += 1;
       player.anim = 'front';
     }
+    console.log(player.depth);
 
       if (input.a) { 
         console.log(input.a);
@@ -113,6 +118,7 @@ function update() {
     players[player.playerId].scale = player.scale;
     players[player.playerId].flipX = player.flipX;
     players[player.playerId].anim = player.anim;
+    players[player.playerId].depth = player.depth;
   });
   this.physics.world.wrap(this.players, 5);
   //envoi mise à jour de tout les players

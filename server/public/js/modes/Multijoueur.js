@@ -59,7 +59,7 @@ export default class Multijoueur extends Phaser.Scene {
        repeat: 0
      });
 
-     this.add.image(750, 350, 'bg');
+     this.add.image(750, 350, 'bg').setDepth(-54);
 
 
      this.socket = io();
@@ -92,6 +92,7 @@ export default class Multijoueur extends Phaser.Scene {
              player.flipX = (players[id].flipX);
              player.setScale(players[id].scale);
              player.setPosition(players[id].x, players[id].y);
+             player.setDepth(players[id].depth);
              if (players[id].anim && players[id].anim !== false) {
                player.play('' + players[id].anim + '', 5);
              }
