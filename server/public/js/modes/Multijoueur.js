@@ -29,15 +29,7 @@ export default class Multijoueur extends Phaser.Scene {
 
  create() {
 
-// this.cameras.main.setZoom(4);
      var self = this;
-if (this.currentP) {
-  self.cameras.main.setBounds(0, 0, 1024, 2048);
-self.cameras.main.startFollow(self.currentP, true, 0.09,0.09);
-
-}
-      // self.cameras.main.setZoom(1);
-
 
        this.anims.create({
        key: "attack1",
@@ -67,7 +59,7 @@ self.cameras.main.startFollow(self.currentP, true, 0.09,0.09);
        repeat: 0
      });
 
-     this.add.image(0, 0, 'bg').setDepth(-54).setOrigin(0).setScrollFactor(1);
+     this.add.image(750, 350, 'bg').setDepth(-54);
 
 
      this.socket = io();
@@ -77,17 +69,8 @@ self.cameras.main.startFollow(self.currentP, true, 0.09,0.09);
        Object.keys(players).forEach(function(id) {
          if (players[id].playerId === self.socket.id) {
             self.displayPlayers(self, players[id], 'atlas', 'profil2');
-            self.followCamera(players[id]);
-            self.currentPX = players[id].x;
-            self.currentPY = players[id].y;
-            self.currentP = players[id];
-            // console.log(players[id].x);
-            // self.cameras.main.setBounds(0, 0, 1024, 2048);
-            // self.cameras.main.startFollow(players[id], true, 0.09, 0.09);
-            // self.cameras.main.setZoom(1.2);
          } else {
            self.displayPlayers(self, players[id], 'atlas','profil2');
-            // self.currentP = players[id];
          }
            // FIXME: meme skin pour touts les joueurs
        });
@@ -133,20 +116,6 @@ self.cameras.main.startFollow(self.currentP, true, 0.09,0.09);
 
 
 update() {
-   // console.log(typeof(self.player));
-   console.log(this.currentP);
-if (this.currentPX) {
-     this.cameras.main.scrollX = this.currentPX - 400;
-this.cameras.main.scrollY = this.currentPY - 300;
-this.cameras.main.setZoom(4);
-}
-  // if (p.player) {
-    // this.currentP;
-    // console.log('ok');
-  // }
-  // self.cameras.main.scrollX = self.player.x - 400;
-// self.cameras.main.scrollY = self.player.y - 300;
-
      const left = this.leftKeyPressed,
        right = this.rightKeyPressed,
        up = this.upKeyPressed,
@@ -177,22 +146,10 @@ this.cameras.main.setZoom(4);
        });
      }
    }
-followCamera(player) {
-
-            // this.cameras.main.setBounds(0, 0, 1024, 2048);
-            // this.cameras.main.startFollow(player, true, 0.09, 0.09);
-            // self.cameras.main.setZoom(1.2);
-
-
-}
 
 displayPlayers(self, playerInfo, atlas, nom) {
-
      self.player = self.physics.add.sprite(playerInfo.x, playerInfo.y, atlas, nom).setScale(0.38).setOrigin(0.5, 0.5)/*.setDisplaySize(10,10)*//*.setOrigin(0.5, 0.5).setBounce(0.2).setCollideWorldBounds(true)*/ ;
      self.player.playerId = playerInfo.playerId;
      self.players.add(self.player);
-     // self.cameras.main.scrollX = self.player.x - 400;
-// self.cameras.main.scrollY = self.player.y - 300;
-
    }
 }
