@@ -6,13 +6,17 @@ import Multijoueur from './modes/Multijoueur.js'
 var config = {
   type: Phaser.AUTO,
   parent: 'phaser-example',
+  scale: {
+  mode: Phaser.Scale.CENTER_BOTH,
+  autoCenter: Phaser.Scale.CENTER_BOTH
+},
   width: 1500,
   height: 720,
   physics: {
     default: 'arcade',
     arcade: {
         gravity: { y: 0 },
-        debug: false
+        debug: true
     }
 },
   scene: [ Menu, Multijoueur, Solo, Selection ]

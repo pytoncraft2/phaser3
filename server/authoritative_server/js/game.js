@@ -35,7 +35,7 @@ function create() {
 
   this.physics.add.collider(this.players);
 
-  this.physics.add.overlap(this.players, function(star, player) {});
+  // this.physics.add.overlap(this.players, function(star, player) {});
 
   io.on('connection', function(socket) {
     console.log('a user connected');
@@ -136,7 +136,7 @@ function handlePlayerInput(self, playerId, input) {
 }
 
 function addPlayer(self, playerInfo) {
-  const player = self.physics.add.sprite(playerInfo.x, playerInfo.y, 'profil2').setScale(0.38).setOrigin(0.5)/*.setDisplaySize(136, 392)*/;
+  const player = self.physics.add.sprite(playerInfo.x, playerInfo.y, 'profil2').setScale(0.38).setOrigin(0.5)/*.setDisplaySize(13, 39)*/;
   player.setMaxVelocity(200);
   player.playerId = playerInfo.playerId;
   self.players.add(player);

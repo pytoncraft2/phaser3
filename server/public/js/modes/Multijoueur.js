@@ -18,7 +18,7 @@ export default class Multijoueur extends Phaser.Scene {
 
   preload() {
     this.load.atlas('atlas', `assets/personnages/${this.personnage}/${this.personnage}.png`, `assets/personnages/${this.personnage}/${this.personnage}_atlas.json`);
-    this.load.image('bg', 'assets/fond/bg.png');
+    this.load.image('bg', 'assets/fond/bgGrand.png');
 
   }
 
@@ -145,7 +145,7 @@ update() {
    }
 
 displayPlayers(self, playerInfo, atlas, nom) {
-     self.player = self.add.sprite(playerInfo.x, playerInfo.y, atlas, nom).setScale(0.38).setOrigin(0.5, 0.5) ;
+     self.player = self.physics.add.sprite(playerInfo.x, playerInfo.y, atlas, nom).setScale(0.38).setOrigin(0.5, 0.5)/*.setDisplaySize(10,10)*//*.setOrigin(0.5, 0.5).setBounce(0.2).setCollideWorldBounds(true)*/ ;
      self.player.playerId = playerInfo.playerId;
      self.players.add(self.player);
    }
