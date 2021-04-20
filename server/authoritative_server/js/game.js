@@ -40,10 +40,10 @@ function create() {
   io.on('connection', function(socket) {
     console.log('a user connected');
     // console.log(socket.atlas);
-    console.log(socket.handshake.headers);
+    // console.log(socket.handshake.headers.atlas);
     // create a new player and add it to our players object
     players[socket.id] = {
-      atlas: 'socket.atlas',
+      atlas: socket.handshake.headers.atlas,
       texture: '',
       depth: 30,
       anim: 'profil2',
