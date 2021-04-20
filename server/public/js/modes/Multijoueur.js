@@ -89,9 +89,9 @@ export default class Multijoueur extends Phaser.Scene {
      });
 
      this.socket.on('newPlayer', function(playerInfo) {
-       console.log(playerInfo.atlas);
+       // console.log(playerInfo.atlas);
        // console.log(atlas);
-       // self.displayPlayers(self, playerInfo, 'dessinatrice2','profil2');
+       self.displayPlayers(self, playerInfo, playerInfo.atlas,'profil2');
        // console.log(self.personnage);
        // console.log(playerInfo.frame.texture.key);
      });
