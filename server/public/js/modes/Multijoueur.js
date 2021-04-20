@@ -69,6 +69,8 @@ export default class Multijoueur extends Phaser.Scene {
 
 
      this.socket = io();
+     this.socket.atlas = this.personnage;
+     console.log(this.socket.atlas);
      this.players = this.add.group();
 
      this.socket.on('currentPlayers', function(players) {
@@ -83,8 +85,9 @@ export default class Multijoueur extends Phaser.Scene {
        });
      });
 
-     this.socket.on('newPlayer', function(playerInfo) {
-       console.log(playerInfo);
+     this.socket.on('newPlayer', function(playerInfo, atlas) {
+       // console.log(playerInfo.atlas);
+       console.log(atlas);
        // self.displayPlayers(self, playerInfo, 'dessinatrice2','profil2');
        // console.log(self.personnage);
        // console.log(playerInfo.frame.texture.key);

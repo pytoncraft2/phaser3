@@ -49,9 +49,17 @@ export default class Selection extends Phaser.Scene {
     up += 200;
 
     this.player.setInteractive().on('pointerdown', function(pointer, localX, localY, event) {
+      // self.scene.start('Multijoueur', {
+        // personnage: this.frame.texture.key
+      // });
+
+     // this.socket = io();
+     // this.socket.atlas = 'test';
+     // console.log(this.socket.atlas);
       self.scene.start('Multijoueur', {
         personnage: this.frame.texture.key
       });
+
     });
 
   });
