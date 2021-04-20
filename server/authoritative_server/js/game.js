@@ -91,8 +91,8 @@ function update() {
     // player.setDepth(11);
     player.anim = false;
 
-    input.left ? (player.setVelocityX(-300), player.flipX = true, player.anim = 'walk') :
-      input.right ? (player.setVelocityX(300), player.flipX = false , player.anim = 'walk') :
+    input.left ? (player.setVelocityX(-300), player.flipX = true/*, player.anim = 'walk'*/) :
+      input.right ? (player.setVelocityX(300), player.flipX = false /*, player.anim = 'walk'*/) :
       player.setVelocityX(0)
 
     //smaller
@@ -100,7 +100,7 @@ function update() {
       player.scale = player.scale - 0.003;
       player.y -= 2;
       player.depth = player.depth - 1;
-      player.anim = 'goback';
+      // player.anim = 'goback';
     }
 
     //bigger
@@ -108,13 +108,13 @@ function update() {
       player.scale = player.scale + 0.003;
       player.y += 2;
       player.depth += 1;
-      player.anim = 'front';
+      // player.anim = 'front';
     }
     // console.log(player.depth);
 
       if (input.a) { 
         console.log(input.a);
-        player.anim = 'attack1';
+        // player.anim = 'attack1';
       }
 
     players[player.playerId].x = player.x;
