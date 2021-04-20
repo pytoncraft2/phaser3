@@ -13,11 +13,17 @@ export default class Multijoueur extends Phaser.Scene {
 
   init(data) {
     this.personnage = data.personnage
+    this.liste = ['dessinatrice2', 'dessinatrice2', 'dessinatrice3', 'dessinatrice4'];
     console.log(this.personnage);
   }
 
   preload() {
-    this.load.atlas('atlas', `assets/personnages/${this.personnage}/${this.personnage}.png`, `assets/personnages/${this.personnage}/${this.personnage}_atlas.json`);
+    this.liste.forEach((item, i) => {
+      // this.load.image(item, 'assets/selection/' + item + '.png');
+    this.load.atlas(item, 'assets/personnages/'+item+'/'+item+'.png', 'assets/personnages/'+item+'/'+item+'_atlas.json');
+
+    // this.load.atlas('atlas2', `assets/personnages/${this.personnage}/${this.personnage}.png`, `assets/personnages/${this.personnage}/${this.personnage}_atlas.json`);
+    });
     this.load.image('bg', 'assets/fond/bgGrand.png');
 
   }
@@ -33,28 +39,28 @@ export default class Multijoueur extends Phaser.Scene {
 
        this.anims.create({
        key: "attack1",
-       frames: this.anims.generateFrameNumbers('atlas', {frames: ['profil2','position_a1','position_a2','position_a3','profil2']}),
+       frames: this.anims.generateFrameNumbers('dessinatrice2', {frames: ['profil2','position_a1','position_a2','position_a3','profil2']}),
        frameRate: 6,
        repeat: 0
      });
 
      this.anims.create({
        key: "goback",
-       frames: this.anims.generateFrameNumbers('atlas', {frames: ['dos5','dos7.8','dos8','dos9','dos10','dos11','dos3']}),
+       frames: this.anims.generateFrameNumbers('dessinatrice2', {frames: ['dos5','dos7.8','dos8','dos9','dos10','dos11','dos3']}),
        frameRate: 7,
        repeat: 0
      });
 
        this.anims.create({
        key: "front",
-       frames: this.anims.generateFrameNumbers('atlas', {frames: ['face5','face2','face3','face4','face1']}),
+       frames: this.anims.generateFrameNumbers('dessinatrice2', {frames: ['face5','face2','face3','face4','face1']}),
        frameRate: 6,
        repeat: 0
      });
 
        this.anims.create({
        key: "walk",
-       frames: this.anims.generateFrameNumbers('atlas', {frames: ['profil_jkd15','profil_jkd14','profil_jkd13','profil_jkd14','profil_jkd8']}),
+       frames: this.anims.generateFrameNumbers('dessinatrice2', {frames: ['profil_jkd15','profil_jkd14','profil_jkd13','profil_jkd14','profil_jkd8']}),
        frameRate: 5,
        repeat: 0
      });
@@ -68,16 +74,20 @@ export default class Multijoueur extends Phaser.Scene {
      this.socket.on('currentPlayers', function(players) {
        Object.keys(players).forEach(function(id) {
          if (players[id].playerId === self.socket.id) {
-            self.displayPlayers(self, players[id], 'atlas', 'profil2');
+           console.log(players[id]);
+            self.displayPlayers(self, players[id], self.personnage, 'profil2');
          } else {
-           self.displayPlayers(self, players[id], 'atlas','profil2');
+           self.displayPlayers(self, players[id], 'dessinatrice2','profil2');
          }
            // FIXME: meme skin pour touts les joueurs
        });
      });
 
      this.socket.on('newPlayer', function(playerInfo) {
-       self.displayPlayers(self, playerInfo, 'atlas','profil2');
+       console.log(playerInfo);
+       // self.displayPlayers(self, playerInfo, 'dessinatrice2','profil2');
+       // console.log(self.personnage);
+       // console.log(playerInfo.frame.texture.key);
      });
 
      this.socket.on('disconnection', function(playerId) {

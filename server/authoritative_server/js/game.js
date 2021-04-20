@@ -41,10 +41,12 @@ function create() {
     console.log('a user connected');
     // create a new player and add it to our players object
     players[socket.id] = {
+      atlas: '',
+      texture: '',
       depth: 30,
       anim: 'profil2',
       scale: 0.38,
-      x: /*Math.floor(Math.random() * 700) + 50*/1800,
+      x: /*Math.floor(Math.random() * 700) + 50*/1000,
       y: 447,
       playerId: socket.id,
       input: {
