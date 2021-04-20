@@ -18,7 +18,7 @@ export default class Selection extends Phaser.Scene {
 
   init(data) {
     this.mode = data.mode
-    console.log(this.mode);
+    // console.log(this.mode);
     this.liste = ['dessinatrice1', 'dessinatrice2', 'dessinatrice3', 'dessinatrice4'];
     // TODO: implémenter automatisation l'ajout d'un nouveau joueur
   }
@@ -44,7 +44,7 @@ export default class Selection extends Phaser.Scene {
     // this.fullscreen = this.add.text(95, 350, ['Fullscreen']).setFontSize(18).setFontFamily('Trebuchet MS').setColor('#00ffff');
     this.liste.forEach((item,i) => {
     this.player = 'player' + i.toString();
-    console.log(this.player);
+    // console.log(this.player);
     this.player = self.add.image(x + up, y, item).setScale(0.38).setOrigin(0.5, 0.5);
     up += 200;
 
@@ -54,7 +54,7 @@ export default class Selection extends Phaser.Scene {
       // });
 
      // this.socket = io();
-     // this.socket.atlas = 'test';
+     // this.socket.atlas = this.frame.texture.key;
      // console.log(this.socket.atlas);
       self.scene.start('Multijoueur', {
         personnage: this.frame.texture.key

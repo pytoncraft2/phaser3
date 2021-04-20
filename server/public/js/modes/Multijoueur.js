@@ -66,28 +66,31 @@ export default class Multijoueur extends Phaser.Scene {
      });
 
      this.add.image(-300, 390, 'bg').setDepth(-54);
-
-
-     this.socket = io();
-     this.socket.atlas = this.personnage;
-     console.log(this.socket.atlas);
+/**
+ * Envoi dès la connexion un entete avec le nom de l'atlas à charger pour Definir atlas
+ * @type {string}
+ */
+     this.socket = io({ extraHeaders: { "test": this.personnage }});
+     // this.socket.atlas = this.personnage;
+     // console.log(this.socket.atlas);
      this.players = this.add.group();
 
      this.socket.on('currentPlayers', function(players) {
        Object.keys(players).forEach(function(id) {
          if (players[id].playerId === self.socket.id) {
-           console.log(players[id]);
+           console.log(players[id].atlas);
+           console.log(self.socket.atlas);
             self.displayPlayers(self, players[id], self.personnage, 'profil2');
          } else {
-           self.displayPlayers(self, players[id], 'dessinatrice2','profil2');
+           self.displayPlayers(self, players[id], players[id].atlas,'profil2');
          }
            // FIXME: meme skin pour touts les joueurs
        });
      });
 
-     this.socket.on('newPlayer', function(playerInfo, atlas) {
+     this.socket.on('newPlayer', function(playerInfo) {
        // console.log(playerInfo.atlas);
-       console.log(atlas);
+       // console.log(atlas);
        // self.displayPlayers(self, playerInfo, 'dessinatrice2','profil2');
        // console.log(self.personnage);
        // console.log(playerInfo.frame.texture.key);

@@ -23,7 +23,7 @@ export default class Menu extends Phaser.Scene {
    */
   create() {
     var bgMenu = this.add.image(750, 350, 'bgMenu');
-    console.log(this.width);
+    // console.log(this.width);
     const self = this;
     this.goSelectionS = this.add.text(695, 300, ['Solo']).setFontSize(38).setFontFamily('Trebuchet MS').setColor('#00ffff').setShadow(2, 2, "#333333", 2, true, true);
     this.goSelectionM = this.add.text(650, 400, ['Multijoueur']).setFontSize(38).setFontFamily('Trebuchet MS').setColor('#00ffff').setShadow(2, 2, "#333333", 2, true, true);

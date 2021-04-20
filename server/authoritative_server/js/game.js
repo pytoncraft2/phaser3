@@ -39,10 +39,11 @@ function create() {
 
   io.on('connection', function(socket) {
     console.log('a user connected');
-    // console.log(this.socket.atlas);
+    // console.log(socket.atlas);
+    console.log(socket.handshake.headers);
     // create a new player and add it to our players object
     players[socket.id] = {
-      atlas: socket.atlas,
+      atlas: 'socket.atlas',
       texture: '',
       depth: 30,
       anim: 'profil2',
@@ -62,7 +63,7 @@ function create() {
     // send the players object to the new player
     socket.emit('currentPlayers', players);
     // update all other players of the new player
-    socket.broadcast.emit('newPlayer', players[socket.id], socket.atlas);
+    socket.broadcast.emit('newPlayer', players[socket.id]);
     // send the star object to the new player
     socket.emit('updateScore', self.scores);
 
