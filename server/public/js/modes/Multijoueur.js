@@ -160,8 +160,10 @@ update() {
    }
 
 displayPlayers(self, playerInfo, atlas, nom) {
+  // console.log(nom);
      self.player = self.physics.add.sprite(playerInfo.x, playerInfo.y, atlas, nom).setScale(0.38).setOrigin(0.5, 0.5)/*.setDisplaySize(10,10)*//*.setOrigin(0.5, 0.5).setBounce(0.2).setCollideWorldBounds(true)*/ ;
      self.player.playerId = playerInfo.playerId;
+     // console.log(self.player.atlas);
      self.players.add(self.player);
    }
 }

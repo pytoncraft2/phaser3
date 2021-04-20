@@ -114,7 +114,7 @@ function update() {
 
       if (input.a) { 
         console.log(input.a);
-        // player.anim = 'attack1';
+        player.anim = 'attack1';
       }
 
     players[player.playerId].x = player.x;
