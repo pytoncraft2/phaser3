@@ -12,7 +12,7 @@ export default class Multijoueur extends Phaser.Scene {
   }
 
   init(data) {
-    this.personnage = data.personnage;
+    this.personnage = data.personnage.slice(0,-1);
     this.liste = ['dessinatrice1', 'dessinatrice2', 'dessinatrice3', 'dessinatrice4'];
   }
 
@@ -32,7 +32,6 @@ export default class Multijoueur extends Phaser.Scene {
  create() {
 
      var self = this;
-/*
        this.anims.create({
        key: "attack1",
        frames: this.anims.generateFrameNumbers(this.personnage, {frames: ['profil2','position_a1','position_a2','position_a3','profil2']}),
@@ -60,14 +59,13 @@ export default class Multijoueur extends Phaser.Scene {
        frameRate: 5,
        repeat: 0
      });
-     */
 
      this.add.image(-300, 390, 'bg').setDepth(-54);
 /**
  * Envoi dès la connexion un entete avec le nom de l'atlas à charger pour Definir atlas
  * @type {string}
  */
-     this.socket = io({ extraHeaders: { "atlas": this.personnage }});
+     this.socket = io({ extraHeaders: { "atlas": this.personnage, "texture": this.texture }});
      this.players = this.add.group();
 
      this.socket.on('currentPlayers', function(players) {

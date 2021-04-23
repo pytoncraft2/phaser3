@@ -19,7 +19,7 @@ export default class Selection extends Phaser.Scene {
   init(data) {
     this.mode = data.mode
     // console.log(this.mode);
-    this.liste = ['dessinatrice1', 'dessinatrice2', 'dessinatrice3', 'dessinatrice4'];
+    this.liste = ['dessinatrice1_', 'dessinatrice2_', 'dessinatrice3_', 'dessinatrice4_'];
     // TODO: implémenter automatisation l'ajout d'un nouveau joueur
   }
 

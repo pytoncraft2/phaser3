@@ -44,7 +44,7 @@ function create() {
     // create a new player and add it to our players object
     players[socket.id] = {
       atlas: socket.handshake.headers.atlas,
-      texture: '',
+      texture: 'profil2',
       depth: 30,
       anim: 'profil2',
       scale: 0.38,
@@ -91,8 +91,8 @@ function update() {
     // player.setDepth(11);
     player.anim = false;
 
-    input.left ? (player.setVelocityX(-300), player.flipX = true/*, player.anim = 'walk'*/) :
-      input.right ? (player.setVelocityX(300), player.flipX = false /*, player.anim = 'walk'*/) :
+    input.left ? (player.setVelocityX(-300), player.flipX = true, player.anim = 'walk') :
+      input.right ? (player.setVelocityX(300), player.flipX = false , player.anim = 'walk') :
       player.setVelocityX(0)
 
     //smaller
@@ -100,7 +100,7 @@ function update() {
       player.scale = player.scale - 0.003;
       player.y -= 2;
       player.depth = player.depth - 1;
-      // player.anim = 'goback';
+      player.anim = 'goback';
     }
 
     //bigger
@@ -108,7 +108,7 @@ function update() {
       player.scale = player.scale + 0.003;
       player.y += 2;
       player.depth += 1;
-      // player.anim = 'front';
+      player.anim = 'front';
     }
     // console.log(player.depth);
 
