@@ -15,9 +15,9 @@ export default class Multijoueur extends Phaser.Scene {
 
   /**
    * Recupere la nom de la clé du joueur cliqué lors de la selection et supprime le "_"
-   * Pour éviter les erreurs de meme noms d'images
-   * @param  {string} data texture.frame.key
-   * @return {void}      [description]
+   * pour éviter les erreurs de meme noms d'images
+   * @param  {string} data clé/frame de l'image
+   * @return {void}
    */
 
   init(data) {

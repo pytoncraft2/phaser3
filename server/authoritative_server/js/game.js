@@ -15,18 +15,11 @@ const config = {
     }
   },
   scene: {
-    preload: preload,
     create: create,
     update: update
   },
   autoFocus: false
 };
-
-function preload() {
-
-  // this.load.atlas('atlas', 'http://localhost/phaser3/server/authoritative_server/assets/personnages/dessinatrice/deuxrow.png', 'http://localhost/phaser3/server/authoritative_server/assets/personnages/dessinatrice/deuxrow_atlas.json');
-
-}
 
 function create() {
   const self = this;
@@ -35,12 +28,8 @@ function create() {
 
   this.physics.add.collider(this.players);
 
-  // this.physics.add.overlap(this.players, function(star, player) {});
-
   io.on('connection', function(socket) {
     console.log('a user connected');
-    // console.log(socket.atlas);
-    // console.log(socket.handshake.headers.atlas);
     // create a new player and add it to our players object
     players[socket.id] = {
       atlas: socket.handshake.headers.atlas,
@@ -48,7 +37,7 @@ function create() {
       depth: 30,
       anim: 'profil2',
       scale: 0.38,
-      x: /*Math.floor(Math.random() * 700) + 50*/1000,
+      x: /*Math.floor(Math.random() * 700) + 50*/ 1000,
       y: 447,
       playerId: socket.id,
       input: {
@@ -88,11 +77,10 @@ function update() {
   this.players.getChildren().forEach((player) => {
     const input = players[player.playerId].input;
     player.setVelocity(0);
-    // player.setDepth(11);
     player.anim = false;
 
     input.left ? (player.setVelocityX(-300), player.flipX = true, player.anim = 'walk') :
-      input.right ? (player.setVelocityX(300), player.flipX = false , player.anim = 'walk') :
+      input.right ? (player.setVelocityX(300), player.flipX = false, player.anim = 'walk') :
       player.setVelocityX(0)
 
     //smaller
@@ -100,7 +88,7 @@ function update() {
       player.scale = player.scale - 0.003;
       player.y -= 2;
       player.depth = player.depth - 1;
-      // player.anim = 'goback';
+      player.anim = 'goback';
     }
 
     //bigger
@@ -108,14 +96,13 @@ function update() {
       player.scale = player.scale + 0.003;
       player.y += 2;
       player.depth += 1;
-      // player.anim = 'front';
+      player.anim = 'front';
     }
-    // console.log(player.depth);
 
-      if (input.a) { 
-        console.log(input.a);
-        // player.anim = 'attack1';
-      }
+    if (input.a) {
+      console.log(input.a);
+      player.anim = 'attack1';
+    }
 
     players[player.playerId].x = player.x;
     players[player.playerId].y = player.y;
@@ -124,7 +111,6 @@ function update() {
     players[player.playerId].anim = player.anim;
     players[player.playerId].depth = player.depth;
   });
-  // this.physics.world.wrap(this.players, 5);
   //envoi mise à jour de tout les players
   io.emit('playerUpdates', players);
 }
