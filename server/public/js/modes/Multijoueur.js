@@ -183,7 +183,7 @@ export default class Multijoueur extends Phaser.Scene {
       frameRate: 5,
       repeat: 0
     });
-    this.add.image(-300, 390, 'bg').setDepth(-54);
+    this.add.image(-300, 350, 'bg').setDepth(-54);
 
     /**
      * CONNEXION

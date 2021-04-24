@@ -9,74 +9,47 @@ export default class Menu extends Phaser.Scene {
     super({
       key: "Menu"
     });
-    this.i = 0;
   }
 
   preload() {
-
     this.load.image('bgMenu', 'assets/fond/bgMenu.png');
   }
 
   /**
-   * Affiche texte menu
-   * @return {String} [description]
+   * Affiche textes menu et les rends cliquable
+   * Lors du clique , changement de scene avec le mode en parametre
+   * @return {String}
    */
   create() {
     var bgMenu = this.add.image(750, 350, 'bgMenu');
-    // console.log(this.width);
     const self = this;
     this.goSelectionS = this.add.text(695, 300, ['Solo']).setFontSize(38).setFontFamily('Trebuchet MS').setColor('#00ffff').setShadow(2, 2, "#333333", 2, true, true);
     this.goSelectionM = this.add.text(650, 400, ['Multijoueur']).setFontSize(38).setFontFamily('Trebuchet MS').setColor('#00ffff').setShadow(2, 2, "#333333", 2, true, true);
     this.fullscreen = this.add.text(640, 500, ['Pleine Ecran']).setFontSize(38).setFontFamily('Trebuchet MS').setColor('#00ffff').setShadow(2, 2, "#333333", 2, true, true);
-    // this.fullscreen.setShadow(2, 2, "#333333", 2, true, true);
 
-    this.fullscreen.setInteractive().on('pointerup', function () {
-
-        this.scale.isFullscreen ? this.scale.stopFullscreen() : this.scale.startFullscreen()
-
+    // Pleine ecran
+    this.fullscreen.setInteractive().on('pointerup', function() {
+      this.scale.isFullscreen ? this.scale.stopFullscreen() : this.scale.startFullscreen()
     }, this);
 
-
-    this.goSelectionM.setInteractive().on('pointerdown', function(pointer, localX, localY, event) {
-      // self.scene.scale.toggleFullscreen();
+    // Multijoueur
+    this.goSelectionM.setInteractive().on('pointerdown', function() {
       self.scene.start('Selection', {
         mode: 'Multijoueur'
       });
-      // console.log(pointer);
     });
-
-
-  this.goSelectionS.setInteractive().on('pointerdown', function(pointer, localX, localY, event) {
-      // self.scene.scale.toggleFullscreen();
+    // Solo
+    this.goSelectionS.setInteractive().on('pointerdown', function() {
       self.scene.start('Selection', {
         mode: 'Solo'
       });
-      // console.log(pointer);
     });
 
-    this.hsv = Phaser.Display.Color.HSVColorWheel();
-
-    //  Rainbow Text
-    this.logo = this.add.text(530, 30, 'Steam-Fighter', { font: "74px Arial Black", fill: "#fff" });
-    this.logo.setStroke('#00f', 8);
+    //Logo
+    this.logo = this.add.text(530, 30, 'Steam-Fighter', {
+      font: "74px Arial Black",
+      fill: "#009286"
+    });
     this.logo.setShadow(2, 2, "#333333", 2, true, true);
-
-  }
-
-  update() {
-
-
-
-    const top = this.hsv[this.i].color;
-    const bottom = this.hsv[359 - this.i].color;
-
-    this.logo.setTint(top, top, bottom, bottom);
-
-    this.i++;
-
-    if (this.i === 360) {
-      this.i = 0;
-    }
-
   }
 }
