@@ -1,6 +1,5 @@
 const players = {};
 
-console.log(window.dossiers);
 const config = {
   type: Phaser.HEADLESS,
   parent: 'phaser-example',
@@ -33,7 +32,6 @@ function create() {
     console.log('a user connected');
     // create a new player and add it to our players object
     players[socket.id] = {
-      dossiers: window.dossiers,
       atlas: socket.handshake.headers.atlas,
       depth: 30,
       anim: 'profil2',

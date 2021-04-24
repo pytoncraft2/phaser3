@@ -12,14 +12,6 @@ app.get('/', function (req, res) {
   res.sendFile(__dirname + '/index.html');
 });
 
-const dossiers = [];
-const listePersonnages = __dirname + '/public/assets/personnages/';
-const fs = require('fs');
-
-fs.readdirSync(listePersonnages).forEach(file => {
-  dossiers.push(file);
-});
-
 function setupAuthoritativePhaser() {
   JSDOM.fromFile(path.join(__dirname, 'authoritative_server/index.html'), {
     // To run the scripts in the html file
@@ -40,7 +32,6 @@ function setupAuthoritativePhaser() {
         console.log(`Listening on ${server.address().port}`);
       });
     };
-    dom.window.dossiers = dossiers;
     dom.window.io = io;
   }).catch((error) => {
     console.log(error.message);
