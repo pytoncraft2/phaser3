@@ -15,6 +15,7 @@
     "datauri": "^3.0.0",
     "express": "^5.0.0-alpha.8",
     "jsdom": "^16.5.3",
+    "node-localstorage": "^2.1.6",
     "socket.io": "^4.0.1"
   }
 }

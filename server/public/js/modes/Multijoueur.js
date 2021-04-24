@@ -189,15 +189,14 @@ export default class Multijoueur extends Phaser.Scene {
      * CONNEXION
      * Démarre connexion socket
      * Envoi dès la connexion un entete avec le nom de l'atlas à charger pour Definir atlas
-     * texture inutile
      * @type {string}
      */
     this.socket = io({
       extraHeaders: {
-        "atlas": this.personnage,
-        "texture": this.texture
+        "atlas": this.personnage
       }
     });
+
     this.players = this.add.group();
 
     /**
