@@ -100,7 +100,7 @@ function update() {
       player.scale = player.scale - 0.003;
       player.y -= 2;
       player.depth = player.depth - 1;
-      player.anim = 'goback';
+      // player.anim = 'goback';
     }
 
     //bigger
@@ -108,13 +108,13 @@ function update() {
       player.scale = player.scale + 0.003;
       player.y += 2;
       player.depth += 1;
-      player.anim = 'front';
+      // player.anim = 'front';
     }
     // console.log(player.depth);
 
       if (input.a) { 
         console.log(input.a);
-        player.anim = 'attack1';
+        // player.anim = 'attack1';
       }
 
     players[player.playerId].x = player.x;
@@ -140,7 +140,7 @@ function handlePlayerInput(self, playerId, input) {
 }
 
 function addPlayer(self, playerInfo) {
-  const player = self.physics.add.sprite(playerInfo.x, playerInfo.y, 'profil2').setScale(0.38).setOrigin(0.5)/*.setDisplaySize(13, 39)*/;
+  const player = self.physics.add.sprite(playerInfo.x, playerInfo.y, 'profil2').setOrigin(0.5).setScale(0.38);
   player.setMaxVelocity(200);
   player.playerId = playerInfo.playerId;
   self.players.add(player);
