@@ -26,16 +26,28 @@ function create() {
 
   this.players = this.physics.add.group();
 
-  this.physics.add.collider(this.players);
+  // this.physics.add.collider(,function () {
+    // console.log('collision');
+  // });
+
+  function hurted(e) {
+    // console.log(e.anim);
+    console.log(e.playerId);
+    // e.alpha = e.alpha - 0.01;
+    // console.log(this.anim);
+  }
+  this.physics.add.overlap(this.players, this.players, hurted, null, this);
 
   io.on('connection', function(socket) {
     console.log('a user connected');
     // create a new player and add it to our players object
     players[socket.id] = {
       atlas: socket.handshake.headers.atlas,
+      alpha: 1,
       depth: 30,
       anim: 'profil2',
       scale: 0.38,
+      size: 200,
       x: /*Math.floor(Math.random() * 700) + 50*/ 1000,
       y: 447,
       playerId: socket.id,
@@ -76,6 +88,7 @@ function update() {
   this.players.getChildren().forEach((player) => {
     const input = players[player.playerId].input;
     player.setVelocity(0);
+    player.setSize(200);
     player.anim = false;
 
     input.left ? (player.setVelocityX(-300), player.flipX = true, player.anim = 'walk') :
@@ -101,6 +114,7 @@ function update() {
     if (input.a) {
       console.log(input.a);
       player.anim = 'attack1';
+      player.setSize(900);
     }
 
     players[player.playerId].x = player.x;
@@ -109,6 +123,8 @@ function update() {
     players[player.playerId].flipX = player.flipX;
     players[player.playerId].anim = player.anim;
     players[player.playerId].depth = player.depth;
+    players[player.playerId].size = player.size;
+    players[player.playerId].alpha = player.alpha;
   });
   //envoi mise à jour de tout les players
   io.emit('playerUpdates', players);
@@ -125,9 +141,10 @@ function handlePlayerInput(self, playerId, input) {
 }
 
 function addPlayer(self, playerInfo) {
-  const player = self.physics.add.sprite(playerInfo.x, playerInfo.y, 'profil2').setOrigin(0.5).setScale(0.38);
+  const player = self.physics.add.sprite(playerInfo.x, playerInfo.y, 'profil2').setOrigin(0.5).setScale(0.38).setSize(220);
   player.setMaxVelocity(200);
   player.playerId = playerInfo.playerId;
+  player.alpha = playerInfo.alpha;
   self.players.add(player);
 }
 

@@ -256,10 +256,14 @@ export default class Multijoueur extends Phaser.Scene {
             player.setScale(players[id].scale);
             player.setPosition(players[id].x, players[id].y);
             player.setDepth(players[id].depth);
+            player.setAlpha(players[id].alpha);
             // self.cameras.main.scrollX = players[id].x - 400;
             // self.cameras.main.scrollY = players[id].y- 300;
             // self.cameras.main.scrollX = this.cameraTargetSprite.x - 400;
             // self.cameras.main.scrollY = this.cameraTargetSprite.y - 300;
+            if (players[id].hurted) {
+              // TODO: ajouter effet quand attaqué
+            }
             if (players[id].anim && players[id].anim !== false) {
               player.play('' + players[id].anim + '_' + players[id].atlas + '', 5);
             }
@@ -282,6 +286,7 @@ export default class Multijoueur extends Phaser.Scene {
     this.downKeyPressed = false;
     this.aKey = false;
 
+    console.log(this.physics);
   }
 
   /**
@@ -324,7 +329,7 @@ export default class Multijoueur extends Phaser.Scene {
    * @return {void}
    */
   displayPlayers(self, playerInfo) {
-    self.player = self.physics.add.sprite(playerInfo.x, playerInfo.y, playerInfo.atlas, 'face1').setOrigin(0.5, 0.5).setDisplaySize(200, 200);
+    self.player = self.physics.add.sprite(playerInfo.x, playerInfo.y, playerInfo.atlas, 'face1').setOrigin(0.5, 0.5).setDisplaySize(200, 200).setSize(200);
     self.player.playerId = playerInfo.playerId;
     self.players.add(self.player);
   }
