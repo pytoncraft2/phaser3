@@ -33,7 +33,7 @@ function create() {
   function hurted(e) {
     // console.log(e.anim);
     console.log(e.playerId);
-    // e.alpha = e.alpha - 0.01;
+    e.alpha = e.alpha - 0.01;
     // console.log(this.anim);
   }
   this.physics.add.collider(this.players, this.players, hurted, null, this);
