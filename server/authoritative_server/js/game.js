@@ -36,7 +36,7 @@ function create() {
     // e.alpha = e.alpha - 0.01;
     // console.log(this.anim);
   }
-  this.physics.add.overlap(this.players, this.players, hurted, null, this);
+  this.physics.add.collider(this.players, this.players, hurted, null, this);
 
   io.on('connection', function(socket) {
     console.log('a user connected');
