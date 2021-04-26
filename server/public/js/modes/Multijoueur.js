@@ -26,27 +26,24 @@ export default class Multijoueur extends Phaser.Scene {
   }
 
   /**
-   * Charge toute les images selon les valeurs du tableau this.liste
-   * @return {void} [description]
+   * Affiche bar de progression pendant le charchement des images selon valeurs du tableau this.liste
+   * @return {[type]} [description]
    */
 
-preload ()
-{
+  preload() {
     var progress = this.add.graphics();
 
-    this.load.on('progress', function (value) {
+    this.load.on('progress', function(value) {
 
-        progress.clear();
-        progress.fillStyle(0xffffff, 1);
-        progress.fillRect(0, 200, 1400 * value, 60);
-        //    padding-gauche, padding-top                    ,hauteur
-        // progress.fillRect(100, 100, 100 100, 60);
+      progress.clear();
+      progress.fillStyle(0xffffff, 1);
+      progress.fillRect(0, 200, 1400 * value, 60);
 
     });
 
-    this.load.on('complete', function () {
+    this.load.on('complete', function() {
 
-        progress.destroy();
+      progress.destroy();
 
     });
 
@@ -56,14 +53,6 @@ preload ()
     this.load.image('bg', 'assets/fond/bgGrand.png');
 
   }
-/*
-  preload() {
-    this.liste.forEach((item, i) => {
-      this.load.atlas(item, 'assets/personnages/' + item + '/' + item + '.png', 'assets/personnages/' + item + '/' + item + '_atlas.json');
-    });
-    this.load.image('bg', 'assets/fond/bgGrand.png');
-  }
-  */
 
   /**
    * charge animation + images
@@ -131,7 +120,7 @@ preload ()
     this.anims.create({
       key: "front_naruto",
       frames: this.anims.generateFrameNumbers('naruto', {
-        frames: ['face1','face2','face3','face4','face5','face7']
+        frames: ['face1', 'face2', 'face3', 'face4', 'face5', 'face7']
       }),
       frameRate: 6,
       repeat: 0
@@ -139,7 +128,7 @@ preload ()
     this.anims.create({
       key: "walk_naruto",
       frames: this.anims.generateFrameNumbers('naruto', {
-        frames: ['profil3', 'profil4', 'profil5', 'profil6','profil']
+        frames: ['profil3', 'profil4', 'profil5', 'profil6', 'profil']
       }),
       frameRate: 5,
       repeat: 0
@@ -320,9 +309,6 @@ preload ()
             player.setPosition(players[id].x, players[id].y);
             player.setDepth(players[id].depth);
             player.setAlpha(players[id].alpha);
-            // console.log(players[id].y); // > 405
-            // console.log(players[id].x); // < 605 : block vers le fond
-            // console.log(players[id].scale); // > 0.31 block vers le fond
             // self.cameras.main.scrollX = players[id].x - 400;
             // self.cameras.main.scrollY = players[id].y- 300;
             // self.cameras.main.scrollX = this.cameraTargetSprite.x - 400;
