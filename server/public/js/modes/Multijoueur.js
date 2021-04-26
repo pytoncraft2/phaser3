@@ -309,11 +309,13 @@ export default class Multijoueur extends Phaser.Scene {
             player.setPosition(players[id].x, players[id].y);
             player.setDepth(players[id].depth);
             player.setAlpha(players[id].alpha);
+            console.log(player.alpha);
             // self.cameras.main.scrollX = players[id].x - 400;
             // self.cameras.main.scrollY = players[id].y- 300;
             // self.cameras.main.scrollX = this.cameraTargetSprite.x - 400;
             // self.cameras.main.scrollY = this.cameraTargetSprite.y - 300;
             if (players[id].hurted) {
+              console.log('hurted');
               // TODO: ajouter effet quand attaqué
             }
             if (players[id].anim && players[id].anim !== false) {

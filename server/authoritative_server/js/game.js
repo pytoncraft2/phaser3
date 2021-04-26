@@ -26,22 +26,13 @@ function create() {
 
   this.players = this.physics.add.group();
 
-  // this.physics.add.collider(,function () {
-    // console.log('collision');
-  // });
-
-  function hurted(e) {
-    // console.log(e.anim);
-    console.log(e.playerId);
-    e.alpha = e.alpha - 0.01;
-    // console.log(this.anim);
-  }
-  this.physics.add.collider(this.players, this.players, hurted, null, this);
+  this.physics.add.collider(this.players);
 
   io.on('connection', function(socket) {
     console.log('a user connected');
     // create a new player and add it to our players object
     players[socket.id] = {
+      hurted: 'non',
       atlas: socket.handshake.headers.atlas,
       alpha: 1,
       depth: 30,
@@ -90,28 +81,17 @@ function update() {
     player.setVelocity(0);
     player.setSize(200);
     player.anim = false;
+    player.hurted = false;
+
+    console.log(player.hurted);
 
     input.left ? (player.setVelocityX(-300), player.flipX = true, player.anim = 'walk') :
       input.right ? (player.setVelocityX(300), player.flipX = false, player.anim = 'walk') :
       player.setVelocityX(0)
 
-    //smaller
-    /*
-    if (input.up && player.x < 605 && player.y > 405) {
-      player.scale = player.scale - 0.003;
-      player.y -= 2;
-      player.depth = player.depth - 1;
-      player.anim = 'goback';
-      console.log('supp x 605');
+    if (player.hurted) {
+      player.setAlpha(0.5);
     }
-    if (input.up && player.x > 605 && player.y > 405) {
-      player.scale = player.scale - 0.003;
-      player.y -= 2;
-      player.depth = player.depth - 1;
-      player.anim = 'goback';
-      console.log('supp x 605');
-    }
-    */
 
     if (input.up) {
       if (player.x < 605 && player.y > 405) {
@@ -129,25 +109,6 @@ function update() {
       }
     }
 
-/*
-    if (input.up && player.scale >= 0.223) {
-
-      player.scale = player.scale - 0.003;
-      player.y -= 2;
-      player.depth = player.depth - 1;
-      player.anim = 'goback';
-
-    }
-*/
-    // if (input.up && player.y < 405 && player.x < 605 && player.y < 405) {
-      // console.log('inf x 605');
-      // console.log('stop');
-      // player.scale = player.scale - 0.003;
-      // player.y -= 2;
-      // player.depth = player.depth - 1;
-      // player.anim = 'goback';
-    // }
-
     //bigger
     if (input.down && player.scale <= 2) {
       player.scale = player.scale + 0.003;
@@ -155,7 +116,6 @@ function update() {
       player.depth += 1;
       player.anim = 'front';
     }
-    //405 y
 
     if (input.a) {
       console.log(input.a);
@@ -171,6 +131,7 @@ function update() {
     players[player.playerId].depth = player.depth;
     players[player.playerId].size = player.size;
     players[player.playerId].alpha = player.alpha;
+    players[player.playerId].hurted = player.hurted;
   });
   //envoi mise à jour de tout les players
   io.emit('playerUpdates', players);
