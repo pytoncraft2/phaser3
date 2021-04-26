@@ -10,6 +10,7 @@ var config = {
   mode: Phaser.Scale.CENTER_BOTH,
   autoCenter: Phaser.Scale.CENTER_BOTH
 },
+  backgroundColor: '#4488aa',
   width: 1500,
   height: 720,
   physics: {

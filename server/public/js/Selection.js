@@ -19,7 +19,7 @@ export default class Selection extends Phaser.Scene {
 
   init(data) {
     this.mode = data.mode
-    this.liste = ['dessinatrice1_', 'dessinatrice2_', 'dessinatrice3_', 'dessinatrice4_'];
+    this.liste = ['dessinatrice1_', 'dessinatrice2_', 'dessinatrice3_', 'dessinatrice4_','naruto_'];
   }
 
   /**
