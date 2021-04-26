@@ -96,12 +96,57 @@ function update() {
       player.setVelocityX(0)
 
     //smaller
-    if (input.up && player.scale >= 0.223) {
+    /*
+    if (input.up && player.x < 605 && player.y > 405) {
       player.scale = player.scale - 0.003;
       player.y -= 2;
       player.depth = player.depth - 1;
       player.anim = 'goback';
+      console.log('supp x 605');
     }
+    if (input.up && player.x > 605 && player.y > 405) {
+      player.scale = player.scale - 0.003;
+      player.y -= 2;
+      player.depth = player.depth - 1;
+      player.anim = 'goback';
+      console.log('supp x 605');
+    }
+    */
+
+    if (input.up) {
+      if (player.x < 605 && player.y > 405) {
+      player.scale = player.scale - 0.003;
+      player.y -= 2;
+      player.depth = player.depth - 1;
+      player.anim = 'goback';
+
+      }
+      if (player.x > 605 && player.scale >= 0.223) {
+      player.scale = player.scale - 0.003;
+      player.y -= 2;
+      player.depth = player.depth - 1;
+      player.anim = 'goback';
+      }
+    }
+
+/*
+    if (input.up && player.scale >= 0.223) {
+
+      player.scale = player.scale - 0.003;
+      player.y -= 2;
+      player.depth = player.depth - 1;
+      player.anim = 'goback';
+
+    }
+*/
+    // if (input.up && player.y < 405 && player.x < 605 && player.y < 405) {
+      // console.log('inf x 605');
+      // console.log('stop');
+      // player.scale = player.scale - 0.003;
+      // player.y -= 2;
+      // player.depth = player.depth - 1;
+      // player.anim = 'goback';
+    // }
 
     //bigger
     if (input.down && player.scale <= 2) {
@@ -110,6 +155,7 @@ function update() {
       player.depth += 1;
       player.anim = 'front';
     }
+    //405 y
 
     if (input.a) {
       console.log(input.a);

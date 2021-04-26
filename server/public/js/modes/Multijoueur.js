@@ -30,12 +30,40 @@ export default class Multijoueur extends Phaser.Scene {
    * @return {void} [description]
    */
 
+preload ()
+{
+    var progress = this.add.graphics();
+
+    this.load.on('progress', function (value) {
+
+        progress.clear();
+        progress.fillStyle(0xffffff, 1);
+        progress.fillRect(0, 200, 1400 * value, 60);
+        //    padding-gauche, padding-top                    ,hauteur
+        // progress.fillRect(100, 100, 100 100, 60);
+
+    });
+
+    this.load.on('complete', function () {
+
+        progress.destroy();
+
+    });
+
+    this.liste.forEach((item, i) => {
+      this.load.atlas(item, 'assets/personnages/' + item + '/' + item + '.png', 'assets/personnages/' + item + '/' + item + '_atlas.json');
+    });
+    this.load.image('bg', 'assets/fond/bgGrand.png');
+
+  }
+/*
   preload() {
     this.liste.forEach((item, i) => {
       this.load.atlas(item, 'assets/personnages/' + item + '/' + item + '.png', 'assets/personnages/' + item + '/' + item + '_atlas.json');
     });
     this.load.image('bg', 'assets/fond/bgGrand.png');
   }
+  */
 
   /**
    * charge animation + images
@@ -257,6 +285,9 @@ export default class Multijoueur extends Phaser.Scene {
             player.setPosition(players[id].x, players[id].y);
             player.setDepth(players[id].depth);
             player.setAlpha(players[id].alpha);
+            // console.log(players[id].y); // > 405
+            // console.log(players[id].x); // < 605 : block vers le fond
+            // console.log(players[id].scale); // > 0.31 block vers le fond
             // self.cameras.main.scrollX = players[id].x - 400;
             // self.cameras.main.scrollY = players[id].y- 300;
             // self.cameras.main.scrollX = this.cameraTargetSprite.x - 400;
@@ -286,7 +317,6 @@ export default class Multijoueur extends Phaser.Scene {
     this.downKeyPressed = false;
     this.aKey = false;
 
-    console.log(this.physics);
   }
 
   /**
