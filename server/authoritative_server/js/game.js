@@ -45,7 +45,7 @@ function create() {
       atlas: socket.handshake.headers.atlas,
       alpha: 1,
       depth: 30,
-      anim: 'profil2',
+      anim: 'profil',
       scale: 0.38,
       size: 200,
       x: /*Math.floor(Math.random() * 700) + 50*/ 1000,
@@ -187,7 +187,7 @@ function handlePlayerInput(self, playerId, input) {
 }
 
 function addPlayer(self, playerInfo) {
-  const player = self.physics.add.sprite(playerInfo.x, playerInfo.y, 'profil2').setOrigin(0.5).setScale(0.38).setSize(220);
+  const player = self.physics.add.sprite(playerInfo.x, playerInfo.y, 'profil').setOrigin(0.5).setScale(0.38).setSize(220);
   player.setMaxVelocity(200);
   player.playerId = playerInfo.playerId;
   player.alpha = playerInfo.alpha;

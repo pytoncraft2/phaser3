@@ -22,7 +22,7 @@ export default class Multijoueur extends Phaser.Scene {
 
   init(data) {
     this.personnage = data.personnage.slice(0, -1);
-    this.liste = ['dessinatrice1', 'dessinatrice2', 'dessinatrice3', 'dessinatrice4'];
+    this.liste = ['dessinatrice1', 'dessinatrice2', 'dessinatrice3', 'dessinatrice4', 'naruto'];
   }
 
   /**
@@ -78,7 +78,7 @@ preload ()
     this.anims.create({
       key: "attack1_dessinatrice1",
       frames: this.anims.generateFrameNumbers('dessinatrice1', {
-        frames: ['profil2', 'position_a1', 'position_a2', 'position_a3', 'profil2']
+        frames: ['profil', 'position_a1', 'position_a2', 'position_a3', 'profil']
       }),
       frameRate: 6,
       repeat: 0
@@ -113,7 +113,7 @@ preload ()
     this.anims.create({
       key: "attack1_naruto",
       frames: this.anims.generateFrameNumbers('naruto', {
-        frames: ['profil2', 'position_a1', 'position_a2', 'position_a3', 'profil2']
+        frames: ['profil', 'position_a1', 'position_a2', 'position_a3', 'profil']
       }),
       frameRate: 6,
       repeat: 0
@@ -131,7 +131,7 @@ preload ()
     this.anims.create({
       key: "front_naruto",
       frames: this.anims.generateFrameNumbers('naruto', {
-        frames: ['face5', 'face2', 'face3', 'face4', 'face1']
+        frames: ['face1','face2','face3','face4','face5','face7']
       }),
       frameRate: 6,
       repeat: 0
@@ -139,7 +139,7 @@ preload ()
     this.anims.create({
       key: "walk_naruto",
       frames: this.anims.generateFrameNumbers('naruto', {
-        frames: ['profil_jkd15', 'profil_jkd14', 'profil_jkd13', 'profil_jkd14', 'profil_jkd8']
+        frames: ['profil3', 'profil4', 'profil5', 'profil6','profil']
       }),
       frameRate: 5,
       repeat: 0
@@ -147,7 +147,7 @@ preload ()
     this.anims.create({
       key: "attack1_dessinatrice2",
       frames: this.anims.generateFrameNumbers('dessinatrice2', {
-        frames: ['profil2', 'position_a1', 'position_a2', 'position_a3', 'profil2']
+        frames: ['profil', 'position_a1', 'position_a2', 'position_a3', 'profil']
       }),
       frameRate: 6,
       repeat: 0
@@ -181,7 +181,7 @@ preload ()
     this.anims.create({
       key: "attack1_dessinatrice3",
       frames: this.anims.generateFrameNumbers('dessinatrice3', {
-        frames: ['profil2', 'position_a1', 'position_a2', 'position_a3', 'profil2']
+        frames: ['profil', 'position_a1', 'position_a2', 'position_a3', 'profil']
       }),
       frameRate: 6,
       repeat: 0
@@ -215,7 +215,7 @@ preload ()
     this.anims.create({
       key: "attack1_dessinatrice4",
       frames: this.anims.generateFrameNumbers('dessinatrice4', {
-        frames: ['profil2', 'position_a1', 'position_a2', 'position_a3', 'profil2']
+        frames: ['profil', 'position_a1', 'position_a2', 'position_a3', 'profil']
       }),
       frameRate: 6,
       repeat: 0
