@@ -260,6 +260,7 @@ export default class Multijoueur extends Phaser.Scene {
     this.socket.on('currentPlayers', function(players) {
       Object.keys(players).forEach(function(id) {
         if (players[id].playerId === self.socket.id) {
+          console.log(self.players);
           self.displayPlayers(self, players[id]);
         } else {
           self.displayPlayers(self, players[id]);
@@ -309,7 +310,7 @@ export default class Multijoueur extends Phaser.Scene {
             player.setPosition(players[id].x, players[id].y);
             player.setDepth(players[id].depth);
             player.setAlpha(players[id].alpha);
-            console.log(player.alpha);
+            // console.log(player.alpha);
             // self.cameras.main.scrollX = players[id].x - 400;
             // self.cameras.main.scrollY = players[id].y- 300;
             // self.cameras.main.scrollX = this.cameraTargetSprite.x - 400;
