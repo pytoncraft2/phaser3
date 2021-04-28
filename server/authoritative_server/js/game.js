@@ -83,7 +83,7 @@ function update() {
     player.anim = false;
     player.hurted = false;
 
-    console.log(player.hurted);
+    // console.log(player.hurted);
 
     input.left ? (player.setVelocityX(-300), player.flipX = true, player.anim = 'walk') :
       input.right ? (player.setVelocityX(300), player.flipX = false, player.anim = 'walk') :
@@ -118,7 +118,7 @@ function update() {
     }
 
     if (input.a) {
-      console.log(input.a);
+      // console.log(input.a);
       player.anim = 'attack1';
       player.setSize(900);
     }

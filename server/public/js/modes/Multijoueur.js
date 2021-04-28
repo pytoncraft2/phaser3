@@ -64,6 +64,10 @@ export default class Multijoueur extends Phaser.Scene {
   create() {
 
     var self = this;
+this.cameras.main.setBounds(-2074, 0, 3574, 666);
+// this.physics.world.setBounds(0, 0, 3574, 666);
+this.cameras.main.fadeIn(4000);
+
     this.anims.create({
       key: "attack1_dessinatrice1",
       frames: this.anims.generateFrameNumbers('dessinatrice1', {
@@ -309,11 +313,6 @@ export default class Multijoueur extends Phaser.Scene {
             player.setPosition(players[id].x, players[id].y);
             player.setDepth(players[id].depth);
             player.setAlpha(players[id].alpha);
-            // console.log(player.alpha);
-            // self.cameras.main.scrollX = players[id].x - 400;
-            // self.cameras.main.scrollY = players[id].y- 300;
-            // self.cameras.main.scrollX = this.cameraTargetSprite.x - 400;
-            // self.cameras.main.scrollY = this.cameraTargetSprite.y - 300;
             if (players[id].hurted) {
               console.log('hurted');
               // TODO: ajouter effet quand attaqué
@@ -379,21 +378,19 @@ export default class Multijoueur extends Phaser.Scene {
    * Affiche en permanence le joueur selon ses parametres
    * @param  {Object} self parametres class Multijoueur
    * @param  {Object} playerInfo liste des parametres du joueur (scale,depth,x,y ...)
+   * @param  {Boolean} iscurrent true | camera suit le joueur actuel | false ne suit
    * @return {void}
    */
   displayPlayers(self, playerInfo, iscurrent) {
     self.player = self.physics.add.sprite(playerInfo.x, playerInfo.y, playerInfo.atlas, 'face1').setOrigin(0.5, 0.5).setDisplaySize(200, 200).setSize(200);
     self.player.playerId = playerInfo.playerId;
     self.players.add(self.player);
-    if (iscurrent) self.cameras.main.startFollow(self.player);
+    if (iscurrent) {
+      self.cameras.main.startFollow(self.player);
+      // self.player.setCollideWorldBounds(true);
+      // self.cameras.main.followOffset.set(0, 0);
+                                            //hauteur
+    }
   }
-  /*
-  displayCurrentPlayer(self, playerInfo) {
-    self.player = self.physics.add.sprite(playerInfo.x, playerInfo.y, playerInfo.atlas, 'face1').setOrigin(0.5, 0.5).setDisplaySize(200, 200).setSize(200);
-    self.player.playerId = playerInfo.playerId;
-    self.players.add(self.player);
-    self.cameras.main.startFollow(self.player);
-  }
-  */
 
 }
