@@ -260,10 +260,9 @@ export default class Multijoueur extends Phaser.Scene {
     this.socket.on('currentPlayers', function(players) {
       Object.keys(players).forEach(function(id) {
         if (players[id].playerId === self.socket.id) {
-          console.log(self.players);
-          self.displayPlayers(self, players[id]);
+          self.displayPlayers(self, players[id], true);
         } else {
-          self.displayPlayers(self, players[id]);
+          self.displayPlayers(self, players[id], false);
         }
       });
     });
@@ -382,9 +381,19 @@ export default class Multijoueur extends Phaser.Scene {
    * @param  {Object} playerInfo liste des parametres du joueur (scale,depth,x,y ...)
    * @return {void}
    */
-  displayPlayers(self, playerInfo) {
+  displayPlayers(self, playerInfo, iscurrent) {
     self.player = self.physics.add.sprite(playerInfo.x, playerInfo.y, playerInfo.atlas, 'face1').setOrigin(0.5, 0.5).setDisplaySize(200, 200).setSize(200);
     self.player.playerId = playerInfo.playerId;
     self.players.add(self.player);
+    if (iscurrent) self.cameras.main.startFollow(self.player);
   }
+  /*
+  displayCurrentPlayer(self, playerInfo) {
+    self.player = self.physics.add.sprite(playerInfo.x, playerInfo.y, playerInfo.atlas, 'face1').setOrigin(0.5, 0.5).setDisplaySize(200, 200).setSize(200);
+    self.player.playerId = playerInfo.playerId;
+    self.players.add(self.player);
+    self.cameras.main.startFollow(self.player);
+  }
+  */
+
 }
