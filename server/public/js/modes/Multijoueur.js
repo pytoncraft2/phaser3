@@ -254,6 +254,7 @@ this.cameras.main.fadeIn(4000);
     });
 
     this.players = this.add.group();
+    // this.physics.add.collider(player, group, collisionAction);
 
     /**
      * JOUEUR PRINCIPAL
@@ -264,6 +265,7 @@ this.cameras.main.fadeIn(4000);
     this.socket.on('currentPlayers', function(players) {
       Object.keys(players).forEach(function(id) {
         if (players[id].playerId === self.socket.id) {
+        console.log(players[id].playerId);
           self.displayPlayers(self, players[id], true);
         } else {
           self.displayPlayers(self, players[id], false);
@@ -378,7 +380,7 @@ this.cameras.main.fadeIn(4000);
    * Affiche en permanence le joueur selon ses parametres
    * @param  {Object} self parametres class Multijoueur
    * @param  {Object} playerInfo liste des parametres du joueur (scale,depth,x,y ...)
-   * @param  {Boolean} iscurrent true | camera suit le joueur actuel | false ne suit
+   * @param  {Boolean} iscurrent true: camera suit le joueur actuel , false: ne suit pas
    * @return {void}
    */
   displayPlayers(self, playerInfo, iscurrent) {
@@ -388,10 +390,6 @@ this.cameras.main.fadeIn(4000);
     if (iscurrent) {
       self.cameras.main.startFollow(self.player);
       self.player.setCollideWorldBounds(true);
-      // self.player.setCollideWorldBounds(true);
-      // self.cameras.main.followOffset.set(0, 0);
-                                            //hauteur
     }
   }
-
 }

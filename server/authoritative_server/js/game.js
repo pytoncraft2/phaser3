@@ -26,7 +26,19 @@ function create() {
 
   this.players = this.physics.add.group();
 
-  this.physics.add.collider(this.players);
+  // this.physics.add.collider(this.players);
+  this.physics.add.collider(this.players, this.players, collisionAction);
+
+  function collisionAction(e,f) {
+    console.log('yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy');
+    console.log(e.body);
+    console.log('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');
+    console.log(f.body);
+    // console.log(e.playerId);
+
+    // console.log('collision');
+
+  }
 
   io.on('connection', function(socket) {
     console.log('a user connected');
