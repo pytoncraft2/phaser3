@@ -24,7 +24,27 @@ const config = {
 function create() {
   const self = this;
 
+  this.players = this.physics.add.group();
 
+  // this.physics.add.collider(this.players);
+  this.physics.add.collider(this.players, this.players, collisionAction);
+
+  function collisionAction(e,f) {
+    if (typeof(self.players) === 'object') {
+    console.log('oui');
+  }
+    // if (self.players) {
+      // console.log(self.players[socket.id]);
+    // }
+    // console.log('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');
+    // console.log(e.body);
+    // console.log('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');
+    // console.log(f.body);
+    // console.log(e.playerId);
+
+    // console.log('collision');
+
+  }
 
   io.on('connection', function(socket) {
     console.log('a user connected');
@@ -47,25 +67,6 @@ function create() {
         down: false
       }
     };
-
-  self.players = self.physics.add.group();
-
-  // this.physics.add.collider(this.players);
-  self.physics.add.collider(self.players, self.players, collisionAction);
-
-  function collisionAction(e,f) {
-    console.log(self.players[socket.id]);
-    console.log('yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy');
-    // console.log(e.body);
-    console.log('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');
-    // console.log(f.body);
-    // console.log(e.playerId);
-
-    // console.log('collision');
-
-  }
-
-
     // add player to server
     addPlayer(self, players[socket.id]);
     // send the players object to the new player
@@ -93,7 +94,6 @@ function create() {
 }
 
 function update() {
-  if (this.players) {
   this.players.getChildren().forEach((player) => {
     const input = players[player.playerId].input;
     player.setVelocity(0);
@@ -153,7 +153,6 @@ function update() {
   });
   //envoi mise à jour de tout les players
   io.emit('playerUpdates', players);
-}
 }
 
 function randomPosition(max) {
