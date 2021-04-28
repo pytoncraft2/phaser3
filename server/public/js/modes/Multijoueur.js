@@ -65,7 +65,7 @@ export default class Multijoueur extends Phaser.Scene {
 
     var self = this;
 this.cameras.main.setBounds(-2074, 0, 3574, 666);
-// this.physics.world.setBounds(0, 0, 3574, 666);
+this.physics.world.setBounds(-2074, 0, 3574, 666);
 this.cameras.main.fadeIn(4000);
 
     this.anims.create({
@@ -387,6 +387,7 @@ this.cameras.main.fadeIn(4000);
     self.players.add(self.player);
     if (iscurrent) {
       self.cameras.main.startFollow(self.player);
+      self.player.setCollideWorldBounds(true);
       // self.player.setCollideWorldBounds(true);
       // self.cameras.main.followOffset.set(0, 0);
                                             //hauteur
