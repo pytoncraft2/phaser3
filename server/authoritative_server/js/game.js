@@ -25,13 +25,14 @@ function create() {
   const self = this;
 
   this.players = this.physics.add.group();
-
-  // this.physics.add.collider(this.players);
+  this.player = false;
   this.physics.add.collider(this.players, this.players, collisionAction);
 
   function collisionAction(e,f) {
     if (typeof(self.players) === 'object') {
-    console.log('oui');
+    // console.log('oui');
+    // e.alpha = e.alpha - 0.1;
+    self.player = true;
   }
     // if (self.players) {
       // console.log(self.players[socket.id]);
@@ -45,6 +46,8 @@ function create() {
     // console.log('collision');
 
   }
+
+  // this.physics.add.collider(this.players);
 
   io.on('connection', function(socket) {
     console.log('a user connected');
@@ -86,6 +89,7 @@ function create() {
       io.emit('disconnection', socket.id);
     });
 
+    console.log(socket.id);
     // when a player moves, update the player data
     socket.on('playerInput', function(inputData) {
       handlePlayerInput(self, socket.id, inputData);
@@ -94,12 +98,15 @@ function create() {
 }
 
 function update() {
+  const self = this;
   this.players.getChildren().forEach((player) => {
     const input = players[player.playerId].input;
     player.setVelocity(0);
     player.setSize(200);
     player.anim = false;
-    player.hurted = false;
+    if (self.player) {
+    player.hurted = true;
+  }
 
     // console.log(player.hurted);
 
@@ -113,17 +120,17 @@ function update() {
 
     if (input.up) {
       if (player.x < 605 && player.y > 405) {
-      player.scale = player.scale - 0.003;
-      player.y -= 2;
-      player.depth = player.depth - 1;
-      player.anim = 'goback';
+        player.scale = player.scale - 0.003;
+        player.y -= 2;
+        player.depth = player.depth - 1;
+        player.anim = 'goback';
 
       }
       if (player.x > 605 && player.scale >= 0.223) {
-      player.scale = player.scale - 0.003;
-      player.y -= 2;
-      player.depth = player.depth - 1;
-      player.anim = 'goback';
+        player.scale = player.scale - 0.003;
+        player.y -= 2;
+        player.depth = player.depth - 1;
+        player.anim = 'goback';
       }
     }
 
