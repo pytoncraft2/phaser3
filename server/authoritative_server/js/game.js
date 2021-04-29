@@ -25,14 +25,16 @@ function create() {
   const self = this;
 
   this.players = this.physics.add.group();
-  this.player = false;
+  this.h = false;
   this.physics.add.collider(this.players, this.players, collisionAction);
 
   function collisionAction(e,f) {
     if (typeof(self.players) === 'object') {
-    // console.log('oui');
-    // e.alpha = e.alpha - 0.1;
-    self.player = true;
+      // console.log(self.players.physics.colliders);
+      // console.log(self.scene);
+    console.log('oui');
+    // e.alpha = e.alpha - 0.01;
+    self.h = true;
   }
     // if (self.players) {
       // console.log(self.players[socket.id]);
@@ -89,7 +91,7 @@ function create() {
       io.emit('disconnection', socket.id);
     });
 
-    console.log(socket.id);
+    // console.log(socket.id);
     // when a player moves, update the player data
     socket.on('playerInput', function(inputData) {
       handlePlayerInput(self, socket.id, inputData);
@@ -104,7 +106,7 @@ function update() {
     player.setVelocity(0);
     player.setSize(200);
     player.anim = false;
-    if (self.player) {
+    if (self.h) {
     player.hurted = true;
   }
 
@@ -114,7 +116,7 @@ function update() {
       input.right ? (player.setVelocityX(300), player.flipX = false, player.anim = 'walk') :
       player.setVelocityX(0)
 
-    if (player.hurted) {
+    if (player.hurted && input.a) {
       player.setAlpha(0.5);
     }
 

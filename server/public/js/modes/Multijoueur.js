@@ -267,6 +267,7 @@ this.cameras.main.fadeIn(4000);
         if (players[id].playerId === self.socket.id) {
         console.log(players[id].playerId);
           self.displayPlayers(self, players[id], true);
+          console.log(self);
         } else {
           self.displayPlayers(self, players[id], false);
         }
