@@ -13,4 +13,4 @@ Commandes :
 | Commandes | Description |
 |---------|-------------|
 | `npm install` | Installation des dépendances.|
-| `npm start` | Executer le jeu. <br> Taper:  `Ctrl + c` pour arrêter le **http-server** serveur. |
+| `npm start` | Executer le jeu. <br> Taper:  `Ctrl + c` pour arrêter le serveur **http-server**. |
