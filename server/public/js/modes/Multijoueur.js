@@ -255,6 +255,12 @@ this.cameras.main.fadeIn(4000);
 
     this.players = this.add.group();
     // this.physics.add.collider(player, group, collisionAction);
+  this.physics.add.collider(this.players, this.players, collisionAction);
+  function collisionAction(e,f) {
+    if (self.players && self.socket.id !== e.playerId) {
+      self.hurtedAction = true;
+    }
+  }
 
     /**
      * JOUEUR PRINCIPAL
@@ -265,9 +271,7 @@ this.cameras.main.fadeIn(4000);
     this.socket.on('currentPlayers', function(players) {
       Object.keys(players).forEach(function(id) {
         if (players[id].playerId === self.socket.id) {
-        console.log(players[id].playerId);
           self.displayPlayers(self, players[id], true);
-          console.log(self);
         } else {
           self.displayPlayers(self, players[id], false);
         }
@@ -303,8 +307,6 @@ this.cameras.main.fadeIn(4000);
      * Cherche l'id du joueur et Modifie les parametres de celui ci
      * @param  {Object} players liste de l'id du socket de tout les joueurs
      * @return {void}
-     *
-     * // TODO: mouvement camera
      */
 
     this.socket.on('playerUpdates', function(players) {
@@ -316,10 +318,15 @@ this.cameras.main.fadeIn(4000);
             player.setPosition(players[id].x, players[id].y);
             player.setDepth(players[id].depth);
             player.setAlpha(players[id].alpha);
-            if (players[id].hurted) {
-              console.log('hurted');
-              // TODO: ajouter effet quand attaqué
+
+            // console.logself.hurtedAction);
+            if (self.hurtedAction) {
+            players[id].hurted = true;
+            // players[id].alpha = 0.5;
+            // console.log('hurtedAction');
+            // player.setAlpha(players[id].hur = 0.5);
             }
+              // TODO: ajouter effet quand attaqué
             if (players[id].anim && players[id].anim !== false) {
               player.play('' + players[id].anim + '_' + players[id].atlas + '', 5);
             }

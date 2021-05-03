@@ -25,38 +25,22 @@ function create() {
   const self = this;
 
   this.players = this.physics.add.group();
-  this.h = false;
-  this.physics.add.collider(this.players, this.players, collisionAction);
+  // this.physics.add.collider(this.players, this.players, collisionAction);
 
   function collisionAction(e,f) {
     if (typeof(self.players) === 'object') {
-      // console.log(self.players.physics.colliders);
-      // console.log(self.scene);
-    console.log('oui');
-    // e.alpha = e.alpha - 0.01;
-    self.h = true;
+      console.log('collision');
   }
-    // if (self.players) {
-      // console.log(self.players[socket.id]);
-    // }
-    // console.log('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');
-    // console.log(e.body);
-    // console.log('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');
-    // console.log(f.body);
-    // console.log(e.playerId);
+}
 
-    // console.log('collision');
-
-  }
-
-  // this.physics.add.collider(this.players);
 
   io.on('connection', function(socket) {
     console.log('a user connected');
     // create a new player and add it to our players object
     players[socket.id] = {
-      hurted: 'non',
       atlas: socket.handshake.headers.atlas,
+      attack: false,
+      hurted: false,
       alpha: 1,
       depth: 30,
       anim: 'profil',
@@ -100,25 +84,17 @@ function create() {
 }
 
 function update() {
-  const self = this;
   this.players.getChildren().forEach((player) => {
     const input = players[player.playerId].input;
     player.setVelocity(0);
     player.setSize(200);
     player.anim = false;
-    if (self.h) {
-    player.hurted = true;
-  }
-
-    // console.log(player.hurted);
+    player.hurted = false;
+    player.attack = false;
 
     input.left ? (player.setVelocityX(-300), player.flipX = true, player.anim = 'walk') :
       input.right ? (player.setVelocityX(300), player.flipX = false, player.anim = 'walk') :
       player.setVelocityX(0)
-
-    if (player.hurted && input.a) {
-      player.setAlpha(0.5);
-    }
 
     if (input.up) {
       if (player.x < 605 && player.y > 405) {
@@ -145,9 +121,14 @@ function update() {
     }
 
     if (input.a) {
-      // console.log(input.a);
       player.anim = 'attack1';
       player.setSize(900);
+      player.attack = true;
+    }
+console.log(player.attack);
+    if (player.hurted) {
+      player.alpha = 0.5;
+      console.log('hurted');
     }
 
     players[player.playerId].x = player.x;
@@ -158,6 +139,7 @@ function update() {
     players[player.playerId].depth = player.depth;
     players[player.playerId].size = player.size;
     players[player.playerId].alpha = player.alpha;
+    players[player.playerId].attack = player.attack;
     players[player.playerId].hurted = player.hurted;
   });
   //envoi mise à jour de tout les players
