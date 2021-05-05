@@ -21,26 +21,37 @@ const config = {
   autoFocus: false
 };
 
+
+var hurtedAction = false;
 function create() {
   const self = this;
 
   this.players = this.physics.add.group();
-  // this.physics.add.collider(this.players, this.players, collisionAction);
-
-  function collisionAction(e,f) {
-    if (typeof(self.players) === 'object') {
-      console.log('collision');
-  }
-}
 
 
   io.on('connection', function(socket) {
+
+  self.physics.add.collider(self.players, self.players, collisionAction);
+
+  function collisionAction(e,f) {
+    if (typeof(self.players) === 'object') {
+      // console.log(self.players[socket.id]);
+      // console.log('socket:' +socket.id);
+      if (self.players && socket.id !== f.playerId) {
+        self.hurtedAction = 'v';
+        // console.log('inside socket' +f.playerId);
+        // console.log('___');
+      }
+    }
+  }
+
     console.log('a user connected');
     // create a new player and add it to our players object
     players[socket.id] = {
+      inzoneA: false,
       atlas: socket.handshake.headers.atlas,
       attack: false,
-      hurted: false,
+      hurted: self.hurtedAction,
       alpha: 1,
       depth: 30,
       anim: 'profil',
@@ -89,8 +100,10 @@ function update() {
     player.setVelocity(0);
     player.setSize(200);
     player.anim = false;
-    player.hurted = false;
+    // self.hurtedAction = false;
+    player.hurted = self.hurtedAction;
     player.attack = false;
+    player.inzoneA = false;
 
     input.left ? (player.setVelocityX(-300), player.flipX = true, player.anim = 'walk') :
       input.right ? (player.setVelocityX(300), player.flipX = false, player.anim = 'walk') :
@@ -125,12 +138,18 @@ function update() {
       player.setSize(900);
       player.attack = true;
     }
-console.log(player.attack);
-    if (player.hurted) {
-      player.alpha = 0.5;
-      console.log('hurted');
+// console.log(player.attack);
+    // if (player.hurted !== 'undefined') {
+      // player.alpha = 0.5;
+    // }
+    console.log(self.hurtedAction);
+    /*
+    if (self.hurtedAction) {
+      console.log('ok');
+    } else {
+      console.log('ouiiiiiiiiiiiiiiiiii');
     }
-
+    */
     players[player.playerId].x = player.x;
     players[player.playerId].y = player.y;
     players[player.playerId].scale = player.scale;
