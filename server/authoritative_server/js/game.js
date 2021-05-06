@@ -22,9 +22,9 @@ const config = {
 };
 
 
-var hurtedAction = false;
 function create() {
   const self = this;
+  const hurtedAction = false;
 
   this.players = this.physics.add.group();
 
@@ -38,8 +38,9 @@ function create() {
       // console.log(self.players[socket.id]);
       // console.log('socket:' +socket.id);
       if (self.players && socket.id !== f.playerId) {
-        self.hurtedAction = 'v';
-        // console.log('inside socket' +f.playerId);
+        // self.hurtedAction = 'v';
+        console.log('inside socket' +f.playerId);
+        console.log(self.hurtedAction);
         // console.log('___');
       }
     }
@@ -115,7 +116,6 @@ function update() {
         player.y -= 2;
         player.depth = player.depth - 1;
         player.anim = 'goback';
-
       }
       if (player.x > 605 && player.scale >= 0.223) {
         player.scale = player.scale - 0.003;
@@ -142,7 +142,7 @@ function update() {
     // if (player.hurted !== 'undefined') {
       // player.alpha = 0.5;
     // }
-    console.log(self.hurtedAction);
+    // console.log(player.hurted);
     /*
     if (self.hurtedAction) {
       console.log('ok');
