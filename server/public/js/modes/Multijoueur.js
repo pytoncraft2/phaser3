@@ -257,11 +257,7 @@ this.cameras.main.fadeIn(4000);
     // this.physics.add.collider(player, group, collisionAction);
   // this.physics.add.collider(this.players);
   // this.physics.add.collider(sprite, group);
-  function collisionAction(e,f) {
-    if (self.players && self.socket.id !== e.playerId) {
-      self.hurtedAction = true;
-    }
-  }
+
 
     /**
      * JOUEUR PRINCIPAL

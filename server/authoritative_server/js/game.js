@@ -37,12 +37,19 @@ function create() {
     if (typeof(self.players) === 'object') {
       // console.log(self.players[socket.id]);
       // console.log('socket:' +socket.id);
-      if (self.players && socket.id !== f.playerId) {
+      // if (self.players && socket.id !== f.playerId) {
         // self.hurtedAction = 'v';
-        console.log('inside socket' +f.playerId);
-        console.log(self.hurtedAction);
+        // console.log('moi:'+socket.id);
+        // console.log('inside F' +f.playerId);
+        // console.log('inside E' +e.playerId);
+        // console.log(e.attack);
+        if (f.attack === true) {
+          console.log('blaissé devient vrai');
+          self.hurted = true;
+          console.log(self.hurted);
+        }
         // console.log('___');
-      }
+      // }
     }
   }
 
@@ -65,7 +72,8 @@ function create() {
         left: false,
         right: false,
         up: false,
-        down: false
+        down: false,
+        a: false
       }
     };
     // add player to server
@@ -96,13 +104,13 @@ function create() {
 }
 
 function update() {
+  const self = this;
   this.players.getChildren().forEach((player) => {
     const input = players[player.playerId].input;
     player.setVelocity(0);
     player.setSize(200);
     player.anim = false;
-    // self.hurtedAction = false;
-    player.hurted = self.hurtedAction;
+    // player.hurted = self.hurtedAction;
     player.attack = false;
     player.inzoneA = false;
 
@@ -139,10 +147,11 @@ function update() {
       player.attack = true;
     }
 // console.log(player.attack);
-    // if (player.hurted !== 'undefined') {
-      // player.alpha = 0.5;
-    // }
-    // console.log(player.hurted);
+    if (self.hurted) {
+      player.alpha = 0.5;
+    }
+    self.hurted = false;
+    console.log(self.hurted);
     /*
     if (self.hurtedAction) {
       console.log('ok');
