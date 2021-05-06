@@ -43,11 +43,26 @@ function create() {
         // console.log('inside F' +f.playerId);
         // console.log('inside E' +e.playerId);
         // console.log(e.attack);
-        if (f.attack === true) {
-          console.log('blaissé devient vrai');
-          self.hurted = true;
-          console.log(self.hurted);
-        }
+
+        console.log(socket.id);
+        console.log(e.playerId);
+
+// console.log(socket.id);
+// console.log(e.playerId);
+
+        // if (f.attack === true) {
+          // if (socket.id == e.playerId)
+          // console.log('blaissé devient vrai');
+          // self.hurted = true;
+          // console.log(self.hurted);
+        // } //else {
+          // console.log(f.hurted);
+          // e.hurted = true;
+        //}
+        //
+
+
+
         // console.log('___');
       // }
     }
@@ -56,10 +71,9 @@ function create() {
     console.log('a user connected');
     // create a new player and add it to our players object
     players[socket.id] = {
-      inzoneA: false,
       atlas: socket.handshake.headers.atlas,
       attack: false,
-      hurted: self.hurtedAction,
+      hurted: false,
       alpha: 1,
       depth: 30,
       anim: 'profil',
@@ -112,7 +126,6 @@ function update() {
     player.anim = false;
     // player.hurted = self.hurtedAction;
     player.attack = false;
-    player.inzoneA = false;
 
     input.left ? (player.setVelocityX(-300), player.flipX = true, player.anim = 'walk') :
       input.right ? (player.setVelocityX(300), player.flipX = false, player.anim = 'walk') :
@@ -168,7 +181,7 @@ function update() {
     players[player.playerId].size = player.size;
     players[player.playerId].alpha = player.alpha;
     players[player.playerId].attack = player.attack;
-    players[player.playerId].hurted = player.hurted;
+    players[player.playerId].hurted = self.hurted;
   });
   //envoi mise à jour de tout les players
   io.emit('playerUpdates', players);

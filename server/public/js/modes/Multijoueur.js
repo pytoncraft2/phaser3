@@ -316,13 +316,6 @@ this.cameras.main.fadeIn(4000);
             player.setDepth(players[id].depth);
             player.setAlpha(players[id].alpha);
 
-            // console.logself.hurtedAction);
-            if (self.hurtedAction) {
-            players[id].hurted = true;
-            // players[id].alpha = 0.5;
-            // console.log('hurtedAction');
-            // player.setAlpha(players[id].hur = 0.5);
-            }
               // TODO: ajouter effet quand attaqué
             if (players[id].anim && players[id].anim !== false) {
               player.play('' + players[id].anim + '_' + players[id].atlas + '', 5);
