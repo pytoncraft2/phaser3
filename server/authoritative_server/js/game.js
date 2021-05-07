@@ -35,6 +35,8 @@ function create() {
 
   function collisionAction(e,f) {
     if (typeof(self.players) === 'object') {
+
+
       // console.log(self.players[socket.id]);
       // console.log('socket:' +socket.id);
       // if (self.players && socket.id !== f.playerId) {
@@ -44,8 +46,18 @@ function create() {
         // console.log('inside E' +e.playerId);
         // console.log(e.attack);
 
-        console.log(socket.id);
-        console.log(e.playerId);
+  self.players.getChildren().forEach((player) => {
+    // if (socket.id === player.playerId) player.destroy()
+    if (socket.id !== player.playerId) {
+      // console.log(player._alpha);
+      // self.hurted = true;
+      player._alpha = 0.5;
+    }
+    // console.log('my socket: '+ socket.id);
+    // console.log(player.playerId);
+  });
+        // console.log(socket.id);
+        // console.log(e.playerId);
 
 // console.log(socket.id);
 // console.log(e.playerId);
@@ -164,7 +176,7 @@ function update() {
       player.alpha = 0.5;
     }
     self.hurted = false;
-    console.log(self.hurted);
+    // console.log(self.hurted);
     /*
     if (self.hurtedAction) {
       console.log('ok');
