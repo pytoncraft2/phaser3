@@ -48,12 +48,12 @@ function create() {
 
   self.players.getChildren().forEach((player) => {
     // if (socket.id === player.playerId) player.destroy()
-    if (socket.id === player.playerId && player.attack === true) {
+    // if (socket.id === player.playerId && player.attack === true) {
       // console.log(player._alpha);
       // self.hurted = true;
-      player._alpha = 0.5;
+      // player._alpha = 0.5;
       // console.log(player);
-    }
+    // }
     // console.log('my socket: '+ socket.id);
     // console.log(player.playerId);
   });
