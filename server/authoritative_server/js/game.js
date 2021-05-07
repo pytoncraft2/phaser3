@@ -24,62 +24,43 @@ const config = {
 
 function create() {
   const self = this;
-  const hurtedAction = false;
+  const collisionAction = false;
 
   this.players = this.physics.add.group();
+/**
+ * start
+ */
+
+  this.physics.add.collider(this.players, this.players, col, (e)=>{
+    console.log('oui');
+  }, this);
+
+  function col(e) {
+    console.log(e.playerId);
+  }
+
+  // this.physics.add.overlap(this.players, this.star, function (star, player) {
+    // if (players[player.playerId].team === 'red') {
+      // self.scores.red += 10;
+    // } else {
+      // self.scores.blue += 10;
+    // }
+    // self.star.setPosition(randomPosition(700), randomPosition(500));
+    // io.emit('updateScore', self.scores);
+    // io.emit('starLocation', { x: self.star.x, y: self.star.y });
+  // });
+
+/**
+ * end
+ */
+
+
+
+
+
 
 
   io.on('connection', function(socket) {
-
-  self.physics.add.collider(self.players, self.players, collisionAction);
-
-  function collisionAction(e,f) {
-    if (typeof(self.players) === 'object') {
-
-
-      // console.log(self.players[socket.id]);
-      // console.log('socket:' +socket.id);
-      // if (self.players && socket.id !== f.playerId) {
-        // self.hurtedAction = 'v';
-        // console.log('moi:'+socket.id);
-        // console.log('inside F' +f.playerId);
-        // console.log('inside E' +e.playerId);
-        // console.log(e.attack);
-
-  self.players.getChildren().forEach((player) => {
-    // if (socket.id === player.playerId) player.destroy()
-    // if (socket.id === player.playerId && player.attack === true) {
-      // console.log(player._alpha);
-      // self.hurted = true;
-      // player._alpha = 0.5;
-      // console.log(player);
-    // }
-    // console.log('my socket: '+ socket.id);
-    // console.log(player.playerId);
-  });
-        // console.log(socket.id);
-        // console.log(e.playerId);
-
-// console.log(socket.id);
-// console.log(e.playerId);
-
-        // if (f.attack === true) {
-          // if (socket.id == e.playerId)
-          // console.log('blaissé devient vrai');
-          // self.hurted = true;
-          // console.log(self.hurted);
-        // } //else {
-          // console.log(f.hurted);
-          // e.hurted = true;
-        //}
-        //
-
-
-
-        // console.log('___');
-      // }
-    }
-  }
 
     console.log('a user connected');
     // create a new player and add it to our players object
