@@ -30,16 +30,27 @@ function create() {
     // console.log('collision');
   // });
 
-  function hurted(e) {
+  function hurted(e,f) {
     // console.log(e.anim);
+    console.log('_________E____________');
     console.log(e.playerId);
+    console.log('_________F____________');
+    console.log(f.playerId);
+    console.log('_____MY_SOCKET:______');
+    console.log(self.sok);
+    if (self.sok !== e.playerId && self.sok === f.playerId){
+      //fait rien
     e.alpha = e.alpha - 0.01;
+  } else if (self.sok !== f.playerId && self.sok === e.playerId) {
+    f.alpha = f.alpha - 0.01;
+  }
     // console.log(this.anim);
   }
   this.physics.add.collider(this.players, this.players, hurted, null, this);
 
   io.on('connection', function(socket) {
     console.log('a user connected');
+    self.sok = socket.id;
     // create a new player and add it to our players object
     players[socket.id] = {
       atlas: socket.handshake.headers.atlas,
