@@ -132,7 +132,7 @@ this.cameras.main.fadeIn(4000);
     this.anims.create({
       key: "walk_naruto",
       frames: this.anims.generateFrameNumbers('naruto', {
-        frames: ['profil3', 'profil4', 'profil5', 'profil6', 'profil']
+        frames: ['profil3', 'profil4', 'profil5', 'profil6']
       }),
       frameRate: 5,
       repeat: 0
