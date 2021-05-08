@@ -51,6 +51,7 @@ export default class Multijoueur extends Phaser.Scene {
       this.load.atlas(item, 'assets/personnages/' + item + '/' + item + '.png', 'assets/personnages/' + item + '/' + item + '_atlas.json');
     });
     this.load.image('bg', 'assets/fond/bgGrand.png');
+    this.load.image('doors', 'assets/fond/doors.png');
 
   }
 
@@ -239,7 +240,6 @@ this.cameras.main.fadeIn(4000);
       frameRate: 5,
       repeat: 0
     });
-    this.add.image(-300, 350, 'bg').setDepth(-54);
 
     /**
      * CONNEXION
@@ -254,6 +254,9 @@ this.cameras.main.fadeIn(4000);
     });
 
     this.players = this.add.group();
+        this.add.image(-300, 350, 'bg').setDepth(-54);
+    this.doors = this.physics.add.image(-300, 280, 'doors');
+    this.physics.add.collider(this.doors, this.players);
     // this.physics.add.collider(player, group, collisionAction);
   // this.physics.add.collider(this.players);
   // this.physics.add.collider(sprite, group);
