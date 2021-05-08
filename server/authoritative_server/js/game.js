@@ -31,12 +31,15 @@ function create() {
  * start
  */
 
-  this.physics.add.collider(this.players, this.players, col, (e)=>{
+  this.physics.add.collider(this.players, this.players, col, (player,player2)=>{
     console.log('oui');
+    // e.alpha = 0.5;
+    if (players[player.playerId].attack) {
+    player2.alpha = 0.5;
+    }
   }, this);
 
   function col(e) {
-    console.log(e.playerId);
   }
 
   // this.physics.add.overlap(this.players, this.star, function (star, player) {
