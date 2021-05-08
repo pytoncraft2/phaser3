@@ -24,43 +24,21 @@ const config = {
 
 function create() {
   const self = this;
-  const collisionAction = false;
-
+  let count = 0;
   this.players = this.physics.add.group();
-/**
- * start
- */
+  this.physics.add.collider(this.players, this.players, col, (player, player2) => {
 
-  this.physics.add.collider(this.players, this.players, col, (player,player2)=>{
-    console.log('oui');
-    // e.alpha = 0.5;
-    if (players[player.playerId].attack) {
-    player2.alpha = 0.5;
+    if (players[player.playerId].anim == 'attack1') {
+      count++;
+      console.log(count);
+      if (count == 20) {
+      player2.alpha = player2.alpha - 0.2;
+      count = 0;
+      }
     }
   }, this);
 
-  function col(e) {
-  }
-
-  // this.physics.add.overlap(this.players, this.star, function (star, player) {
-    // if (players[player.playerId].team === 'red') {
-      // self.scores.red += 10;
-    // } else {
-      // self.scores.blue += 10;
-    // }
-    // self.star.setPosition(randomPosition(700), randomPosition(500));
-    // io.emit('updateScore', self.scores);
-    // io.emit('starLocation', { x: self.star.x, y: self.star.y });
-  // });
-
-/**
- * end
- */
-
-
-
-
-
+  function col(e) {}
 
 
   io.on('connection', function(socket) {
@@ -70,7 +48,6 @@ function create() {
     players[socket.id] = {
       atlas: socket.handshake.headers.atlas,
       attack: false,
-      hurted: false,
       alpha: 1,
       depth: 30,
       anim: 'profil',
@@ -115,29 +92,27 @@ function create() {
 }
 
 function update() {
-  const self = this;
   this.players.getChildren().forEach((player) => {
     const input = players[player.playerId].input;
     player.setVelocity(0);
     player.setSize(200);
     player.anim = false;
-    // player.hurted = self.hurtedAction;
     player.attack = false;
 
     input.left ? (player.setVelocityX(-300), player.flipX = true, player.anim = 'walk') :
       input.right ? (player.setVelocityX(300), player.flipX = false, player.anim = 'walk') :
       player.setVelocityX(0)
 
-      console.log(player.depth);
+    // console.log(player.depth);
 
     if (input.up) {
-      if (player.x < 605 /*&& player.y > 405*/) {
+      if (player.x < 605 /*&& player.y > 405*/ ) {
         player.scale = player.scale - 0.003;
         player.y -= 2;
         player.depth = player.depth - 1;
         player.anim = 'goback';
       }
-      if (player.x > 605 /*&& player.scale >= 0.223*/) {
+      if (player.x > 605 /*&& player.scale >= 0.223*/ ) {
         player.scale = player.scale - 0.003;
         player.y -= 2;
         player.depth = player.depth - 1;
@@ -158,19 +133,7 @@ function update() {
       player.setSize(900);
       player.attack = true;
     }
-// console.log(player.attack);
-    if (self.hurted) {
-      player.alpha = 0.5;
-    }
-    self.hurted = false;
-    // console.log(self.hurted);
-    /*
-    if (self.hurtedAction) {
-      console.log('ok');
-    } else {
-      console.log('ouiiiiiiiiiiiiiiiiii');
-    }
-    */
+
     players[player.playerId].x = player.x;
     players[player.playerId].y = player.y;
     players[player.playerId].scale = player.scale;
@@ -180,7 +143,6 @@ function update() {
     players[player.playerId].size = player.size;
     players[player.playerId].alpha = player.alpha;
     players[player.playerId].attack = player.attack;
-    players[player.playerId].hurted = self.hurted;
   });
   //envoi mise à jour de tout les players
   io.emit('playerUpdates', players);
