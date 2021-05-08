@@ -8,7 +8,7 @@ const config = {
   physics: {
     default: 'arcade',
     arcade: {
-      debug: true,
+      debug: false,
       gravity: {
         y: 0
       }
@@ -125,14 +125,16 @@ function update() {
       input.right ? (player.setVelocityX(300), player.flipX = false, player.anim = 'walk') :
       player.setVelocityX(0)
 
+      console.log(player.depth);
+
     if (input.up) {
-      if (player.x < 605 && player.y > 405) {
+      if (player.x < 605 /*&& player.y > 405*/) {
         player.scale = player.scale - 0.003;
         player.y -= 2;
         player.depth = player.depth - 1;
         player.anim = 'goback';
       }
-      if (player.x > 605 && player.scale >= 0.223) {
+      if (player.x > 605 /*&& player.scale >= 0.223*/) {
         player.scale = player.scale - 0.003;
         player.y -= 2;
         player.depth = player.depth - 1;
