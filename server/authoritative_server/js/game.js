@@ -38,14 +38,8 @@ function create() {
     }
 
     if (players[player.playerId].anim == 'heal') {
-      // count++;
-      // if (count == 20) {
       player2.alpha = player2.alpha + 0.2;
-      // count = 0;
-      // }
     }
-
-
   }, this);
 
   function col(e) {}
@@ -56,6 +50,7 @@ function create() {
     // create a new player and add it to our players object
     players[socket.id] = {
       atlas: socket.handshake.headers.atlas,
+      wall: false,
       attack: false,
       alpha: 1,
       depth: 30,
@@ -107,12 +102,11 @@ function update() {
     player.setSize(200);
     player.anim = false;
     player.attack = false;
+    player.wall = false;
 
     input.left ? (player.setVelocityX(-300), player.flipX = true, player.anim = 'walk') :
       input.right ? (player.setVelocityX(300), player.flipX = false, player.anim = 'walk') :
       player.setVelocityX(0)
-
-    // console.log(player.depth);
 
     if (input.up) {
       if (player.x < 605 /*&& player.y > 405*/ ) {
@@ -141,6 +135,7 @@ function update() {
       player.anim = 'attack1';
       player.setSize(900);
       player.attack = true;
+      player.wall = true;
     }
 
     if (input.t) {
@@ -151,6 +146,7 @@ function update() {
       console.log('espace');
     }
 
+
     players[player.playerId].x = player.x;
     players[player.playerId].y = player.y;
     players[player.playerId].scale = player.scale;
@@ -160,6 +156,7 @@ function update() {
     players[player.playerId].size = player.size;
     players[player.playerId].alpha = player.alpha;
     players[player.playerId].attack = player.attack;
+    players[player.playerId].wall = player.wall;
   });
   //envoi mise à jour de tout les players
   io.emit('playerUpdates', players);
