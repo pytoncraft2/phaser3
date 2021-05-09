@@ -319,12 +319,24 @@ this.cameras.main.fadeIn(4000);
             if (players[id].anim && players[id].anim !== false) {
               player.play('' + players[id].anim + '_' + players[id].atlas + '', 5);
             }
-
+/*
             if (players[id].y < 400) {
-              self.doors.alpha = 0.5;
+              self.doors.setAlpha(players[id].alpha - 0.4);
             } else {
-              self.doors.alpha = 1;
+              self.doors.setAlpha(players[id].alpha);
             }
+
+            */
+
+            // if (!(sprite.getBounds().contains(x, y))) {
+
+            // console.log(players[id].x);
+            // console.log(players[id].y);
+              if(!(self.doors.getBounds().contains(-120,383))) {
+                console.log('oui');
+              }
+            // }
+
 /*
             console.log(self.doors.alpha);
             console.log("_______");
