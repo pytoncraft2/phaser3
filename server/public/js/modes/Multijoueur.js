@@ -320,18 +320,10 @@ export default class Multijoueur extends Phaser.Scene {
               player.play('' + players[id].anim + '_' + players[id].atlas + '', 5);
             }
 
-            // console.log(players[id].wall);
-            // if (players[id].wall) {
-              // self.doors.setAlpha(players[id].wall);
-            // }
-            // if (!(self.doors.getBounds().contains(110, 407))) {
-              // self.doors.setAlpha(players[id].wall);
-              // console.log('inside');
-              // console.log(players[id].x);
-              // console.log(players[id].y);
-            // }
-            if (players[id].wall) {
-              self.doors.setAlpha(players[id].wall);
+            if (!(self.doors.getBounds().contains(players[id].x + 200, players[id].y + 130))) {
+              self.doors.setAlpha(1);
+            } else {
+              self.doors.setAlpha(0.5);
             }
           }
         });
