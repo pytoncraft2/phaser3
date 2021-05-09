@@ -36,10 +36,19 @@ function create() {
       count = 0;
       }
     }
+
+    if (players[player.playerId].anim == 'heal') {
+      // count++;
+      // if (count == 20) {
+      player2.alpha = player2.alpha + 0.2;
+      // count = 0;
+      // }
+    }
+
+
   }, this);
 
   function col(e) {}
-
 
   io.on('connection', function(socket) {
 
@@ -132,6 +141,10 @@ function update() {
       player.anim = 'attack1';
       player.setSize(900);
       player.attack = true;
+    }
+
+    if (input.t) {
+      player.anim = 'heal';
     }
 
     players[player.playerId].x = player.x;

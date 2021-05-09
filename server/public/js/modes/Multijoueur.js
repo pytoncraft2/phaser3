@@ -332,12 +332,14 @@ this.cameras.main.fadeIn(4000);
      */
 
     this.aKeyPressed = this.input.keyboard.addKey('A');
+    this.tKeyPressed = this.input.keyboard.addKey('T');
     this.cursors = this.input.keyboard.createCursorKeys();
     this.leftKeyPressed = false;
     this.rightKeyPressed = false;
     this.upKeyPressed = false;
     this.downKeyPressed = false;
     this.aKey = false;
+    this.tKey = false;
 
   }
 
@@ -352,7 +354,8 @@ this.cameras.main.fadeIn(4000);
       right = this.rightKeyPressed,
       up = this.upKeyPressed,
       down = this.downKeyPressed,
-      ak = this.aKey;
+      ak = this.aKey,
+      tk = this.tKey;
 
     this.cursors.left.isDown ? this.leftKeyPressed = true :
       this.cursors.right.isDown ? this.rightKeyPressed = true :
@@ -363,14 +366,16 @@ this.cameras.main.fadeIn(4000);
       (this.upKeyPressed = false, this.downKeyPressed = false)
 
     this.aKeyPressed.isDown ? this.aKey = true : this.aKey = false
+    this.tKeyPressed.isDown ? this.tKey = true : this.tKey = false
 
-    if (left !== this.leftKeyPressed || right !== this.rightKeyPressed || up !== this.upKeyPressed || down !== this.downKeyPressed || ak !== this.aKey) {
+    if (left !== this.leftKeyPressed || right !== this.rightKeyPressed || up !== this.upKeyPressed || down !== this.downKeyPressed || ak !== this.aKey || tk !== this.tKey) {
       this.socket.emit('playerInput', {
         left: this.leftKeyPressed,
         right: this.rightKeyPressed,
         up: this.upKeyPressed,
         down: this.downKeyPressed,
-        a: this.aKey
+        a: this.aKey,
+        t: this.tKey
       });
     }
   }
