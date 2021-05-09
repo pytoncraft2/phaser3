@@ -316,7 +316,6 @@ this.cameras.main.fadeIn(4000);
             player.setDepth(players[id].depth);
             player.setAlpha(players[id].alpha);
 
-              // TODO: ajouter effet quand attaqué
             if (players[id].anim && players[id].anim !== false) {
               player.play('' + players[id].anim + '_' + players[id].atlas + '', 5);
             }
@@ -326,8 +325,6 @@ this.cameras.main.fadeIn(4000);
             } else {
               self.doors.setAlpha(0.5);
             }
-
-
           }
         });
       });
