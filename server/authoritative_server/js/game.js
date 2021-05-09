@@ -147,6 +147,10 @@ function update() {
       player.anim = 'heal';
     }
 
+    if (input.space) {
+      console.log('espace');
+    }
+
     players[player.playerId].x = player.x;
     players[player.playerId].y = player.y;
     players[player.playerId].scale = player.scale;
