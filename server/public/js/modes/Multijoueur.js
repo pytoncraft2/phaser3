@@ -315,37 +315,19 @@ this.cameras.main.fadeIn(4000);
             player.setPosition(players[id].x, players[id].y);
             player.setDepth(players[id].depth);
             player.setAlpha(players[id].alpha);
+
               // TODO: ajouter effet quand attaqué
             if (players[id].anim && players[id].anim !== false) {
               player.play('' + players[id].anim + '_' + players[id].atlas + '', 5);
             }
-/*
-            if (players[id].y < 400) {
-              self.doors.setAlpha(players[id].alpha - 0.4);
+
+            if (!(self.doors.getBounds().contains(players[id].x + 200, players[id].y + 130))) {
+              self.doors.setAlpha(1);
             } else {
-              self.doors.setAlpha(players[id].alpha);
+              self.doors.setAlpha(0.5);
             }
 
-            */
 
-            // if (!(sprite.getBounds().contains(x, y))) {
-
-            // console.log(players[id].x);
-            // console.log(players[id].y);
-              if(!(self.doors.getBounds().contains(-120,383))) {
-                console.log('oui');
-              }
-            // }
-
-/*
-            console.log(self.doors.alpha);
-            console.log("_______");
-            console.log('X');
-            console.log(players[id].x);
-            console.log('Y');
-            console.log(players[id].y);
-            console.log("_______");
-            */
           }
         });
       });
