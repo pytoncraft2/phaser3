@@ -256,7 +256,7 @@ this.cameras.main.fadeIn(4000);
     this.players = this.add.group();
     this.add.image(-300, 350, 'bg').setDepth(-54);
     this.doors = this.physics.add.image(-300, 280, 'doors').setDepth(-20);
-    this.doors.alpha = 0.4;
+    // this.doors.alpha = 0.4;
     this.physics.add.collider(this.doors, this.players);
 
     /**
@@ -315,11 +315,25 @@ this.cameras.main.fadeIn(4000);
             player.setPosition(players[id].x, players[id].y);
             player.setDepth(players[id].depth);
             player.setAlpha(players[id].alpha);
-
               // TODO: ajouter effet quand attaqué
             if (players[id].anim && players[id].anim !== false) {
               player.play('' + players[id].anim + '_' + players[id].atlas + '', 5);
             }
+
+            if (players[id].y < 400) {
+              self.doors.alpha = 0.5;
+            } else {
+              self.doors.alpha = 1;
+            }
+/*
+            console.log(self.doors.alpha);
+            console.log("_______");
+            console.log('X');
+            console.log(players[id].x);
+            console.log('Y');
+            console.log(players[id].y);
+            console.log("_______");
+            */
           }
         });
       });
