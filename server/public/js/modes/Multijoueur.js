@@ -264,13 +264,6 @@ export default class Multijoueur extends Phaser.Scene {
       console.log(e.alpha = 0.6);
     });
 
-
-
-
-
-
-
-
     /**
      * JOUEUR PRINCIPAL
      * Affiche le joueur principal et les autres joueurs
