@@ -52,6 +52,7 @@ export default class Multijoueur extends Phaser.Scene {
     });
     this.load.image('bg', 'assets/fond/bgGrand.png');
     this.load.image('doors', 'assets/fond/doors.png');
+    this.load.image('bg2', 'assets/fond/bgMenu.png');
 
   }
 
@@ -252,12 +253,21 @@ export default class Multijoueur extends Phaser.Scene {
         "atlas": this.personnage
       }
     });
-
+    // var gg = this.add.image(-300, 350, 'bg2').setDepth(0);
     this.players = this.add.group();
     this.add.image(-300, 350, 'bg').setDepth(-54);
     this.doors = this.physics.add.image(-300, 280, 'doors').setDepth(-20);
     // this.doors.alpha = 0.4;
     this.physics.add.collider(this.doors, this.players);
+
+
+
+
+
+
+
+
+
 
     /**
      * JOUEUR PRINCIPAL
@@ -320,11 +330,32 @@ export default class Multijoueur extends Phaser.Scene {
               player.play('' + players[id].anim + '_' + players[id].atlas + '', 5);
             }
 
-            if (!(self.doors.getBounds().contains(players[id].x + 200, players[id].y + 130))) {
-              self.doors.setAlpha(1);
-            } else {
-              self.doors.setAlpha(0.5);
-            }
+
+            // self.input.keyboard.on('keydown', (event) => {
+
+        // if (!(self.doors.getBounds().contains(200, 130))) {
+        var rec = self.doors.getBounds().contains(players[id].x + 200, players[id].y + 130);
+        if (rec) {
+          self.doors.alpha = 0.4;
+        } else {
+          self.doors.alpha = 1;
+        }
+          // self.doors.alpha = 0.4;
+        // }
+// });
+
+// self.input.keyboard.on('keyup', (event) => {
+  // gg.alpha = 1;
+          // self.doors.alpha = 1;
+  // console.log('uppp');
+// });
+
+
+            // if (!(self.doors.getBounds().contains(players[id].x + 200, players[id].y + 130))) {
+              // self.doors.setAlpha(players[id].alpha - 0);
+            // } else {
+              // self.doors.setAlpha(players[id].alpha - 0.3);
+            // }
           }
         });
       });
