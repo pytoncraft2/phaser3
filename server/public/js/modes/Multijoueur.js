@@ -258,9 +258,11 @@ export default class Multijoueur extends Phaser.Scene {
     this.add.image(-300, 350, 'bg').setDepth(-54);
     this.doors = this.physics.add.image(-300, 280, 'doors').setDepth(-20);
     // this.doors.alpha = 0.4;
-    this.physics.add.collider(this.doors, this.players);
+    // this.physics.add.collider(this.doors, this.players);
 
-
+    this.physics.add.overlap(self.doors, self.players, function (e) {
+      console.log(e.alpha = 0.6);
+    });
 
 
 
@@ -334,12 +336,14 @@ export default class Multijoueur extends Phaser.Scene {
             // self.input.keyboard.on('keydown', (event) => {
 
         // if (!(self.doors.getBounds().contains(200, 130))) {
-        var rec = self.doors.getBounds().contains(players[id].x + 200, players[id].y + 130);
+        /*
+        var rec = self.doors.getBounds().contains(players[id].x, players[id].y + 130  , players[id].y + );
         if (rec) {
           self.doors.alpha = 0.4;
         } else {
           self.doors.alpha = 1;
         }
+        */
           // self.doors.alpha = 0.4;
         // }
 // });
