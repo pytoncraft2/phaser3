@@ -255,14 +255,37 @@ export default class Multijoueur extends Phaser.Scene {
     });
     // var gg = this.add.image(-300, 350, 'bg2').setDepth(0);
     this.players = this.add.group();
+
+
+
+
+
+
+
+
+
     this.add.image(-300, 350, 'bg').setDepth(-54);
     this.doors = this.physics.add.image(-300, 280, 'doors').setDepth(-20);
+
+  this.physics.add.collider(this.players, this.doors, null, (player, wall) => {
+
+    wall.alpha = wall.alpha == 1 ? 0.4 : 1;
+        // console.log('coucou');
+    // if (players[player.playerId].anim == 'attack1') {
+      // player2.alpha = player2.alpha - 0.2;
+    // }
+
+    // if (players[player.playerId].anim == 'heal') {
+      // player2.alpha = player2.alpha + 0.2;
+    // }
+  }, this);
+
     // this.doors.alpha = 0.4;
     // this.physics.add.collider(this.doors, this.players);
 
-    this.physics.add.overlap(self.doors, self.players, function (e) {
-      console.log(e.alpha = 0.6);
-    });
+    // this.physics.add.overlap(self.doors, self.players, function (e) {
+      // console.log(e.alpha = 0.6);
+    // });
 
     /**
      * JOUEUR PRINCIPAL
