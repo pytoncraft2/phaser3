@@ -64,7 +64,6 @@ export default class Multijoueur extends Phaser.Scene {
    * // OPTIMIZE: Chargement des animation
    */
   create() {
-
     var self = this;
     this.cameras.main.setBounds(-2074, 0, 3574, 666);
     this.physics.world.setBounds(-2074, 0, 3574, 666);
@@ -265,9 +264,20 @@ export default class Multijoueur extends Phaser.Scene {
 
 
     this.add.image(-300, 350, 'bg').setDepth(-54);
-    this.doors = this.physics.add.image(-300, 280, 'doors').setDepth(-20);
+var graphics = this.physics.add.image(-300, 280, 'doors').setDepth(-20);
 
-  this.physics.add.collider(this.players, this.doors, null, (player, wall) => {
+var circle = new Phaser.Geom.Circle(400, 300, 200);
+// graphics.fillCircleShape(circle);
+this.input.on('pointermove', function (pointer) {
+    // graphics.clear();
+    if(graphics.body.contains(pointer.x, pointer.y))
+    { graphics.alpha = 0.5;}
+    else
+    { graphics.alpha = 1; }
+// graphics.fillCircleShape(circle);
+});
+
+/*  this.physics.add.collider(this.players, this.doors, null, (player, wall) => {
 
     wall.alpha = wall.alpha == 1 ? 0.4 : 1;
         // console.log('coucou');
@@ -279,6 +289,7 @@ export default class Multijoueur extends Phaser.Scene {
       // player2.alpha = player2.alpha + 0.2;
     // }
   }, this);
+  */
 
     // this.doors.alpha = 0.4;
     // this.physics.add.collider(this.doors, this.players);
