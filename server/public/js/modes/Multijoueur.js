@@ -264,18 +264,28 @@ export default class Multijoueur extends Phaser.Scene {
 
 
     this.add.image(-300, 350, 'bg').setDepth(-54);
-var graphics = this.physics.add.image(-300, 280, 'doors').setDepth(-20);
-
+    this.doors = this.physics.add.image(-300, 280, 'doors').setDepth(-20);
+/*
+if (!(self.doors.getBounds().contains(players[id].x + 200, players[id].y + 130))) {
+  self.doors.setAlpha(1);
+} else {
+  self.doors.setAlpha(players[id].alpha);
+  self.doors.setAlpha(0.5);
+}
+*/
+    /*
+var graphics = this.add.graphics({ fillStyle: { color: 0xff0000 } });
 var circle = new Phaser.Geom.Circle(400, 300, 200);
-// graphics.fillCircleShape(circle);
+graphics.fillCircleShape(circle);
 this.input.on('pointermove', function (pointer) {
-    // graphics.clear();
-    if(graphics.body.contains(pointer.x, pointer.y))
-    { graphics.alpha = 0.5;}
+    graphics.clear();
+    if(circle.contains(pointer.x, pointer.y))
+    { graphics.fillStyle(0x00ff00);}
     else
-    { graphics.alpha = 1; }
-// graphics.fillCircleShape(circle);
+    { graphics.fillStyle(0xff0000); }
+graphics.fillCircleShape(circle);
 });
+*/
 
 /*  this.physics.add.collider(this.players, this.doors, null, (player, wall) => {
 
@@ -359,34 +369,11 @@ this.input.on('pointermove', function (pointer) {
               player.play('' + players[id].anim + '_' + players[id].atlas + '', 5);
             }
 
-
-            // self.input.keyboard.on('keydown', (event) => {
-
-        // if (!(self.doors.getBounds().contains(200, 130))) {
-        /*
-        var rec = self.doors.getBounds().contains(players[id].x, players[id].y + 130  , players[id].y + );
-        if (rec) {
-          self.doors.alpha = 0.4;
-        } else {
-          self.doors.alpha = 1;
-        }
-        */
-          // self.doors.alpha = 0.4;
-        // }
-// });
-
-// self.input.keyboard.on('keyup', (event) => {
-  // gg.alpha = 1;
-          // self.doors.alpha = 1;
-  // console.log('uppp');
-// });
-
-
-            // if (!(self.doors.getBounds().contains(players[id].x + 200, players[id].y + 130))) {
-              // self.doors.setAlpha(players[id].alpha - 0);
-            // } else {
-              // self.doors.setAlpha(players[id].alpha - 0.3);
-            // }
+            if (!(self.doors.getBounds().contains(players[id].x + 200, players[id].y + 130))) {
+              self.doors.setAlpha(players[id].alpha - 0);
+            } else {
+              self.doors.setAlpha(players[id].alpha - 0.3);
+            }
           }
         });
       });
