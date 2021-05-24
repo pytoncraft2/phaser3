@@ -10,7 +10,7 @@ const config = {
     arcade: {
       debug: false,
       gravity: {
-        y: 0
+        y: 1900
       }
     }
   },
@@ -98,7 +98,7 @@ function create() {
 function update() {
   this.players.getChildren().forEach((player) => {
     const input = players[player.playerId].input;
-    player.setVelocity(0);
+    player.setVelocityY(0);
     player.setSize(200);
     player.anim = false;
     player.attack = false;
@@ -143,7 +143,11 @@ function update() {
     }
 
     if (input.space) {
-      console.log('espace');
+      console.log(player.x);
+      // player.setVelocityY(-900)
+    } else {
+      // player.body.setAllowGravity(false)
+      // player.setVelocityY(400)
     }
 
 
@@ -175,6 +179,8 @@ function handlePlayerInput(self, playerId, input) {
 function addPlayer(self, playerInfo) {
   const player = self.physics.add.sprite(playerInfo.x, playerInfo.y, 'profil').setOrigin(0.5).setScale(0.38).setSize(220);
   player.setMaxVelocity(200);
+  player.setDrag(100);
+  player.setAngularDrag(100);
   player.playerId = playerInfo.playerId;
   player.alpha = playerInfo.alpha;
   self.players.add(player);
