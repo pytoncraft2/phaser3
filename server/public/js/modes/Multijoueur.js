@@ -313,6 +313,7 @@ export default class Multijoueur extends Phaser.Scene {
       Object.keys(players).forEach(function(id) {
         self.players.getChildren().forEach(function(player) {
           if (players[id].playerId === player.playerId) {
+
             player.flipX = (players[id].flipX);
             player.setScale(players[id].scale);
             player.setPosition(players[id].x, players[id].y);
@@ -407,12 +408,19 @@ export default class Multijoueur extends Phaser.Scene {
     self.players.add(self.player);
     if (iscurrent) {
       self.cameras.main.startFollow(self.player);
-      // self.player.setCollideWorldBounds(true);
       self.player.body.allowGravity = false;
       self.physics.add.overlap(self.player, self.doors, function(player, doors) {
         player.y < 399 ? doors.alpha = 0.5 : doors.alpha = 1
       });
+      var zone = this.add.zone(playerInfo.x, playerInfo.y - 300).setSize(150, 40);
+      self.physics.world.enable(zone);
+// zone.body.allowGravity = false;
+      zone.body.setVelocityX(0);
+      zone.depth = 30;
 
+
+
+/*
       var keyObj = self.input.keyboard.addKey('SPACE');  // Get key object
       keyObj.on('down', function(event) { self.player.setVelocityY(800); });
       var zone = this.add.zone(playerInfo.x, playerInfo.y - 300).setSize(150, 40);
@@ -423,12 +431,13 @@ export default class Multijoueur extends Phaser.Scene {
       self.physics.add.overlap(zone, self.player, function (z,p) {
         console.log(p.y);
         if (p.y < 300) {
-        // p.setVelocityY(-100);
+        p.setVelocityY(-100);
       } else {
         // p.setVelocityY(100);
       }
         // console.log(z);
       });
+      */
     }
   }
 }

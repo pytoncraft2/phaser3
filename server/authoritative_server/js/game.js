@@ -105,7 +105,7 @@ function update() {
 
     input.left ? (player.setVelocityX(-300), player.flipX = true, player.anim = 'walk') :
       input.right ? (player.setVelocityX(300), player.flipX = false, player.anim = 'walk') :
-      /*player.setVelocityX(0)*/''
+      player.setVelocityX(0)
 
     if (input.up) {
       if (player.x < 605 /*&& player.y > 405*/ ) {
@@ -140,22 +140,16 @@ function update() {
       player.anim = 'heal';
     }
 
-      // player.body.checkCollision.up
-      /*
     if (input.space) {
-      // console.log(player.x);
+      const base = player.y;
+      console.log(base);
+      if (player.y < 400)
       player.setVelocityY(-100)
-      player.body.checkCollision.up
-      // player.body.allowGravity = true;
-      // player.body.setAllowGravity(true)
-
-  // player.setAngularVelocity(900);
     } else {
-      // player.body.setAllowGravity(false)
-      // player.setVelocityY(0)
-  // player.setAngularVelocity(0);
+      if (player.y > 400) {
+      player.setVelocityY(-100)
+      }
     }
-    */
 /*
     if (input.left) {
 } else if (input.right) {
@@ -192,9 +186,9 @@ function handlePlayerInput(self, playerId, input) {
 
 function addPlayer(self, playerInfo) {
   const player = self.physics.add.sprite(playerInfo.x, playerInfo.y, 'profil').setOrigin(0.5).setScale(0.38).setSize(220);
-  // player.setMaxVelocity(200);
-  // player.setDrag(100);
-  // player.setAngularDrag(100);
+  player.setMaxVelocity(200);
+  player.setDrag(100);
+  player.setAngularDrag(100);
   player.playerId = playerInfo.playerId;
   player.alpha = playerInfo.alpha;
   self.players.add(player);
