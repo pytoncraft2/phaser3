@@ -393,7 +393,7 @@ export default class Multijoueur extends Phaser.Scene {
     }
   }
   /**
-   * Affiche en permanence le joueur selon ses parametres
+   * Affiche le(s) nouveau(x) joueur(s) et definit ses parametres
    * @param  {Object} self parametres class Multijoueur
    * @param  {Object} playerInfo liste des parametres du joueur (scale,depth,x,y ...)
    * @param  {Boolean} iscurrent true: camera suit le joueur actuel , false: ne suit pas
@@ -406,13 +406,8 @@ export default class Multijoueur extends Phaser.Scene {
     if (iscurrent) {
       self.cameras.main.startFollow(self.player);
       self.player.setCollideWorldBounds(true);
-      console.log(self.player.x);
       self.physics.add.overlap(self.player, self.doors, function(player, doors) {
-        if (player.y < 399) {
-          doors.alpha = 0.5
-        } else {
-          doors.alpha = 1;
-        }
+        player.y < 399 ? doors.alpha = 0.5 : doors.alpha = 1
       });
     }
   }
