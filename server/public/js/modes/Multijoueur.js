@@ -254,61 +254,11 @@ export default class Multijoueur extends Phaser.Scene {
         "atlas": this.personnage
       }
     });
-    // var gg = this.add.image(-300, 350, 'bg2').setDepth(0);
+
     this.players = this.add.group();
-
-
-
-
-
-
-
-
 
     this.add.image(-300, 350, 'bg').setDepth(-54);
     this.doors = this.physics.add.image(-300, 280, 'doors').setDepth(-20);
-/*
-if (!(self.doors.getBounds().contains(players[id].x + 200, players[id].y + 130))) {
-  self.doors.setAlpha(1);
-} else {
-  self.doors.setAlpha(players[id].alpha);
-  self.doors.setAlpha(0.5);
-}
-*/
-    /*
-var graphics = this.add.graphics({ fillStyle: { color: 0xff0000 } });
-var circle = new Phaser.Geom.Circle(400, 300, 200);
-graphics.fillCircleShape(circle);
-this.input.on('pointermove', function (pointer) {
-    graphics.clear();
-    if(circle.contains(pointer.x, pointer.y))
-    { graphics.fillStyle(0x00ff00);}
-    else
-    { graphics.fillStyle(0xff0000); }
-graphics.fillCircleShape(circle);
-});
-*/
-
-/*  this.physics.add.collider(this.players, this.doors, null, (player, wall) => {
-
-    wall.alpha = wall.alpha == 1 ? 0.4 : 1;
-        // console.log('coucou');
-    // if (players[player.playerId].anim == 'attack1') {
-      // player2.alpha = player2.alpha - 0.2;
-    // }
-
-    // if (players[player.playerId].anim == 'heal') {
-      // player2.alpha = player2.alpha + 0.2;
-    // }
-  }, this);
-  */
-
-    // this.doors.alpha = 0.4;
-    // this.physics.add.collider(this.doors, this.players);
-
-    // this.physics.add.overlap(self.doors, self.players, function (e) {
-      // console.log(e.alpha = 0.6);
-    // });
 
     /**
      * JOUEUR PRINCIPAL
@@ -370,25 +320,6 @@ graphics.fillCircleShape(circle);
             if (players[id].anim && players[id].anim !== false) {
               player.play('' + players[id].anim + '_' + players[id].atlas + '', 5);
             }
-
-            // console.log(players[id].x + 200);
-            // console.log(players[id].y);
-            // console.log(players[id].y + 130);
-            /*
-            if (!(self.doors.getBounds().contains(players[id].x + 200, players[id].y + 130))) {
-              self.doors.setAlpha(1);
-            } else {
-              self.doors.setAlpha(0.3);
-            }
-            */
-            /*
-            if (!(self.doors.getBounds().contains(100, 16))) {
-              self.doors.setAlpha(1);
-            } else {
-              self.doors.setAlpha(0.3);
-            }
-            */
-
           }
         });
       });
@@ -443,8 +374,6 @@ graphics.fillCircleShape(circle);
     this.cursors.space.isDown ? this.spaceKeyPressed = true : this.spaceKeyPressed = false
 
 
-    // this.spaceKeyPressed.isDown ? this.space = true : this.space = false
-
     if (left !== this.leftKeyPressed ||
       right !== this.rightKeyPressed ||
       up !== this.upKeyPressed ||
@@ -478,26 +407,13 @@ graphics.fillCircleShape(circle);
       self.cameras.main.startFollow(self.player);
       self.player.setCollideWorldBounds(true);
       console.log(self.player.x);
-      self.physics.add.overlap(self.player, self.doors, function (player, doors) {
-  // console.log(e.alpha = 0.6);
-  // if (!(self.doors.getBounds().contains(players[id].x + 200, players[id].y + 130))) {
-  if (player.y < 399) {
-  doors.alpha = 0.5
-} else {
-  doors.alpha = 1;
-}
-  // console.log(player.x);
-  // console.log(player.y);
-
-  // console.log(doors.alpha);
-});
-/*
-                  if (!(self.doors.getBounds().contains(players[id].x + 200, players[id].y + 130))) {
-                    self.doors.setAlpha(1);
-                  } else {
-                    self.doors.setAlpha(0.5);
-                  }
-                  */
+      self.physics.add.overlap(self.player, self.doors, function(player, doors) {
+        if (player.y < 399) {
+          doors.alpha = 0.5
+        } else {
+          doors.alpha = 1;
+        }
+      });
     }
   }
 }
