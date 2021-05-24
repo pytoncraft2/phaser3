@@ -50,7 +50,6 @@ function create() {
     // create a new player and add it to our players object
     players[socket.id] = {
       atlas: socket.handshake.headers.atlas,
-      wall: false,
       attack: false,
       alpha: 1,
       depth: 30,
@@ -102,7 +101,6 @@ function update() {
     player.setSize(200);
     player.anim = false;
     player.attack = false;
-    player.wall = false;
 
     input.left ? (player.setVelocityX(-300), player.flipX = true, player.anim = 'walk') :
       input.right ? (player.setVelocityX(300), player.flipX = false, player.anim = 'walk') :
@@ -135,7 +133,6 @@ function update() {
       player.anim = 'attack1';
       player.setSize(900);
       player.attack = true;
-      player.wall = true;
     }
 
     if (input.t) {
@@ -160,7 +157,6 @@ function update() {
     players[player.playerId].size = player.size;
     players[player.playerId].alpha = player.alpha;
     players[player.playerId].attack = player.attack;
-    players[player.playerId].wall = player.wall;
   });
   //envoi mise à jour de tout les players
   io.emit('playerUpdates', players);
