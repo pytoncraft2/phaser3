@@ -65,6 +65,8 @@ export default class Multijoueur extends Phaser.Scene {
    */
   create() {
     var self = this;
+    console.log(self.scene.scene.physics.scene);
+
     this.cameras.main.setBounds(-2074, 0, 3574, 666);
     this.physics.world.setBounds(-2074, 0, 3574, 666);
     this.cameras.main.fadeIn(4000);
@@ -265,15 +267,6 @@ export default class Multijoueur extends Phaser.Scene {
 
     this.add.image(-300, 350, 'bg').setDepth(-54);
     this.doors = this.physics.add.image(-300, 280, 'doors').setDepth(-20);
-
-    // zone = this.add.zone(300, 200).setSize(200, 200);
-    // this.physics.world.enable(zone);
-    // zone.body.setAllowGravity(false);
-    // zone.body.moves = false;
-
-
-
-
 /*
 if (!(self.doors.getBounds().contains(players[id].x + 200, players[id].y + 130))) {
   self.doors.setAlpha(1);
@@ -469,17 +462,6 @@ graphics.fillCircleShape(circle);
         space: this.spaceKeyPressed,
       });
     }
-    if (typeof(this.player) !== 'undefined') {
-    // console.log('coucou');
-    // console.log(this.player.body.touching);
-var touching = !this.player.body.touching.none;
-var wasTouching = !this.player.body.wasTouching.none;
-
-if (touching && !wasTouching) this.player.emit("overlapstart");
-else if (!touching && wasTouching) this.player.emit("overlapend");
-
-    }
-
   }
   /**
    * Affiche en permanence le joueur selon ses parametres
@@ -496,33 +478,19 @@ else if (!touching && wasTouching) this.player.emit("overlapend");
       self.cameras.main.startFollow(self.player);
       self.player.setCollideWorldBounds(true);
       console.log(self.player.x);
-      // self.physics.add.overlap(self.player, self.doors, function (player, doors) {
-        // block = this.physics.add.image(400, 300, "block")
-  // .setBounce(1, 1)
-  // .setCollideWorldBounds(true)
-  // .setDebug(true, false)
-  // .setVelocity(200, 150);
-
-self.player.on("overlapstart", function() {
-  // this.body.debugBodyColor = 0xff3300;
-  console.log("overlapstart");
-  console.time("overlap");
-});
-self.player.on("overlapend", function() {
-  // this.body.debugBodyColor = 0x00ff33;
-  console.log("overlapend");
-  console.timeEnd("overlap");
-});
-
-      self.physics.add.overlap(self.player, self.doors);
-// this.physics.add.overlap(block, zone);
-
+      self.physics.add.overlap(self.player, self.doors, function (player, doors) {
   // console.log(e.alpha = 0.6);
   // if (!(self.doors.getBounds().contains(players[id].x + 200, players[id].y + 130))) {
-      // doors.alpha = 0.5
+  if (player.y < 399) {
+  doors.alpha = 0.5
+} else {
+  doors.alpha = 1;
+}
+  // console.log(player.x);
+  // console.log(player.y);
 
   // console.log(doors.alpha);
-// });
+});
 /*
                   if (!(self.doors.getBounds().contains(players[id].x + 200, players[id].y + 130))) {
                     self.doors.setAlpha(1);
