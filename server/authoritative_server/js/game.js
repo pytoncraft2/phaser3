@@ -10,7 +10,7 @@ const config = {
     arcade: {
       debug: false,
       gravity: {
-        y: 1900
+        y: 10000
       }
     }
   },
@@ -140,12 +140,22 @@ function update() {
     }
 
     if (input.space) {
-      console.log(player.x);
-      // player.setVelocityY(-900)
+      // console.log(player.x);
+      player.setVelocityY(-900)
+  player.setAngularVelocity(900);
     } else {
       // player.body.setAllowGravity(false)
-      // player.setVelocityY(400)
+      player.setVelocityY(0)
+  player.setAngularVelocity(0);
     }
+/*
+    if (input.left) {
+} else if (input.right) {
+  player.setAngularVelocity(300);
+} else {
+  player.setAngularVelocity(0);
+}
+*/
 
 
     players[player.playerId].x = player.x;
