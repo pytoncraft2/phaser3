@@ -65,6 +65,8 @@ export default class Multijoueur extends Phaser.Scene {
    */
   create() {
     var self = this;
+    console.log(self.scene.scene.physics.scene);
+
     this.cameras.main.setBounds(-2074, 0, 3574, 666);
     this.physics.world.setBounds(-2074, 0, 3574, 666);
     this.cameras.main.fadeIn(4000);
@@ -369,11 +371,24 @@ graphics.fillCircleShape(circle);
               player.play('' + players[id].anim + '_' + players[id].atlas + '', 5);
             }
 
+            // console.log(players[id].x + 200);
+            // console.log(players[id].y);
+            // console.log(players[id].y + 130);
+            /*
             if (!(self.doors.getBounds().contains(players[id].x + 200, players[id].y + 130))) {
-              self.doors.setAlpha(players[id].alpha - 0);
+              self.doors.setAlpha(1);
             } else {
-              self.doors.setAlpha(players[id].alpha - 0.3);
+              self.doors.setAlpha(0.3);
             }
+            */
+            /*
+            if (!(self.doors.getBounds().contains(100, 16))) {
+              self.doors.setAlpha(1);
+            } else {
+              self.doors.setAlpha(0.3);
+            }
+            */
+
           }
         });
       });
@@ -395,6 +410,7 @@ graphics.fillCircleShape(circle);
     this.spaceKeyPressed = false;
     this.aKey = false;
     this.tKey = false;
+
 
   }
 
@@ -429,7 +445,13 @@ graphics.fillCircleShape(circle);
 
     // this.spaceKeyPressed.isDown ? this.space = true : this.space = false
 
-    if (left !== this.leftKeyPressed || right !== this.rightKeyPressed || up !== this.upKeyPressed || down !== this.downKeyPressed || ak !== this.aKey || tk !== this.tKey || space !== this.spaceKeyPressed) {
+    if (left !== this.leftKeyPressed ||
+      right !== this.rightKeyPressed ||
+      up !== this.upKeyPressed ||
+      down !== this.downKeyPressed ||
+      ak !== this.aKey ||
+      tk !== this.tKey ||
+      space !== this.spaceKeyPressed) {
       this.socket.emit('playerInput', {
         left: this.leftKeyPressed,
         right: this.rightKeyPressed,
@@ -455,6 +477,21 @@ graphics.fillCircleShape(circle);
     if (iscurrent) {
       self.cameras.main.startFollow(self.player);
       self.player.setCollideWorldBounds(true);
+      console.log(self.player.x);
+      self.physics.add.overlap(self.player, self.doors, function (player, doors) {
+  // console.log(e.alpha = 0.6);
+  // if (!(self.doors.getBounds().contains(players[id].x + 200, players[id].y + 130))) {
+  doors.alpha = 0.5
+
+  // console.log(doors.alpha);
+});
+/*
+                  if (!(self.doors.getBounds().contains(players[id].x + 200, players[id].y + 130))) {
+                    self.doors.setAlpha(1);
+                  } else {
+                    self.doors.setAlpha(0.5);
+                  }
+                  */
     }
   }
 }
