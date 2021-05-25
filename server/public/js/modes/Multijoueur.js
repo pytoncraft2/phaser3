@@ -310,6 +310,7 @@ export default class Multijoueur extends Phaser.Scene {
      */
 
     this.socket.on('playerUpdates', function(players) {
+      self.physics.accelerateToObject(self.doors, self.player, 60, 300, 300);
       Object.keys(players).forEach(function(id) {
         self.players.getChildren().forEach(function(player) {
           if (players[id].playerId === player.playerId) {
