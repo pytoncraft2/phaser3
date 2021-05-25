@@ -1,6 +1,6 @@
 # Steam-fighter
 
-## Jeu multijoueur en développement sur Phaser 3
+## Jeu multijoueur en développement sur Phaser 3 🌟
 
 ### Requis
 
