@@ -140,16 +140,25 @@ function update() {
       player.anim = 'heal';
     }
 
+
+      if (player.y < 100) {
+      console.log('inf 100');
+      player.setVelocityY(-100)
+    }
+
     if (input.space) {
       const base = player.y;
       console.log(base);
-      if (player.y < 100)
+      /*
+      if (player.y < 100) {
       console.log('inf 100');
       player.setVelocityY(100)
+    }
+    */
     } else {
-      if (player.y > 400) {
-      player.setVelocityY(-100)
-      }
+      // if (player.y > 400) {
+      // player.setVelocityY(-100)
+      // }
     }
 /*
     if (input.left) {
