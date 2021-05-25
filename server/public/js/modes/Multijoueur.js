@@ -53,6 +53,7 @@ export default class Multijoueur extends Phaser.Scene {
     this.load.image('bg', 'assets/fond/bgGrand.png');
     this.load.image('doors', 'assets/fond/doors.png');
     this.load.image('bg2', 'assets/fond/bgMenu.png');
+    this.load.spritesheet('bird', 'assets/personnages/bird/bird.png', { frameWidth: 48, frameHeight: 48} )
 
   }
 
@@ -260,7 +261,8 @@ export default class Multijoueur extends Phaser.Scene {
     this.players = this.add.group();
 
     this.add.image(-300, 350, 'bg').setDepth(-54);
-    this.doors = this.physics.add.image(-300, 280, 'doors').setDepth(-20).setVelocityX(100);
+    this.doors = this.physics.add.image(-300, 280, 'doors').setDepth(-20).setVelocityX(900);
+    self.bird = this.physics.add.image(-300, 280, 'bird').setDepth(1).setVelocityX(120).setAngularVelocity(100);
 
     /**
      * JOUEUR PRINCIPAL
@@ -310,7 +312,7 @@ export default class Multijoueur extends Phaser.Scene {
      */
 
     this.socket.on('playerUpdates', function(players) {
-      self.physics.accelerateToObject(self.doors, self.player, 60, 300, 300);
+      self.physics.accelerateToObject(self.bird, self.player, 60, 300, 300);
       Object.keys(players).forEach(function(id) {
         self.players.getChildren().forEach(function(player) {
           if (players[id].playerId === player.playerId) {
