@@ -33,8 +33,8 @@ function create() {
       count++;
       console.log(count);
       if (count == 20) {
-      player2.alpha = player2.alpha - 0.2;
-      count = 0;
+        player2.alpha = player2.alpha - 0.2;
+        count = 0;
       }
     }
 
@@ -139,35 +139,54 @@ function update() {
     if (input.t) {
       player.anim = 'heal';
     }
-
-
-      if (player.y < 100) {
+/*
+    if (player.y < 220) {
       console.log('inf 100');
-      player.setVelocityY(-100)
+      player.setVelocityY(100)
+      var top = true;
+    }
+    */
+
+// console.log(player.y);
+    if (player.y > 400) {
+      console.log('40000000');
+      player.setVelocityY(0);
+    }
+
+    if (player.y < 220) {
+      console.log('inf 100');
+      player.setVelocityY(100)
+      var top = true;
     }
 
     if (input.space) {
       const base = player.y;
       console.log(base);
+      player.setVelocityY(-500)
+      var top = true;
+
       /*
-      if (player.y < 100) {
+        if (player.y < 100) {
+        console.log('inf 100');
+        player.setVelocityY(100)
+      }
+      */
+    }
+
+        console.log(top);
+    if (player.y > 420 && top) {
       console.log('inf 100');
-      player.setVelocityY(100)
+      player.setVelocityY(-100)
+      // var top = true;
+    }
+    /*
+        if (input.left) {
+    } else if (input.right) {
+      player.setAngularVelocity(300);
+    } else {
+      player.setAngularVelocity(0);
     }
     */
-    } else {
-      // if (player.y > 400) {
-      // player.setVelocityY(-100)
-      // }
-    }
-/*
-    if (input.left) {
-} else if (input.right) {
-  player.setAngularVelocity(300);
-} else {
-  player.setAngularVelocity(0);
-}
-*/
 
 
     players[player.playerId].x = player.x;
