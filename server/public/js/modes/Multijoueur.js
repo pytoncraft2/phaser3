@@ -261,8 +261,7 @@ export default class Multijoueur extends Phaser.Scene {
     this.players = this.add.group();
 
     this.add.image(-300, 350, 'bg').setDepth(-54);
-    this.doors = this.physics.add.image(-300, 280, 'doors').setDepth(-20).setVelocityX(900);
-    self.bird = this.physics.add.image(-300, 280, 'bird').setDepth(1).setVelocityX(120).setAngularVelocity(100);
+    this.doors = this.physics.add.image(-300, 280, 'doors').setDepth(-20);
 
     /**
      * JOUEUR PRINCIPAL
@@ -407,6 +406,7 @@ export default class Multijoueur extends Phaser.Scene {
    */
   displayPlayers(self, playerInfo, iscurrent) {
     self.player = self.physics.add.sprite(playerInfo.x, playerInfo.y, playerInfo.atlas, 'face1').setOrigin(0.5, 0.5).setDisplaySize(200, 200).setSize(200);
+    self.bird = this.physics.add.image(playerInfo.x, playerInfo.y, 'bird').setDepth(1).setVelocityX(320);
     self.player.playerId = playerInfo.playerId;
     self.players.add(self.player);
     if (iscurrent) {
