@@ -155,7 +155,7 @@ function update() {
 
     if (player.y < 220) {
       console.log('inf 100');
-      player.setVelocityY(100)
+      player.setVelocityY(500)
       var top = true;
     }
 
