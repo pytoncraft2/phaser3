@@ -260,7 +260,7 @@ export default class Multijoueur extends Phaser.Scene {
     this.players = this.add.group();
 
     this.add.image(-300, 350, 'bg').setDepth(-54);
-    this.doors = this.physics.add.image(-300, 280, 'doors').setDepth(-20);
+    this.doors = this.physics.add.image(-300, 280, 'doors').setDepth(-20).setVelocityX(100);
 
     /**
      * JOUEUR PRINCIPAL
