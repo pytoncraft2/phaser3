@@ -122,9 +122,9 @@ function update() {
       }
 
       if (input.e) {
-      player.eKey = 'player';
-    } else {
       player.eKey = 'bird';
+    } else {
+      player.eKey = 'player';
     }
     }
 
