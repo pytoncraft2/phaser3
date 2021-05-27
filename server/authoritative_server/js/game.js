@@ -216,8 +216,8 @@ function handlePlayerInput(self, playerId, input) {
 function addPlayer(self, playerInfo) {
   const player = self.physics.add.sprite(playerInfo.x, playerInfo.y, 'profil').setOrigin(0.5).setScale(0.38).setSize(220);
   player.setMaxVelocity(200);
-  player.setDrag(100);
-  player.setAngularDrag(100);
+  player.setDrag(1000);
+  player.setAngularDrag(1300);
   player.playerId = playerInfo.playerId;
   player.alpha = playerInfo.alpha;
   self.players.add(player);

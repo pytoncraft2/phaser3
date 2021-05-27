@@ -53,7 +53,10 @@ export default class Multijoueur extends Phaser.Scene {
     this.load.image('bg', 'assets/fond/bgGrand.png');
     this.load.image('doors', 'assets/fond/doors.png');
     this.load.image('bg2', 'assets/fond/bgMenu.png');
-    this.load.spritesheet('bird', 'assets/personnages/bird/bird.png', { frameWidth: 48, frameHeight: 48} )
+    this.load.spritesheet('bird', 'assets/personnages/bird/bird.png', {
+      frameWidth: 240,
+      frameHeight:350
+    })
 
   }
 
@@ -73,6 +76,14 @@ export default class Multijoueur extends Phaser.Scene {
     this.cameras.main.setBounds(-2074, 0, 3574, 666);
     this.physics.world.setBounds(-2074, 0, 3574, 666);
     this.cameras.main.fadeIn(4000);
+
+    this.anims.create({
+    key: 'fly',
+    frames: this.anims.generateFrameNumbers('bird', { frames: [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1 ] }),
+    frameRate: 12,
+    repeat: -1
+    });
+
 
     this.anims.create({
       key: "attack1_dessinatrice1",
@@ -311,12 +322,13 @@ export default class Multijoueur extends Phaser.Scene {
      */
 
     this.socket.on('playerUpdates', function(players) {
-      self.physics.accelerateToObject(self.bird, self.player, 60, 300, 300);
+      self.physics.accelerateToObject(self.bird, self.player, 200, 200, 1000);
       Object.keys(players).forEach(function(id) {
         self.players.getChildren().forEach(function(player) {
           if (players[id].playerId === player.playerId) {
 
-            self.bird.scale = players[id].scale + 0.4 ;
+            self.bird.scale = players[id].scale + 0.4;
+            self.bird.depth = players[id].depth;
             player.flipX = (players[id].flipX);
             player.setScale(players[id].scale);
             player.setPosition(players[id].x, players[id].y);
@@ -324,6 +336,7 @@ export default class Multijoueur extends Phaser.Scene {
             player.setAlpha(players[id].alpha);
 
             if (players[id].anim && players[id].anim !== false) {
+              self.bird.play('fly');
               player.play('' + players[id].anim + '_' + players[id].atlas + '', 5);
             }
           }
@@ -407,41 +420,42 @@ export default class Multijoueur extends Phaser.Scene {
    */
   displayPlayers(self, playerInfo, iscurrent) {
     self.player = self.physics.add.sprite(playerInfo.x, playerInfo.y, playerInfo.atlas, 'face1').setOrigin(0.5, 0.5).setDisplaySize(200, 200).setSize(200);
-    self.bird = this.physics.add.image(playerInfo.x, playerInfo.y , 'bird').setDepth(1).setDragX(900);
+    self.bird = this.physics.add.sprite(playerInfo.x, playerInfo.y, 'bird').setDepth(1).setDragX(900);
+    self.bird.play('fly');
     self.player.playerId = playerInfo.playerId;
     self.players.add(self.player);
     if (iscurrent) {
       self.cameras.main.startFollow(self.player);
-      self.player.body.allowGravity = false;
+      self.player.body.allowGravity = true;
       self.physics.add.overlap(self.player, self.doors, function(player, doors) {
         player.y < 399 ? doors.alpha = 0.5 : doors.alpha = 1
       });
       var zone = this.add.zone(playerInfo.x, playerInfo.y - 300).setSize(150, 40);
       self.physics.world.enable(zone);
-// zone.body.allowGravity = false;
-      zone.body.setVelocityX(0);
-      zone.depth = 30;
-
-
-
-/*
-      var keyObj = self.input.keyboard.addKey('SPACE');  // Get key object
-      keyObj.on('down', function(event) { self.player.setVelocityY(800); });
-      var zone = this.add.zone(playerInfo.x, playerInfo.y - 300).setSize(150, 40);
-      self.physics.world.enable(zone);
       // zone.body.allowGravity = false;
       zone.body.setVelocityX(0);
       zone.depth = 30;
-      self.physics.add.overlap(zone, self.player, function (z,p) {
-        console.log(p.y);
-        if (p.y < 300) {
-        p.setVelocityY(-100);
-      } else {
-        // p.setVelocityY(100);
-      }
-        // console.log(z);
-      });
-      */
+
+
+
+      /*
+            var keyObj = self.input.keyboard.addKey('SPACE');  // Get key object
+            keyObj.on('down', function(event) { self.player.setVelocityY(800); });
+            var zone = this.add.zone(playerInfo.x, playerInfo.y - 300).setSize(150, 40);
+            self.physics.world.enable(zone);
+            // zone.body.allowGravity = false;
+            zone.body.setVelocityX(0);
+            zone.depth = 30;
+            self.physics.add.overlap(zone, self.player, function (z,p) {
+              console.log(p.y);
+              if (p.y < 300) {
+              p.setVelocityY(-100);
+            } else {
+              // p.setVelocityY(100);
+            }
+              // console.log(z);
+            });
+            */
     }
   }
 }
