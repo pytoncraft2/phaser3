@@ -330,8 +330,12 @@ export default class Multijoueur extends Phaser.Scene {
           if (players[id].playerId === player.playerId) {
 //y: 353 x: 670
             if (player.x < - 660 && player.y < 365)  {
+              if (players[id].eKey == 'bird') {
+              self.cameras.main.startFollow(self.bird);
+            } else {
+              self.cameras.main.startFollow(self.player);
+            }
             self.physics.accelerateToObject(self.bird, self.player, 200, 200, 1000);
-            self.cameras.main.startFollow(self.bird);
             self.bird.scale = players[id].scale + 0.2;
             self.bird.depth = players[id].depth;
           }
@@ -360,6 +364,7 @@ export default class Multijoueur extends Phaser.Scene {
      */
 
     this.aKeyPressed = this.input.keyboard.addKey('A');
+    this.eKeyPressed = this.input.keyboard.addKey('E');
     this.tKeyPressed = this.input.keyboard.addKey('T');
     this.cursors = this.input.keyboard.createCursorKeys();
     this.leftKeyPressed = false;
@@ -369,6 +374,7 @@ export default class Multijoueur extends Phaser.Scene {
     this.spaceKeyPressed = false;
     this.aKey = false;
     this.tKey = false;
+    this.eKey = false;
 
 
   }
@@ -386,6 +392,7 @@ export default class Multijoueur extends Phaser.Scene {
       down = this.downKeyPressed,
       space = this.spaceKeyPressed,
       ak = this.aKey,
+      ek = this.eKey,
       tk = this.tKey;
 
     this.cursors.left.isDown ? this.leftKeyPressed = true :
@@ -398,6 +405,7 @@ export default class Multijoueur extends Phaser.Scene {
 
     this.aKeyPressed.isDown ? this.aKey = true : this.aKey = false
     this.tKeyPressed.isDown ? this.tKey = true : this.tKey = false
+    this.eKeyPressed.isDown ? this.eKey = true : this.eKey = false
 
     this.cursors.space.isDown ? this.spaceKeyPressed = true : this.spaceKeyPressed = false
 
@@ -408,6 +416,7 @@ export default class Multijoueur extends Phaser.Scene {
       down !== this.downKeyPressed ||
       ak !== this.aKey ||
       tk !== this.tKey ||
+      ek !== this.eKey ||
       space !== this.spaceKeyPressed) {
       this.socket.emit('playerInput', {
         left: this.leftKeyPressed,
@@ -416,6 +425,7 @@ export default class Multijoueur extends Phaser.Scene {
         down: this.downKeyPressed,
         a: this.aKey,
         t: this.tKey,
+        e: this.eKey,
         space: this.spaceKeyPressed,
       });
     }

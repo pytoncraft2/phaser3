@@ -120,6 +120,12 @@ function update() {
         player.depth = player.depth - 1;
         player.anim = 'goback';
       }
+
+      if (input.e) {
+      player.eKey = 'player';
+    } else {
+      player.eKey = 'bird';
+    }
     }
 
     //bigger
@@ -198,6 +204,7 @@ function update() {
     players[player.playerId].size = player.size;
     players[player.playerId].alpha = player.alpha;
     players[player.playerId].attack = player.attack;
+    players[player.playerId].eKey = player.eKey;
   });
   //envoi mise à jour de tout les players
   io.emit('playerUpdates', players);
