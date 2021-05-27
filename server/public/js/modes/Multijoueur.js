@@ -55,7 +55,7 @@ export default class Multijoueur extends Phaser.Scene {
     this.load.image('bg2', 'assets/fond/bgMenu.png');
     this.load.spritesheet('bird', 'assets/personnages/bird/bird.png', {
       frameWidth: 240,
-      frameHeight:350
+      frameHeight:320
     })
 
   }
@@ -79,8 +79,9 @@ export default class Multijoueur extends Phaser.Scene {
 
     this.anims.create({
     key: 'fly',
-    frames: this.anims.generateFrameNumbers('bird', { frames: [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1 ] }),
-    frameRate: 12,
+    frames: this.anims.generateFrameNumbers('bird', { frames: [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13] }),
+    frameRate: 37,
+    yoyo: true,
     repeat: -1
     });
 
@@ -257,6 +258,7 @@ export default class Multijoueur extends Phaser.Scene {
       repeat: 0
     });
 
+
     /**
      * CONNEXION
      * Démarre connexion socket
@@ -336,7 +338,7 @@ export default class Multijoueur extends Phaser.Scene {
             player.setAlpha(players[id].alpha);
 
             if (players[id].anim && players[id].anim !== false) {
-              self.bird.play('fly');
+              // self.bird.play('fly');
               player.play('' + players[id].anim + '_' + players[id].atlas + '', 5);
             }
           }
@@ -421,6 +423,7 @@ export default class Multijoueur extends Phaser.Scene {
   displayPlayers(self, playerInfo, iscurrent) {
     self.player = self.physics.add.sprite(playerInfo.x, playerInfo.y, playerInfo.atlas, 'face1').setOrigin(0.5, 0.5).setDisplaySize(200, 200).setSize(200);
     self.bird = this.physics.add.sprite(playerInfo.x, playerInfo.y, 'bird').setDepth(1).setDragX(900);
+    // self.bird.play('fly');
     self.bird.play('fly');
     self.player.playerId = playerInfo.playerId;
     self.players.add(self.player);
