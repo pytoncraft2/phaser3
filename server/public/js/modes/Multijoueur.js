@@ -331,6 +331,7 @@ export default class Multijoueur extends Phaser.Scene {
 //y: 353 x: 670
             if (player.x < - 660 && player.y < 365)  {
             self.physics.accelerateToObject(self.bird, self.player, 200, 200, 1000);
+            self.cameras.main.startFollow(self.bird);
             self.bird.scale = players[id].scale + 0.2;
             self.bird.depth = players[id].depth;
           }
@@ -428,7 +429,7 @@ export default class Multijoueur extends Phaser.Scene {
    */
   displayPlayers(self, playerInfo, iscurrent) {
     self.player = self.physics.add.sprite(playerInfo.x, playerInfo.y, playerInfo.atlas, 'face1').setOrigin(0.5, 0.5).setDisplaySize(200, 200).setSize(200);
-    self.bird = this.physics.add.sprite(-670, 353, 'bird').setDepth(-53).setDragX(900).setScale(0.4);
+    self.bird = this.physics.add.sprite(-670, 353, 'bird').setDepth(-53).setDragX(900).setScale(0.4).setDragY(0);
     // self.bird.play('fly');
     self.bird.play('fly');
     self.player.playerId = playerInfo.playerId;
