@@ -331,7 +331,8 @@ export default class Multijoueur extends Phaser.Scene {
 
             self.bird.scale = players[id].scale + 0.4;
             self.bird.depth = players[id].depth;
-            self.bird.flipX = players[id].flipX;
+            // console.log(player.flipX);
+            self.bird.flipX = !players[id].flipX;
             player.flipX = (players[id].flipX);
             player.setScale(players[id].scale);
             player.setPosition(players[id].x, players[id].y);
