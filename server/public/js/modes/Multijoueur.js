@@ -333,7 +333,7 @@ export default class Multijoueur extends Phaser.Scene {
               if (players[id].eKey == 'bird') {
               self.cameras.main.startFollow(self.bird);
             }
-            self.physics.accelerateToObject(self.bird, self.player, 200, 200, 1000);
+            self.physics.accelerateToObject(self.bird, self.player, 900, 900, 1000);
             self.bird.scale = players[id].scale + 0.2;
             self.bird.depth = players[id].depth;
           }
