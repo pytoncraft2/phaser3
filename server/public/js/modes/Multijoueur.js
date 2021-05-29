@@ -286,6 +286,7 @@ export default class Multijoueur extends Phaser.Scene {
       Object.keys(players).forEach(function(id) {
         if (players[id].playerId === self.socket.id) {
           self.displayPlayers(self, players[id], true);
+          self.displayZone(self, players[id], true);
         } else {
           self.displayPlayers(self, players[id], false);
         }
@@ -353,7 +354,7 @@ export default class Multijoueur extends Phaser.Scene {
 
             // self.zone.body.y = players[id].y;
 
-            self.physics.accelerateToObject(self.zone, self.player, 1000, 10, 0);
+            // self.physics.accelerateToObject(self.zone, self.player, 1000, 10, 0);
           }
         });
       });

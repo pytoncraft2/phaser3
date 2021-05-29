@@ -8,7 +8,7 @@ const config = {
   physics: {
     default: 'arcade',
     arcade: {
-      debug: false,
+      debug: true,
       gravity: {
         y: 0
       }
@@ -66,6 +66,10 @@ function create() {
         up: false,
         down: false,
         a: false
+      },
+      zone: {
+        x: 0,
+        y: 0
       }
     };
     // add player to server
@@ -193,9 +197,10 @@ function update() {
     players[player.playerId].alpha = player.alpha;
     players[player.playerId].attack = player.attack;
     players[player.playerId].eKey = player.eKey;
+    //zone.x zone.y
   });
   //envoi mise à jour de tout les players
-  io.emit('playerUpdates', players);
+  io.emit('playerUpdates', players/*zone*/);
 }
 
 function randomPosition(max) {
@@ -210,9 +215,15 @@ function handlePlayerInput(self, playerId, input) {
 
 function addPlayer(self, playerInfo) {
   const player = self.physics.add.sprite(playerInfo.x, playerInfo.y, 'profil').setOrigin(0.5).setScale(0.38).setSize(220);
+  const zone = self.add.zone(playerInfo.x, playerInfo.y - 250).setSize(150, 40);
   player.playerId = playerInfo.playerId;
   player.alpha = playerInfo.alpha;
   self.players.add(player);
+self.physics.world.enable(zone);
+zone.body.allowGravity = false;
+zone.body.setVelocityX(0);
+zone.depth = 30;
+
 }
 
 function removePlayer(self, playerId) {
