@@ -349,7 +349,11 @@ export default class Multijoueur extends Phaser.Scene {
               player.play('' + players[id].anim + '_' + players[id].atlas + '', 5);
             }
 
-            self.physics.accelerateToObject(self.zone, self.player, 1000, 1000, 0);
+            // console.log(self.zone.body.x);
+
+            // self.zone.body.y = players[id].y;
+
+            self.physics.accelerateToObject(self.zone, self.player, 1000, 10, 0);
           }
         });
       });
