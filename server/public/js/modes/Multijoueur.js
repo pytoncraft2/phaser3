@@ -338,7 +338,6 @@ export default class Multijoueur extends Phaser.Scene {
             self.bird.depth = players[id].depth;
           }
 
-            // console.log(player.flipX);
             self.bird.flipX = !players[id].flipX;
             player.flipX = (players[id].flipX);
             player.setScale(players[id].scale);
@@ -347,7 +346,6 @@ export default class Multijoueur extends Phaser.Scene {
             player.setAlpha(players[id].alpha);
 
             if (players[id].anim && players[id].anim !== false) {
-              // self.bird.play('fly');
               player.play('' + players[id].anim + '_' + players[id].atlas + '', 5);
             }
           }

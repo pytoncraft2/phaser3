@@ -102,6 +102,7 @@ function update() {
     player.setSize(200);
     player.anim = false;
     player.attack = false;
+    player.eKey = 'player';
 
     input.left ? (player.setVelocityX(-300), player.flipX = true, player.anim = 'walk') :
       input.right ? (player.setVelocityX(300), player.flipX = false, player.anim = 'walk') :
@@ -121,13 +122,12 @@ function update() {
         player.anim = 'goback';
       }
 
-      if (input.e) {
-      player.eKey = 'bird';
-    } else {
-      player.eKey = 'player';
-    }
-    }
 
+    }
+      // if (input.eKey) {
+      // player.eKey = 'bird';
+      // console.log('cccc');
+    // }
     //bigger
     if (input.down && player.scale <= 2) {
       player.scale = player.scale + 0.003;
