@@ -329,11 +329,9 @@ export default class Multijoueur extends Phaser.Scene {
         self.players.getChildren().forEach(function(player) {
           if (players[id].playerId === player.playerId) {
 //y: 353 x: 670
-            if (player.x < - 660 && player.y < 365)  {
+            if (player.x > - 660 )  {
               if (players[id].eKey == 'bird') {
               self.cameras.main.startFollow(self.bird);
-            } else {
-              self.cameras.main.startFollow(self.player);
             }
             self.physics.accelerateToObject(self.bird, self.player, 200, 200, 1000);
             self.bird.scale = players[id].scale + 0.2;
