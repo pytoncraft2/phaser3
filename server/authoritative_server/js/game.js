@@ -98,7 +98,7 @@ function create() {
 function update() {
   this.players.getChildren().forEach((player) => {
     const input = players[player.playerId].input;
-    // player.setVelocityY(0);
+    player.setVelocityY(100);
     player.setSize(200);
     player.anim = false;
     player.attack = false;
@@ -156,41 +156,29 @@ function update() {
 // console.log(player.y);
     if (player.y > 400) {
       console.log('40000000');
-      player.setVelocityY(0);
+      // player.setVelocityY(0);
     }
 
     if (player.y < 220) {
       console.log('inf 100');
-      player.setVelocityY(500)
+      // player.setVelocityY(500)
       var top = true;
     }
-
+/*
     if (input.space) {
       const base = player.y;
       console.log(base);
       player.setVelocityY(-500)
       var top = true;
 
-      /*
-        if (player.y < 100) {
-        console.log('inf 100');
-        player.setVelocityY(100)
-      }
-      */
     }
 
         console.log(top);
     if (player.y > 420 && top) {
       console.log('inf 100');
       player.setVelocityY(-100)
+      player.setDrag(100)
       // var top = true;
-    }
-    /*
-        if (input.left) {
-    } else if (input.right) {
-      player.setAngularVelocity(300);
-    } else {
-      player.setAngularVelocity(0);
     }
     */
 
@@ -222,9 +210,6 @@ function handlePlayerInput(self, playerId, input) {
 
 function addPlayer(self, playerInfo) {
   const player = self.physics.add.sprite(playerInfo.x, playerInfo.y, 'profil').setOrigin(0.5).setScale(0.38).setSize(220);
-  player.setMaxVelocity(200);
-  player.setDrag(1000);
-  player.setAngularDrag(1300);
   player.playerId = playerInfo.playerId;
   player.alpha = playerInfo.alpha;
   self.players.add(player);

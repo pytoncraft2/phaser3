@@ -457,6 +457,8 @@ export default class Multijoueur extends Phaser.Scene {
       self.zone.body.allowGravity = false;
       self.zone.body.setVelocityX(0);
       self.zone.depth = 30;
+      self.physics.add.collider(self.player, self.zone);
+
 
 
 
