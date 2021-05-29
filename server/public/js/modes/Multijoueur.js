@@ -286,7 +286,6 @@ export default class Multijoueur extends Phaser.Scene {
       Object.keys(players).forEach(function(id) {
         if (players[id].playerId === self.socket.id) {
           self.displayPlayers(self, players[id], true);
-          self.displayZone(self, players[id], true);
         } else {
           self.displayPlayers(self, players[id], false);
         }
@@ -453,12 +452,17 @@ export default class Multijoueur extends Phaser.Scene {
       self.physics.add.overlap(self.player, self.doors, function(player, doors) {
         player.y < 399 ? doors.alpha = 0.5 : doors.alpha = 1
       });
-      self.zone = this.add.zone(playerInfo.x, playerInfo.y - 300).setSize(150, 40);
+      self.zone = this.add.zone(playerInfo.x, playerInfo.y +250).setSize(150, 40);
       self.physics.world.enable(self.zone);
       self.zone.body.allowGravity = false;
       self.zone.body.setVelocityX(0);
       self.zone.depth = 30;
-      self.physics.add.collider(self.player, self.zone);
+      // self.physics.add.collider(self.player, self.zone);
+      this.physics.add.collider(this.players, self.zone, col, (player, player2) => {
+      },this);
+
+      function col(e) {}
+
 
 
 

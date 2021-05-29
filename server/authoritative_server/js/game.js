@@ -27,6 +27,8 @@ function create() {
 
   let count = 0;
   this.players = this.physics.add.group();
+  this.physics.add.collider(this.players, this.zone, col2, (player, player2) => {
+  }, this);
   this.physics.add.collider(this.players, this.players, col, (player, player2) => {
 
     if (players[player.playerId].anim == 'attack1') {
@@ -44,6 +46,7 @@ function create() {
   }, this);
 
   function col(e) {}
+  function col2(e) {}
 
   io.on('connection', function(socket) {
 
@@ -219,10 +222,10 @@ function addPlayer(self, playerInfo) {
   player.playerId = playerInfo.playerId;
   player.alpha = playerInfo.alpha;
   self.players.add(player);
-self.physics.world.enable(zone);
-zone.body.allowGravity = false;
-zone.body.setVelocityX(0);
-zone.depth = 30;
+  self.physics.world.enable(zone);
+  zone.body.allowGravity = true;
+  // zone.body.setVelocityX(0);
+  zone.depth = 30;
 
 }
 
