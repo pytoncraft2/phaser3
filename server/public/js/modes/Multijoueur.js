@@ -348,6 +348,8 @@ export default class Multijoueur extends Phaser.Scene {
             if (players[id].anim && players[id].anim !== false) {
               player.play('' + players[id].anim + '_' + players[id].atlas + '', 5);
             }
+
+            self.physics.accelerateToObject(self.zone, self.player, 1000, 1000, 0);
           }
         });
       });
@@ -446,11 +448,11 @@ export default class Multijoueur extends Phaser.Scene {
       self.physics.add.overlap(self.player, self.doors, function(player, doors) {
         player.y < 399 ? doors.alpha = 0.5 : doors.alpha = 1
       });
-      var zone = this.add.zone(playerInfo.x, playerInfo.y - 300).setSize(150, 40);
-      self.physics.world.enable(zone);
-      // zone.body.allowGravity = false;
-      zone.body.setVelocityX(0);
-      zone.depth = 30;
+      self.zone = this.add.zone(playerInfo.x, playerInfo.y - 300).setSize(150, 40);
+      self.physics.world.enable(self.zone);
+      self.zone.body.allowGravity = false;
+      self.zone.body.setVelocityX(0);
+      self.zone.depth = 30;
 
 
 
