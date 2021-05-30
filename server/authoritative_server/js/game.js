@@ -161,6 +161,7 @@ function update() {
     */
 
 // console.log(player.y);
+/*
     if (player.y > 400) {
       console.log('40000000');
       player.setVelocityY(0);
@@ -171,6 +172,7 @@ function update() {
       player.setVelocityY(500)
       var top = true;
     }
+    */
     if (input.space) {
       const base = player.y;
       console.log(base);
