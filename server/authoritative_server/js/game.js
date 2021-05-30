@@ -105,24 +105,25 @@ function create() {
 function update() {
   this.players.getChildren().forEach((player) => {
     const input = players[player.playerId].input;
-    player.setVelocityY(0);
-    player.setSize(200);
-    player.anim = false;
-    player.attack = false;
-    player.eKey = 'player';
-
+    // player.setVelocityY(0);
+    // player.setSize(200);
+    // player.anim = false;
+    // player.attack = false;
+    // player.eKey = 'player';
+    // player.setVelocityY(30);
+    /*
     input.left ? (player.setVelocityX(-300), player.flipX = true, player.anim = 'walk') :
       input.right ? (player.setVelocityX(300), player.flipX = false, player.anim = 'walk') :
       player.setVelocityX(0)
+      */
 
+/*
     if (input.up) {
-      if (player.x < 605 /*&& player.y > 405*/ ) {
         player.scale = player.scale - 0.003;
         player.y -= 2;
         player.depth = player.depth - 1;
         player.anim = 'goback';
       }
-      if (player.x > 605 /*&& player.scale >= 0.223*/ ) {
         player.scale = player.scale - 0.003;
         player.y -= 2;
         player.depth = player.depth - 1;
@@ -131,11 +132,13 @@ function update() {
 
 
     }
+    */
       // if (input.eKey) {
       // player.eKey = 'bird';
       // console.log('cccc');
     // }
     //bigger
+    /*
     if (input.down && player.scale <= 2) {
       player.scale = player.scale + 0.003;
       player.y += 2;
@@ -152,6 +155,7 @@ function update() {
     if (input.t) {
       player.anim = 'heal';
     }
+    */
 /*
     if (player.y < 220) {
       console.log('inf 100');
@@ -172,7 +176,6 @@ function update() {
       player.setVelocityY(500)
       var top = true;
     }
-    */
     if (input.space) {
       const base = player.y;
       console.log(base);
@@ -188,6 +191,7 @@ function update() {
       player.setDrag(100)
       // var top = true;
     }
+    */
 
 
     players[player.playerId].x = player.x;
@@ -217,13 +221,14 @@ function handlePlayerInput(self, playerId, input) {
 }
 
 function addPlayer(self, playerInfo) {
-  const player = self.physics.add.sprite(playerInfo.x, playerInfo.y, 'profil').setOrigin(0.5).setScale(0.38).setSize(220);
+  const player = self.physics.add.sprite(playerInfo.x, playerInfo.y, 'profil').setOrigin(0.5).setScale(0.38).setSize(220).setVelocityY(30);
   const zone = self.add.zone(playerInfo.x, playerInfo.y - 250).setSize(150, 40);
   player.playerId = playerInfo.playerId;
   player.alpha = playerInfo.alpha;
   self.players.add(player);
   self.physics.world.enable(zone);
   zone.body.allowGravity = true;
+  zone.body.immovable = true;
   // zone.body.setVelocityX(0);
   zone.depth = 30;
 
