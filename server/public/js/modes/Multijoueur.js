@@ -440,7 +440,7 @@ export default class Multijoueur extends Phaser.Scene {
    * @return {void}
    */
   displayPlayers(self, playerInfo, iscurrent) {
-    self.player = self.physics.add.sprite(playerInfo.x, playerInfo.y, playerInfo.atlas, 'face1').setOrigin(0.5, 0.5).setDisplaySize(200, 200).setSize(200);
+    self.player = self.physics.add.sprite(playerInfo.x, playerInfo.y, playerInfo.atlas, 'face1').setOrigin(0.5, 0.5).setDisplaySize(200, 200).setSize(200).setVelocityY(30);
     self.bird = this.physics.add.sprite(-670, 353, 'bird').setDepth(-53).setDragX(900).setScale(0.4).setDragY(0);
     // self.bird.play('fly');
     self.bird.play('fly');
@@ -454,11 +454,12 @@ export default class Multijoueur extends Phaser.Scene {
       });
       self.zone = this.add.zone(playerInfo.x, playerInfo.y +250).setSize(150, 40);
       self.physics.world.enable(self.zone);
-      self.zone.body.allowGravity = false;
-      self.zone.body.setVelocityX(0);
+      self.zone.body.allowGravity = true;
+      self.zone.body.setVelocityY(-40);
       self.zone.depth = 30;
       // self.physics.add.collider(self.player, self.zone);
-      this.physics.add.collider(this.players, self.zone, col, (player, player2) => {
+      this.physics.add.collider(self.player, self.zone, col, (player, player2) => {
+        console.log('collision');
       },this);
 
       function col(e) {}
