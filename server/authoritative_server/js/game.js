@@ -80,9 +80,9 @@ function create() {
     // send the players object to the new player
     socket.emit('currentPlayers', players);
     // update all other players of the new player
-    socket.broadcast.emit('newPlayer', players[socket.id]);
+    socket.broadcast.volatile.emit('newPlayer', players[socket.id]);
     // send the star object to the new player
-    socket.emit('updateScore', self.scores);
+    socket.broadcast.emit('updateScore', self.scores);
 
     socket.on('disconnect', function() {
       console.log('user disconnected');
@@ -96,7 +96,7 @@ function create() {
 
     // console.log(socket.id);
     // when a player moves, update the player data
-    socket.on('playerInput', function(inputData) {
+    socket.volatile.on('playerInput', function(inputData) {
       handlePlayerInput(self, socket.id, inputData);
     });
   });
@@ -205,7 +205,7 @@ function update() {
     //zone.x zone.y
   });
   //envoi mise à jour de tout les players
-  io.emit('playerUpdates', players/*zone*/);
+  io.volatile.emit('playerUpdates', players/*zone*/);
 }
 
 function randomPosition(max) {

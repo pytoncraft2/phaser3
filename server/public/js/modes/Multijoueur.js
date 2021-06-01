@@ -282,7 +282,7 @@ export default class Multijoueur extends Phaser.Scene {
      * @param  {Object} players liste de l'id du socket de tout les joueurs
      * @return {void}
      */
-    this.socket.on('currentPlayers', function(players) {
+    this.socket.volatile.on('currentPlayers', function(players) {
       Object.keys(players).forEach(function(id) {
         if (players[id].playerId === self.socket.id) {
           self.displayPlayers(self, players[id], true);
@@ -299,7 +299,7 @@ export default class Multijoueur extends Phaser.Scene {
      * @return {void}
      */
 
-    this.socket.on('newPlayer', function(playerInfo) {
+    this.socket.volatile.on('newPlayer', function(playerInfo) {
       self.displayPlayers(self, playerInfo);
     });
 
@@ -310,7 +310,7 @@ export default class Multijoueur extends Phaser.Scene {
      * @return {[type]}          [description]
      */
 
-    this.socket.on('disconnection', function(playerId) {
+    this.socket.volatile.on('disconnection', function(playerId) {
       self.players.getChildren().forEach(function(player) {
         if (playerId === player.playerId) player.destroy();
       });
@@ -323,7 +323,7 @@ export default class Multijoueur extends Phaser.Scene {
      * @return {void}
      */
 
-    this.socket.on('playerUpdates', function(players) {
+    this.socket.volatile.on('playerUpdates', function(players) {
       // self.physics.accelerateToObject(self.bird, self.player, 200, 200, 1000);
       Object.keys(players).forEach(function(id) {
         self.players.getChildren().forEach(function(player) {
@@ -420,7 +420,7 @@ export default class Multijoueur extends Phaser.Scene {
       tk !== this.tKey ||
       ek !== this.eKey ||
       space !== this.spaceKeyPressed) {
-      this.socket.emit('playerInput', {
+      this.socket.volatile.emit('playerInput', {
         left: this.leftKeyPressed,
         right: this.rightKeyPressed,
         up: this.upKeyPressed,
