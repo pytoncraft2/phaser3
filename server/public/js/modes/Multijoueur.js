@@ -459,8 +459,14 @@ export default class Multijoueur extends Phaser.Scene {
       self.zone.body.immovable = true;
       self.zone.depth = self.player.depth;
       // self.physics.add.collider(self.player, self.zone);
-      this.physics.add.collider(self.player, self.zone, col, (player, player2) => {
-        console.log('collision');
+      this.physics.add.collider(self.player, self.zone, col, (p, player2) => {
+        // console.log('collision');
+        // self.player.setVelocityY(player2.sVelocityX)
+        // console.log(p.body.velocity.y);
+        // console.log("_____________");
+        // player2.body.velocity.y = player2.body.velocity.y + 0.1;
+        // p.body.velocity.y = player2.body.velocity.y;
+        // console.log(player2.body.velocity);
       },this);
 
       function col(e) {}

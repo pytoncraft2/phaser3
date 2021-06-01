@@ -111,9 +111,9 @@ function update() {
     // player.attack = false;
     // player.eKey = 'player';
     // player.setVelocityY(30);
-    input.left ? (player.setVelocityX(-300), player.flipX = true, player.anim = 'walk') :
-      input.right ? (player.setVelocityX(300), player.flipX = false, player.anim = 'walk') :
-      player.setVelocityX(0)
+    // input.left ? (player.setVelocityX(-300), player.flipX = true, player.anim = 'walk') :
+      // input.right ? (player.setVelocityX(300), player.flipX = false, player.anim = 'walk') :
+      // player.setVelocityX(0)
 
 /*
     if (input.up) {
