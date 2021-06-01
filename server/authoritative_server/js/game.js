@@ -27,8 +27,10 @@ function create() {
 
   let count = 0;
   this.players = this.physics.add.group();
+  /*
   this.physics.add.collider(this.players, this.zone, col2, (player, player2) => {
   }, this);
+  */
   this.physics.add.collider(this.players, this.players, col, (player, player2) => {
 
     if (players[player.playerId].anim == 'attack1') {
@@ -105,7 +107,15 @@ function create() {
 function update() {
   this.players.getChildren().forEach((player) => {
     const input = players[player.playerId].input;
-    // player.setVelocityY(0);
+
+
+    if (input.space) {
+      player.setVelocityY(30)
+    }
+
+    if (input.up) {
+      player.setVelocityY(0)
+    }
     // player.setSize(200);
     // player.anim = false;
     // player.attack = false;
@@ -219,13 +229,13 @@ function handlePlayerInput(self, playerId, input) {
 }
 
 function addPlayer(self, playerInfo) {
-  const player = self.physics.add.sprite(playerInfo.x, playerInfo.y, 'profil').setOrigin(0.5).setScale(0.38).setSize(220).setVelocityY(30);
+  const player = self.physics.add.sprite(playerInfo.x, playerInfo.y, 'profil').setOrigin(0.5).setScale(0.38).setSize(220);
   const zone = self.add.zone(playerInfo.x, playerInfo.y - 250).setSize(150, 40);
   player.playerId = playerInfo.playerId;
   player.alpha = playerInfo.alpha;
   self.players.add(player);
   self.physics.world.enable(zone);
-  zone.body.allowGravity = true;
+  zone.body.allowGravity = false;
   zone.body.immovable = true;
   // zone.body.setVelocityX(0);
   zone.depth = 30;
