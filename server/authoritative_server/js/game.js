@@ -110,7 +110,7 @@ function update() {
 
 
     if (input.space) {
-      player.setVelocityY(30)
+      // player.setVelocityY(30)
     }
 
     if (input.up) {
