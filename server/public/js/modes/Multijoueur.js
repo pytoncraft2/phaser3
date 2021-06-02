@@ -341,7 +341,7 @@ export default class Multijoueur extends Phaser.Scene {
             // player.flipX = (players[id].flipX);
             player.setScale(players[id].scale);
             player.setVelocityX(players[id].vx);
-            player.setVelocityY(players[id].vy);
+            // player.setVelocityY(players[id].vy);
             // player.setVelocityX(players[id].vx);
             // player.setDepth(players[id].depth);
             // player.setAlpha(players[id].alpha);
@@ -447,10 +447,11 @@ export default class Multijoueur extends Phaser.Scene {
     self.zone = this.add.zone(playerInfo.x, playerInfo.y +250).setSize(150, 40);
     // self.bird.play('fly');
     self.bird.play('fly');
-      self.physics.world.enable(self.zone);
-      self.zone.body.allowGravity = false;
+      // self.physics.world.enable(self.zone);
+      self.physics.add.existing(self.zone, true);
+      // self.zone.body.allowGravity = false;
       // self.zone.body.setVelocityY(-10);
-      self.zone.body.immovable = true;
+      // self.zone.body.immovable = true;
 
 
     self.player.playerId = playerInfo.playerId;

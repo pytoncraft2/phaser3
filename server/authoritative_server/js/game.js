@@ -232,7 +232,7 @@ function handlePlayerInput(self, playerId, input) {
 }
 
 function addPlayer(self, playerInfo) {
-  const player = self.physics.add.sprite(playerInfo.x, playerInfo.y, 'profil').setOrigin(0.5).setScale(0.38).setSize(220);
+  const player = self.physics.add.sprite(playerInfo.x, playerInfo.y, 'profil').setOrigin(0.5).setScale(0.38).setSize(220).setVelocityY(100);
   const zone = self.add.zone(playerInfo.x, playerInfo.y - 250).setSize(150, 40);
   player.playerId = playerInfo.playerId;
   player.alpha = playerInfo.alpha;
