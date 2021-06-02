@@ -340,7 +340,9 @@ export default class Multijoueur extends Phaser.Scene {
             // self.bird.flipX = !players[id].flipX;
             // player.flipX = (players[id].flipX);
             player.setScale(players[id].scale);
-            // player.setPosition(players[id].x, players[id].y);
+            player.setVelocityX(players[id].vx);
+            player.setVelocityY(players[id].vy);
+            // player.setVelocityX(players[id].vx);
             // player.setDepth(players[id].depth);
             // player.setAlpha(players[id].alpha);
 

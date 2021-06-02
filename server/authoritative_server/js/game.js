@@ -107,7 +107,7 @@ function create() {
 function update() {
   this.players.getChildren().forEach((player) => {
     const input = players[player.playerId].input;
-
+    console.log(player.body.velocity.x);
 
     if (input.space) {
       // player.setVelocityY(30)
@@ -121,9 +121,10 @@ function update() {
     // player.attack = false;
     // player.eKey = 'player';
     // player.setVelocityY(30);
-    // input.left ? (player.setVelocityX(-300), player.flipX = true, player.anim = 'walk') :
-      // input.right ? (player.setVelocityX(300), player.flipX = false, player.anim = 'walk') :
-      // player.setVelocityX(0)
+    input.left ? (player.setVelocityX(-300), player.flipX = true, player.anim = 'walk') :
+      input.right ? (player.setVelocityX(300), player.flipX = false, player.anim = 'walk') :
+      ''
+
 
 /*
     if (input.up) {
@@ -202,6 +203,8 @@ function update() {
     */
 
 
+    players[player.playerId].vx = player.body.velocity.x;
+    players[player.playerId].vy = player.body.velocity.y;
     players[player.playerId].x = player.x;
     players[player.playerId].y = player.y;
     players[player.playerId].scale = player.scale;
