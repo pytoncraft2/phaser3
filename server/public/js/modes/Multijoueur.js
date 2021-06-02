@@ -472,9 +472,9 @@ export default class Multijoueur extends Phaser.Scene {
 
 
 
-      /*
             var keyObj = self.input.keyboard.addKey('SPACE');  // Get key object
-            keyObj.on('down', function(event) { self.player.setVelocityY(800); });
+            keyObj.on('down', function(event) { self.player.setVelocityY(-200); });
+            /*
             var zone = this.add.zone(playerInfo.x, playerInfo.y - 300).setSize(150, 40);
             self.physics.world.enable(zone);
             // zone.body.allowGravity = false;
