@@ -341,6 +341,7 @@ export default class Multijoueur extends Phaser.Scene {
             // player.flipX = (players[id].flipX);
             player.setScale(players[id].scale);
             player.setVelocityX(players[id].vx);
+            self.zone.body.velocity.x = players[id].vx;
             // player.setVelocityY(players[id].vy);
             // player.setVelocityX(players[id].vx);
             // player.setDepth(players[id].depth);
@@ -441,17 +442,20 @@ export default class Multijoueur extends Phaser.Scene {
    * @return {void}
    */
   displayPlayers(self, playerInfo, iscurrent) {
-    self.player = self.physics.add.sprite(playerInfo.x, playerInfo.y, playerInfo.atlas, 'face1').setOrigin(0.5, 0.5).setDisplaySize(200, 200).setSize(200).setVelocityY(100);
+    self.player = self.physics.add.sprite(playerInfo.x, playerInfo.y, playerInfo.atlas, 'face1').setOrigin(0.5, 0.5).setDisplaySize(300, 300).setSize(400);
     self.bird = this.physics.add.sprite(-670, 353, 'bird').setDepth(-53).setScale(0.4);
     self.player.body.allowGravity = true;
-    self.zone = this.add.zone(playerInfo.x, playerInfo.y +250).setSize(150, 40);
+    self.zone = this.add.zone(playerInfo.x, playerInfo.y +250).setSize(150, 40).setOrigin(0.5, 0.5);
     // self.bird.play('fly');
     self.bird.play('fly');
       // self.physics.world.enable(self.zone);
-      self.physics.add.existing(self.zone, true);
-      // self.zone.body.allowGravity = false;
+      self.physics.add.existing(self.zone);
+      self.zone.body.friction.x = 0;
+      // self.zone.body.velocity.x = 10;
+      // setFrictionX(1)
+      self.zone.body.allowGravity = false;
       // self.zone.body.setVelocityY(-10);
-      // self.zone.body.immovable = true;
+      self.zone.body.immovable = true;
 
 
     self.player.playerId = playerInfo.playerId;
@@ -467,9 +471,19 @@ export default class Multijoueur extends Phaser.Scene {
 
       // self.zone.depth = self.player.depth;
       // self.physics.add.collider(self.player, self.zone);
+      // self.physics.accelerateToObject(self.player, self.zone, 1000, 1000, 0);
+
 
             var keyObj = self.input.keyboard.addKey('SPACE');  // Get key object
+            var keyObj2 = self.input.keyboard.addKey('O');  // Get key object
             keyObj.on('down', function(event) { self.player.setVelocityY(-300); });
+            keyObj2.on('down', function(event) { self.zone.body.x += 10; });
+
+            // self.zone = this.add.zone(playerInfo.x, playerInfo.y - 300).setSize(150, 40);
+// self.physics.world.enable(self.zone);
+// self.zone.body.allowGravity = false;
+// self.zone.body.setVelocityX(0);
+// self.zone.depth = 30;
             /*
             var zone = this.add.zone(playerInfo.x, playerInfo.y - 300).setSize(150, 40);
             self.physics.world.enable(zone);
