@@ -105,7 +105,7 @@ function update() {
 
     input.left ? (player.setVelocityX(-300), player.flipX = true, player.anim = 'walk') :
       input.right ? (player.setVelocityX(300), player.flipX = false, player.anim = 'walk') :
-      player.setVelocityX(0)
+      ''
 
     if (input.up) {
       if (player.x < 605 /*&& player.y > 405*/ ) {
@@ -162,7 +162,7 @@ function update() {
     if (input.space) {
       const base = player.y;
       console.log(base);
-      player.setVelocityY(-500)
+      // player.setVelocityY(-500)
       var top = true;
 
       /*
@@ -188,7 +188,8 @@ function update() {
     }
     */
 
-
+    players[player.playerId].vx = player.body.velocity.x;
+    players[player.playerId].vy = player.body.velocity.y;
     players[player.playerId].x = player.x;
     players[player.playerId].y = player.y;
     players[player.playerId].scale = player.scale;

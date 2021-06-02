@@ -335,9 +335,12 @@ export default class Multijoueur extends Phaser.Scene {
             self.bird.flipX = !players[id].flipX;
             player.flipX = (players[id].flipX);
             player.setScale(players[id].scale);
-            player.setPosition(players[id].x, players[id].y);
+            // player.setPosition(players[id].x, players[id].y);
             player.setDepth(players[id].depth);
             player.setAlpha(players[id].alpha);
+            player.setVelocityX(players[id].vx);
+            self.zone.body.velocity.x = players[id].vx;
+            self.zone.body.velocity.x = players[id].vx;
 
             if (players[id].anim && players[id].anim !== false) {
               // self.bird.play('fly');
@@ -423,7 +426,8 @@ export default class Multijoueur extends Phaser.Scene {
    * @return {void}
    */
   displayPlayers(self, playerInfo, iscurrent) {
-    self.player = self.physics.add.sprite(playerInfo.x, playerInfo.y, playerInfo.atlas, 'face1').setOrigin(0.5, 0.5).setDisplaySize(200, 200).setSize(200);
+    self.player = self.physics.add.sprite(playerInfo.x, playerInfo.y, playerInfo.atlas, 'face1').setOrigin(0.5, 0.5).setDisplaySize(300, 300).setSize(400);
+
     self.bird = this.physics.add.sprite(playerInfo.x, playerInfo.y, 'bird').setDepth(1).setDragX(900);
     // self.bird.play('fly');
     self.bird.play('fly');
@@ -435,11 +439,20 @@ export default class Multijoueur extends Phaser.Scene {
       self.physics.add.overlap(self.player, self.doors, function(player, doors) {
         player.y < 399 ? doors.alpha = 0.5 : doors.alpha = 1
       });
-      var zone = this.add.zone(playerInfo.x, playerInfo.y - 300).setSize(150, 40);
-      self.physics.world.enable(zone);
-      // zone.body.allowGravity = false;
-      zone.body.setVelocityX(0);
-      zone.depth = 30;
+      self.zone = this.add.zone(playerInfo.x, playerInfo.y +250).setSize(150, 40).setOrigin(0.5, 0.5);
+
+      self.physics.add.existing(self.zone);
+      self.zone.body.friction.x = 0;
+      self.zone.body.allowGravity = false;
+      self.zone.body.immovable = true;
+      self.zone.depth = 30;
+      // self.players.add(self.player);
+      self.physics.add.collider(self.zone, self.player);
+
+      var keyObj = self.input.keyboard.addKey('SPACE');  // Get key object
+      keyObj.on('down', function(event) { self.player.setVelocityY(-300); });
+
+
 
 
 
