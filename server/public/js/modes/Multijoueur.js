@@ -465,7 +465,7 @@ export default class Multijoueur extends Phaser.Scene {
         // if (keyObj.isDown) {
         self.zone.body.velocity.y = 0;
         self.player.body.velocity.y = 0;
-        self.player.body.allowGravity = false;
+        self.player.body.allowGravity = true;
 
       // }
     });
