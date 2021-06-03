@@ -439,7 +439,7 @@ export default class Multijoueur extends Phaser.Scene {
       self.physics.add.overlap(self.player, self.doors, function(player, doors) {
         player.y < 399 ? doors.alpha = 0.5 : doors.alpha = 1
       });
-      self.zone = this.add.zone(playerInfo.x, playerInfo.y +250).setSize(150, 40).setOrigin(0.5, 0.5);
+      self.zone = this.add.zone(playerInfo.x, playerInfo.y +210).setSize(150, 40).setOrigin(0.5, 0.5);
 
       self.physics.add.existing(self.zone);
       self.zone.body.friction.x = 0;
@@ -454,16 +454,28 @@ export default class Multijoueur extends Phaser.Scene {
 
       var keyObj2 = self.input.keyboard.addKey('UP');  // Get key object
       keyObj2.on('down', function(event) {
-        if (keyObj.isDown) {
+        // if (keyObj.isDown) {
         self.zone.body.velocity.y = -100;
-      }
+      // }
+    });
+
+      keyObj2.on('up', function(event) {
+        // if (keyObj.isDown) {
+        self.zone.body.velocity.y = 0;
+      // }
     });
 
     var keyObj3 = self.input.keyboard.addKey('DOWN');  // Get key object
       keyObj3.on('down', function(event) {
-        if (keyObj.isDown) {
+        // if (keyObj.isDown) {
         self.zone.body.velocity.y = 100;
-      }
+      // }
+    });
+
+      keyObj3.on('up', function(event) {
+        // if (keyObj.isDown) {
+        self.zone.body.velocity.y = 0;
+      // }
     });
 
 
