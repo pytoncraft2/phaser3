@@ -109,7 +109,7 @@ export default class Multijoueur extends Phaser.Scene {
       frames: this.anims.generateFrameNumbers('dessinatrice1', {
         frames: ['face5', 'face2', 'face3', 'face4', 'face1']
       }),
-      frameRate: 12,
+      frameRate: 6,
       repeat: 0
     });
     this.anims.create({
@@ -144,7 +144,7 @@ export default class Multijoueur extends Phaser.Scene {
       frames: this.anims.generateFrameNumbers('naruto', {
         frames: ['face1', 'face2', 'face3', 'face4', 'face5', 'face7']
       }),
-      frameRate: 12,
+      frameRate: 6,
       repeat: 0
     });
     this.anims.create({
@@ -178,7 +178,7 @@ export default class Multijoueur extends Phaser.Scene {
       frames: this.anims.generateFrameNumbers('dessinatrice2', {
         frames: ['face5', 'face2', 'face3', 'face4', 'face1']
       }),
-      frameRate: 12,
+      frameRate: 6,
       repeat: 0
     });
     this.anims.create({
@@ -212,7 +212,7 @@ export default class Multijoueur extends Phaser.Scene {
       frames: this.anims.generateFrameNumbers('dessinatrice3', {
         frames: ['face5', 'face2', 'face3', 'face4', 'face1']
       }),
-      frameRate: 12,
+      frameRate: 6,
       repeat: 0
     });
     this.anims.create({
@@ -246,7 +246,7 @@ export default class Multijoueur extends Phaser.Scene {
       frames: this.anims.generateFrameNumbers('dessinatrice4', {
         frames: ['face5', 'face2', 'face3', 'face4', 'face1']
       }),
-      frameRate: 12,
+      frameRate: 6,
       repeat: 0
     });
     this.anims.create({
@@ -428,7 +428,7 @@ export default class Multijoueur extends Phaser.Scene {
    * @return {void}
    */
   displayPlayers(self, playerInfo, iscurrent) {
-    self.player = self.physics.add.sprite(playerInfo.x, playerInfo.y, playerInfo.atlas, 'face1').setOrigin(0.5).setDisplaySize(300, 300).setSize(400);
+    self.player = self.physics.add.sprite(playerInfo.x, playerInfo.y, playerInfo.atlas, 'face1').setOrigin(0.5, 0.5).setDisplaySize(300, 300).setSize(400);
 
     self.bird = this.physics.add.sprite(playerInfo.x, playerInfo.y, 'bird').setDepth(1).setDragX(900);
     // self.bird.play('fly');
