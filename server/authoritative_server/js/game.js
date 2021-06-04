@@ -105,7 +105,7 @@ function update() {
 
     input.left ? (player.setVelocityX(-300), player.flipX = true, player.anim = 'walk') :
       input.right ? (player.setVelocityX(300), player.flipX = false, player.anim = 'walk') :
-      ''
+      player.setVelocityX(0)
 
     if (input.up) {
       if (player.x < 605 /*&& player.y > 405*/ ) {
@@ -124,8 +124,10 @@ function update() {
 
     //bigger
     if (input.down && player.scale <= 2) {
+      // player.setSize(300);
+      // player.setDisplaySize(10, 10)
       player.scale = player.scale + 0.003;
-      player.y += 2;
+      // player.y += 2;
       player.depth += 1;
       player.anim = 'front';
     }
