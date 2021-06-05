@@ -110,13 +110,13 @@ function update() {
     if (input.up) {
       if (player.x < 605 /*&& player.y > 405*/ ) {
         player.scale = player.scale - 0.003;
-        player.y -= 2;
+        // player.y -= 2;
         player.depth = player.depth - 1;
         player.anim = 'goback';
       }
       if (player.x > 605 /*&& player.scale >= 0.223*/ ) {
         player.scale = player.scale - 0.003;
-        player.y -= 2;
+        // player.y -= 2;
         player.depth = player.depth - 1;
         player.anim = 'goback';
       }
@@ -134,7 +134,7 @@ function update() {
 
     if (input.a) {
       player.anim = 'attack1';
-      player.setSize(900);
+      // player.setSize(900);
       player.attack = true;
     }
 
