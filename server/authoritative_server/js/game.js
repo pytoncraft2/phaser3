@@ -99,7 +99,7 @@ function update() {
   this.players.getChildren().forEach((player) => {
     const input = players[player.playerId].input;
     // player.setVelocityY(0);
-    player.setSize(200);
+    // player.setSize(200);
     player.anim = false;
     player.attack = false;
 
@@ -152,12 +152,12 @@ function update() {
 // console.log(player.y);
     if (player.y > 400) {
       console.log('40000000');
-      player.setVelocityY(0);
+      // player.setVelocityY(0);
     }
 
     if (player.y < 220) {
       console.log('inf 100');
-      player.setVelocityY(500)
+      // player.setVelocityY(500)
       var top = true;
     }
 
@@ -178,7 +178,7 @@ function update() {
         console.log(top);
     if (player.y > 420 && top) {
       console.log('inf 100');
-      player.setVelocityY(-100)
+      // player.setVelocityY(-100)
       // var top = true;
     }
     /*

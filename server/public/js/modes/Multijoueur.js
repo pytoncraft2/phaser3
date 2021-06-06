@@ -438,7 +438,7 @@ export default class Multijoueur extends Phaser.Scene {
     self.players.add(self.player);
     if (iscurrent) {
       self.cameras.main.startFollow(self.player);
-      self.player.body.allowGravity = true;
+      self.player.body.allowGravity = false;
       self.physics.add.overlap(self.player, self.doors, function(player, doors) {
         player.y < 399 ? doors.alpha = 0.5 : doors.alpha = 1
       });
@@ -448,13 +448,16 @@ export default class Multijoueur extends Phaser.Scene {
       self.zone.body.friction.x = 0;
       self.zone.body.allowGravity = false;
       self.zone.body.immovable = true;
-      self.zone.depth = 30;
+      // self.zone.depth = 30;
         // self.zone.body.move = false;
       // self.players.add(self.player);
       self.physics.add.collider(self.player, self.zone);
 
       var keyObj = self.input.keyboard.addKey('SPACE');  // Get key object
-      keyObj.on('down', function(event) { self.player.setVelocityY(-400); });
+      keyObj.on('down', function(event) {
+        self.player.body.allowGravity = true;
+        self.player.setVelocityY(-400);
+      });
 
       var keyObj2 = self.input.keyboard.addKey('UP');  // Get key object
       keyObj2.on('down', function(event) {
@@ -468,8 +471,8 @@ export default class Multijoueur extends Phaser.Scene {
       keyObj2.on('up', function(event) {
         // if (keyObj.isDown) {
         self.zone.body.velocity.y = 0;
-        self.player.body.velocity.y = 0;
-        self.player.body.allowGravity = true;
+        // self.player.body.velocity.y = 0;
+        self.player.body.allowGravity = false;
 
       // }
     });
@@ -478,6 +481,7 @@ export default class Multijoueur extends Phaser.Scene {
       keyObj3.on('down', function(event) {
         // if (keyObj.isDown) {
         self.zone.body.velocity.y = 300;
+        self.player.body.allowGravity = true;
       // }
     });
 
