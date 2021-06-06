@@ -343,6 +343,7 @@ export default class Multijoueur extends Phaser.Scene {
             player.setVelocityX(players[id].vx);
             player.setVelocityY(players[id].vy);
             self.zone.body.velocity.x = players[id].vx;
+            self.zone.body.velocity.y = players[id].vy;
 
             if (players[id].anim && players[id].anim !== false) {
               // self.bird.play('fly');
@@ -428,7 +429,7 @@ export default class Multijoueur extends Phaser.Scene {
    * @return {void}
    */
   displayPlayers(self, playerInfo, iscurrent) {
-    self.player = self.physics.add.sprite(playerInfo.x, playerInfo.y, playerInfo.atlas, 'face1').setOrigin(0.5, 0.5).setDisplaySize(300, 300).setSize(400).setAcceleration(10);
+    self.player = self.physics.add.sprite(playerInfo.x, playerInfo.y, playerInfo.atlas, 'face1').setOrigin(0.5, 0.5).setDisplaySize(300, 300).setSize(400);
 
     // self.bird = this.physics.add.sprite(playerInfo.x, playerInfo.y, 'bird').setDepth(1).setDragX(900);
     // self.bird.play('fly');
@@ -453,39 +454,39 @@ export default class Multijoueur extends Phaser.Scene {
       // self.players.add(self.player);
       self.physics.add.collider(self.player, self.zone);
 
-      var keyObj = self.input.keyboard.addKey('SPACE');  // Get key object
+      // var keyObj = self.input.keyboard.addKey('SPACE');  // Get key object
       // keyObj.on('down', function(event) { self.player.setVelocityY(-400); });
 
-      var keyObj2 = self.input.keyboard.addKey('UP');  // Get key object
-      keyObj2.on('down', function(event) {
+      // var keyObj2 = self.input.keyboard.addKey('UP');  // Get key object
+      // keyObj2.on('down', function(event) {
         // if (keyObj.isDown) {
-        self.zone.body.velocity.y = -300;
-        self.player.body.velocity.y = 0;
-        self.player.body.allowGravity = false;
+        // self.zone.body.velocity.y = -300;
+        // self.player.body.velocity.y = 0;
+        // self.player.body.allowGravity = false;
       // }
-    });
+    // });
 
-      keyObj2.on('up', function(event) {
+      // keyObj2.on('up', function(event) {
         // if (keyObj.isDown) {
-        self.zone.body.velocity.y = 0;
-        self.player.body.velocity.y = 0;
-        self.player.body.allowGravity = true;
+        // self.zone.body.velocity.y = 0;
+        // self.player.body.velocity.y = 0;
+        // self.player.body.allowGravity = true;
 
       // }
-    });
+    // });
 
-    var keyObj3 = self.input.keyboard.addKey('DOWN');  // Get key object
-      keyObj3.on('down', function(event) {
+    // var keyObj3 = self.input.keyboard.addKey('DOWN');  // Get key object
+      // keyObj3.on('down', function(event) {
         // if (keyObj.isDown) {
-        self.zone.body.velocity.y = 300;
+        // self.zone.body.velocity.y = 300;
       // }
-    });
+    // });
 
-      keyObj3.on('up', function(event) {
+      // keyObj3.on('up', function(event) {
         // if (keyObj.isDown) {
-        self.zone.body.velocity.y = 0;
+        // self.zone.body.velocity.y = 0;
       // }
-    });
+    // });
 
 
 
