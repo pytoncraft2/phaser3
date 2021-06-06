@@ -341,6 +341,7 @@ export default class Multijoueur extends Phaser.Scene {
             player.setDepth(players[id].depth);
             player.setAlpha(players[id].alpha);
             player.setVelocityX(players[id].vx);
+            player.setVelocityY(players[id].vy);
             self.zone.body.velocity.x = players[id].vx;
 
             if (players[id].anim && players[id].anim !== false) {
@@ -427,7 +428,7 @@ export default class Multijoueur extends Phaser.Scene {
    * @return {void}
    */
   displayPlayers(self, playerInfo, iscurrent) {
-    self.player = self.physics.add.sprite(playerInfo.x, playerInfo.y, playerInfo.atlas, 'face1').setOrigin(0.5, 0.5).setDisplaySize(300, 300).setSize(400);
+    self.player = self.physics.add.sprite(playerInfo.x, playerInfo.y, playerInfo.atlas, 'face1').setOrigin(0.5, 0.5).setDisplaySize(300, 300).setSize(400).setAcceleration(10);
 
     // self.bird = this.physics.add.sprite(playerInfo.x, playerInfo.y, 'bird').setDepth(1).setDragX(900);
     // self.bird.play('fly');
@@ -453,7 +454,7 @@ export default class Multijoueur extends Phaser.Scene {
       self.physics.add.collider(self.player, self.zone);
 
       var keyObj = self.input.keyboard.addKey('SPACE');  // Get key object
-      keyObj.on('down', function(event) { self.player.setVelocityY(-400); });
+      // keyObj.on('down', function(event) { self.player.setVelocityY(-400); });
 
       var keyObj2 = self.input.keyboard.addKey('UP');  // Get key object
       keyObj2.on('down', function(event) {

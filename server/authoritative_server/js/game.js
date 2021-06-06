@@ -10,7 +10,7 @@ const config = {
     arcade: {
       debug: false,
       gravity: {
-        y: 0
+        y: 600
       }
     }
   },
@@ -162,10 +162,10 @@ function update() {
     }
 
     if (input.space) {
-      const base = player.y;
-      console.log(base);
-      // player.setVelocityY(-500)
-      var top = true;
+      // const base = player.y;
+      // console.log(base);
+      player.setVelocityY(-400)
+      // var top = true;
 
       /*
         if (player.y < 100) {
