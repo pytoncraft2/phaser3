@@ -53,10 +53,10 @@ export default class Multijoueur extends Phaser.Scene {
     this.load.image('bg', 'assets/fond/bgGrand.png');
     this.load.image('doors', 'assets/fond/doors.png');
     this.load.image('bg2', 'assets/fond/bgMenu.png');
-    this.load.spritesheet('bird', 'assets/personnages/bird/bird.png', {
-      frameWidth: 240,
-      frameHeight:320
-    })
+    // this.load.spritesheet('bird', 'assets/personnages/bird/bird.png', {
+      // frameWidth: 240,
+      // frameHeight:320
+    // })
 
   }
 
@@ -77,13 +77,13 @@ export default class Multijoueur extends Phaser.Scene {
     this.physics.world.setBounds(-2074, 0, 3574, 666);
     this.cameras.main.fadeIn(4000);
 
-    this.anims.create({
-    key: 'fly',
-    frames: this.anims.generateFrameNumbers('bird', { frames: [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13] }),
-    frameRate: 37,
-    yoyo: true,
-    repeat: -1
-    });
+    // this.anims.create({
+    // key: 'fly',
+    // frames: this.anims.generateFrameNumbers('bird', { frames: [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13] }),
+    // frameRate: 37,
+    // yoyo: true,
+    // repeat: -1
+    // });
 
 
     this.anims.create({
@@ -326,15 +326,15 @@ export default class Multijoueur extends Phaser.Scene {
      */
 
     this.socket.on('playerUpdates', function(players) {
-      self.physics.accelerateToObject(self.bird, self.player, 200, 200, 1000);
+      // self.physics.accelerateToObject(self.bird, self.player, 200, 200, 1000);
       Object.keys(players).forEach(function(id) {
         self.players.getChildren().forEach(function(player) {
           if (players[id].playerId === player.playerId) {
 
-            self.bird.scale = players[id].scale + 0.4;
-            self.bird.depth = players[id].depth;
+            // self.bird.scale = players[id].scale + 0.4;
+            // self.bird.depth = players[id].depth;
             // console.log(player.flipX);
-            self.bird.flipX = !players[id].flipX;
+            // self.bird.flipX = !players[id].flipX;
             player.flipX = (players[id].flipX);
             player.setScale(players[id].scale);
             // player.setPosition(players[id].x, players[id].y);
@@ -429,10 +429,10 @@ export default class Multijoueur extends Phaser.Scene {
   displayPlayers(self, playerInfo, iscurrent) {
     self.player = self.physics.add.sprite(playerInfo.x, playerInfo.y, playerInfo.atlas, 'face1').setOrigin(0.5, 0.5).setDisplaySize(300, 300).setSize(400);
 
-    self.bird = this.physics.add.sprite(playerInfo.x, playerInfo.y, 'bird').setDepth(1).setDragX(900);
+    // self.bird = this.physics.add.sprite(playerInfo.x, playerInfo.y, 'bird').setDepth(1).setDragX(900);
     // self.bird.play('fly');
-    self.bird.body.allowGravity = false;
-    self.bird.play('fly');
+    // self.bird.body.allowGravity = false;
+    // self.bird.play('fly');
     self.player.playerId = playerInfo.playerId;
     self.players.add(self.player);
     if (iscurrent) {
