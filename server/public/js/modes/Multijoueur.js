@@ -342,7 +342,7 @@ export default class Multijoueur extends Phaser.Scene {
             player.setAlpha(players[id].alpha);
             player.setVelocityX(players[id].vx);
             player.setVelocityY(players[id].vy);
-            self.zone.body.velocity.x = players[id].vx;
+            // self.zone.body.velocity.x = players[id].vx;
 
             if (players[id].anim && players[id].anim !== false) {
               // self.bird.play('fly');
@@ -443,7 +443,6 @@ export default class Multijoueur extends Phaser.Scene {
         player.y < 399 ? doors.alpha = 0.5 : doors.alpha = 1
       });
       self.zone = this.add.zone(playerInfo.x, playerInfo.y +210).setSize(150, 40).setOrigin(0.5, 0.5);
-
       self.physics.add.existing(self.zone);
       self.zone.body.friction.x = 0;
       self.zone.body.allowGravity = false;
@@ -452,7 +451,7 @@ export default class Multijoueur extends Phaser.Scene {
         // self.zone.body.move = false;
       // self.players.add(self.player);
       self.physics.add.collider(self.player, self.zone);
-
+/*
       var keyObj = self.input.keyboard.addKey('SPACE');  // Get key object
       // keyObj.on('down', function(event) { self.player.setVelocityY(-400); });
 
@@ -486,6 +485,7 @@ export default class Multijoueur extends Phaser.Scene {
         self.zone.body.velocity.y = 0;
       // }
     });
+    */
 
 
 
