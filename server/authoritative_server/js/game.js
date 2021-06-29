@@ -42,6 +42,16 @@ function create() {
     }
   }, this);
 
+    // self.zone = this.add.zone(playerInfo.x, playerInfo.y +210).setSize(650, 40).setOrigin(0.5, 0.5);
+    /*
+    self.physics.add.existing(self.zone);
+    self.zone.body.friction.x = 0;
+    self.zone.body.allowGravity = false;
+    self.zone.body.immovable = true;
+    self.zone.depth = 30
+    */
+
+
   function col(e) {}
 
   io.on('connection', function(socket) {
@@ -107,7 +117,10 @@ function update() {
     input.left ? (player.setVelocityX(-300), player.flipX = true, player.anim = 'walk') :
       input.right ? (player.setVelocityX(300), player.flipX = false, player.anim = 'walk') :
       player.setVelocityX(0)
-
+      console.log("XXXXXXXXX");
+console.log(player.x);
+      console.log("YYYYYYY");
+console.log(player.y);
     if (input.up) {
       if (player.x < 605 /*&& player.y > 405*/ ) {
         player.scale = player.scale - 0.003;
@@ -142,7 +155,8 @@ function update() {
       player.anim = 'heal';
     }
 
-    if (input.space) {
+    if (!input.space) {
+      // player.setVelocityY(200)
       console.log('espace');
     }
 
