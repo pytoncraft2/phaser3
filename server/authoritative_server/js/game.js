@@ -102,6 +102,12 @@ function update() {
     // player.setSize(200);
     player.anim = false;
     player.attack = false;
+    /*
+    console.log("X-----------");
+    console.log(player.x);
+    console.log("Y-----------");
+    console.log(player.y);
+    */
 
     input.left ? (player.setVelocityX(-300), player.flipX = true, player.anim = 'walk') :
       input.right ? (player.setVelocityX(300), player.flipX = false, player.anim = 'walk') :

@@ -436,13 +436,7 @@ export default class Multijoueur extends Phaser.Scene {
     // self.bird.play('fly');
     self.player.playerId = playerInfo.playerId;
     self.players.add(self.player);
-    if (iscurrent) {
-      self.cameras.main.startFollow(self.player);
-      self.player.body.allowGravity = true;
-      self.physics.add.overlap(self.player, self.doors, function(player, doors) {
-        player.y < 399 ? doors.alpha = 0.5 : doors.alpha = 1
-      });
-      self.zone = this.add.zone(playerInfo.x, playerInfo.y +210).setSize(150, 40).setOrigin(0.5, 0.5);
+          self.zone = this.add.zone(playerInfo.x, playerInfo.y +210).setSize(650, 40).setOrigin(0.5, 0.5);
       self.physics.add.existing(self.zone);
       self.zone.body.friction.x = 0;
       self.zone.body.allowGravity = false;
@@ -451,6 +445,28 @@ export default class Multijoueur extends Phaser.Scene {
         // self.zone.body.move = false;
       // self.players.add(self.player);
       self.physics.add.collider(self.player, self.zone);
+    if (iscurrent) {
+      self.cameras.main.startFollow(self.player);
+      self.player.body.allowGravity = true;
+      self.physics.add.overlap(self.player, self.doors, function(player, doors) {
+        player.y < 399 ? doors.alpha = 0.5 : doors.alpha = 1
+      });
+      /*
+
+      */
+
+/*
+      self.zone2 = this.add.zone(playerInfo.x - 400, playerInfo.y +210).setSize(150, 40).setOrigin(0.5, 0.5);
+      self.physics.add.existing(self.zone2);
+      self.zone2.body.friction.x = 0;
+      self.zone2.body.allowGravity = false;
+      self.zone2.body.immovable = true;
+      self.zone2.depth = 30;
+
+        // self.zone.body.move = false;
+      // self.players.add(self.player);
+      self.physics.add.collider(self.player, self.zone2);
+      */
 /*
       var keyObj = self.input.keyboard.addKey('SPACE');  // Get key object
       // keyObj.on('down', function(event) { self.player.setVelocityY(-400); });
