@@ -409,6 +409,18 @@ export default class Multijoueur extends Phaser.Scene {
       self.physics.add.overlap(self.player, self.doors, function(player, doors) {
         player.y < 399 ? doors.alpha = 0.5 : doors.alpha = 1
       });
+      /*
+      self.zone = this.add.zone(playerInfo.x, playerInfo.y + 210).setSize(150, 40).setOrigin(0.5, 0.5);
+      self.physics.add.existing(self.zone);
+      self.zone.body.friction.x = 0;
+      self.zone.body.allowGravity = false;
+      self.zone.body.immovable = true;
+      self.zone.depth = 30;
+      // self.zone.body.move = false;
+      // self.players.add(self.player);
+      self.physics.add.collider(self.player, self.zone);
+      */
+
     }
   }
 }
