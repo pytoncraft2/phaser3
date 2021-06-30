@@ -110,7 +110,7 @@ function create() {
 function update() {
   this.players.getChildren().forEach((player) => {
     const input = players[player.playerId].input;
-    player.setVelocity(0);
+    // player.setVelocity(0);
     player.setSize(200);
     player.anim = false;
     player.attack = false;
@@ -199,6 +199,8 @@ function addPlayer(self, playerInfo) {
     self.zone.body.immovable = true;
     self.zone.depth = 30
 
+    self.physics.add.collider(player, self.zone);
+
 
   // self.zone = self.add.zone(735, 460 + 220).setSize(150, 40).setOrigin(0.5, 0.5);
     self.zone2 = self.add.zone(playerInfo.x, playerInfo.y +210).setSize(650, 40).setOrigin(0.5, 0.5);
@@ -210,6 +212,7 @@ function addPlayer(self, playerInfo) {
     self.zone2.body.immovable = true;
     self.zone2.depth = 30
 
+    self.physics.add.collider(player, self.zone2);
 
     // self.zone = this.add.zone(playerInfo.x, playerInfo.y +210).setSize(650, 40).setOrigin(0.5, 0.5);
     // self.physics.add.existing(self.zone);
