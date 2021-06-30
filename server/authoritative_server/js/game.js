@@ -42,6 +42,8 @@ function create() {
     }
   }, this);
 
+  // self.zone = this.add.zone(735, 447 + 220).setSize(150, 40).setOrigin(0.5, 0.5);
+
     // self.zone = this.add.zone(playerInfo.x, playerInfo.y +210).setSize(650, 40).setOrigin(0.5, 0.5);
     /*
     self.physics.add.existing(self.zone);
@@ -155,8 +157,8 @@ console.log(player.y);
       player.anim = 'heal';
     }
 
-    if (!input.space) {
-      // player.setVelocityY(200)
+    if (input.space) {
+      player.setVelocityY(200)
       console.log('espace');
     }
 
@@ -188,6 +190,36 @@ function handlePlayerInput(self, playerId, input) {
 
 function addPlayer(self, playerInfo) {
   const player = self.physics.add.sprite(playerInfo.x, playerInfo.y, 'profil').setOrigin(0.5).setScale(0.38).setSize(220);
+  self.zone = self.add.zone(735, 460 + 220).setSize(150, 40).setOrigin(0.5, 0.5);
+
+
+    self.physics.add.existing(self.zone);
+    self.zone.body.friction.x = 0;
+    self.zone.body.allowGravity = false;
+    self.zone.body.immovable = true;
+    self.zone.depth = 30
+
+
+  // self.zone = self.add.zone(735, 460 + 220).setSize(150, 40).setOrigin(0.5, 0.5);
+    self.zone2 = self.add.zone(playerInfo.x, playerInfo.y +210).setSize(650, 40).setOrigin(0.5, 0.5);
+
+
+    self.physics.add.existing(self.zone2);
+    self.zone2.body.friction.x = 0;
+    self.zone2.body.allowGravity = false;
+    self.zone2.body.immovable = true;
+    self.zone2.depth = 30
+
+
+    // self.zone = this.add.zone(playerInfo.x, playerInfo.y +210).setSize(650, 40).setOrigin(0.5, 0.5);
+    // self.physics.add.existing(self.zone);
+    // self.zone.body.friction.x = 0;
+    // self.zone.body.allowGravity = false;
+    // self.zone.body.immovable = true;
+    // self.zone.depth = 30
+
+
+
   player.setMaxVelocity(200);
   player.playerId = playerInfo.playerId;
   player.alpha = playerInfo.alpha;
