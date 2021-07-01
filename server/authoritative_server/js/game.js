@@ -159,7 +159,7 @@ function update() {
      }
 
      if (input.space) {
-       player.setVelocityY(-400)
+       player.setVelocityY(-100)
      }
      if (player.y > 420 && top) {
      }
