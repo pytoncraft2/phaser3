@@ -118,7 +118,7 @@ function update() {
     const playerplatform = players[player.playerId].platform;
 
     // player.setVelocityY(0);
-     // player.setSize(200);
+     player.setSize(200);
      player.anim = false;
      player.attack = false;
 
