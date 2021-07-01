@@ -311,6 +311,7 @@ export default class Multijoueur extends Phaser.Scene {
       Object.keys(players).forEach(function(id) {
         self.players.getChildren().forEach(function(player) {
           if (players[id].playerId === player.playerId) {
+            /*
             player.flipX = (players[id].flipX);
             player.setScale(players[id].scale);
             player.setPosition(players[id].x, players[id].y);
@@ -320,6 +321,27 @@ export default class Multijoueur extends Phaser.Scene {
             if (players[id].anim && players[id].anim !== false) {
               player.play('' + players[id].anim + '_' + players[id].atlas + '', 5);
             }
+            */
+
+                        // self.bird.scale = players[id].scale + 0.4;
+                        // self.bird.depth = players[id].depth;
+                        // console.log(player.flipX);
+                        // self.bird.flipX = !players[id].flipX;
+                        player.flipX = (players[id].flipX);
+                        player.setScale(players[id].scale);
+                        // player.setPosition(players[id].x, players[id].y);
+                        player.setDepth(players[id].depth);
+                        player.setAlpha(players[id].alpha);
+                        player.setVelocityX(players[id].vx);
+                        player.setVelocityY(players[id].vy);
+                        // self.zone.body.velocity.x = players[id].vx;
+
+                        if (players[id].anim && players[id].anim !== false) {
+                          // self.bird.play('fly');
+                          player.play('' + players[id].anim + '_' + players[id].atlas + '', 5);
+                        }
+
+
           }
         });
       });

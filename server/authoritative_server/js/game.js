@@ -115,12 +115,6 @@ function update() {
      // player.setSize(200);
      player.anim = false;
      player.attack = false;
-     /*
-     console.log("X-----------");
-     console.log(player.x);
-     console.log("Y-----------");
-     console.log(player.y);
-     */
 
      input.left ? (player.setVelocityX(-300), player.flipX = true, player.anim = 'walk') :
        input.right ? (player.setVelocityX(300), player.flipX = false, player.anim = 'walk') :
@@ -143,10 +137,7 @@ function update() {
 
      //bigger
      if (input.down && player.scale <= 2) {
-       // player.setSize(300);
-       // player.setDisplaySize(10, 10)
        player.scale = player.scale + 0.003;
-       // player.y += 2;
        player.depth += 1;
        player.anim = 'front';
      }
@@ -160,54 +151,19 @@ function update() {
      if (input.t) {
        player.anim = 'heal';
      }
- /*
-     if (player.y < 220) {
-       console.log('inf 100');
-       player.setVelocityY(100)
-       var top = true;
-     }
-     */
-
- // console.log(player.y);
      if (player.y > 400) {
-       // console.log('40000000');
-       // player.setVelocityY(0);
      }
 
      if (player.y < 220) {
-       // console.log('inf 100');
-       // player.setVelocityY(500)
        var top = true;
      }
 
      if (input.space) {
-       // const base = player.y;
-       // console.log(base);
        player.setVelocityY(-400)
-       // var top = true;
-
-       /*
-         if (player.y < 100) {
-         console.log('inf 100');
-         player.setVelocityY(100)
-       }
-       */
      }
-
-         // console.log(top);
      if (player.y > 420 && top) {
-       // console.log('inf 100');
-       // player.setVelocityY(-100)
-       // var top = true;
      }
-     /*
-         if (input.left) {
-     } else if (input.right) {
-       player.setAngularVelocity(300);
-     } else {
-       player.setAngularVelocity(0);
-     }
-     */
+
 
      players[player.playerId].vx = player.body.velocity.x;
      players[player.playerId].vy = player.body.velocity.y;
@@ -220,69 +176,7 @@ function update() {
      players[player.playerId].size = player.size;
      players[player.playerId].alpha = player.alpha;
      players[player.playerId].attack = player.attack;
-     /*
-    // player.setVelocity(0);
-    player.setSize(200);
-    player.anim = false;
-    player.attack = false;
-    player.wall = false;
 
-    input.left ? (player.setVelocityX(-300), player.flipX = true, player.anim = 'walk') :
-      input.right ? (player.setVelocityX(300), player.flipX = false, player.anim = 'walk') :
-      player.setVelocityX(0)
-      console.log("XXXXXXXXX");
-console.log(player.x);
-      console.log("YYYYYYY");
-console.log(player.y);
-    if (input.up) {
-        player.scale = player.scale - 0.003;
-        player.y -= 2;
-        player.depth = player.depth - 1;
-        player.anim = 'goback';
-      }
-        player.scale = player.scale - 0.003;
-        player.y -= 2;
-        player.depth = player.depth - 1;
-        player.anim = 'goback';
-      }
-    }
-
-    //bigger
-    if (input.down && player.scale <= 2) {
-      player.scale = player.scale + 0.003;
-      player.y += 2;
-      player.depth += 1;
-      player.anim = 'front';
-    }
-
-    if (input.a) {
-      player.anim = 'attack1';
-      player.setSize(900);
-      player.attack = true;
-      player.wall = true;
-    }
-
-    if (input.t) {
-      player.anim = 'heal';
-    }
-
-    if (input.space) {
-      player.setVelocityY(200)
-      console.log('espace');
-    }
-
-
-    players[player.playerId].x = player.x;
-    players[player.playerId].y = player.y;
-    players[player.playerId].scale = player.scale;
-    players[player.playerId].flipX = player.flipX;
-    players[player.playerId].anim = player.anim;
-    players[player.playerId].depth = player.depth;
-    players[player.playerId].size = player.size;
-    players[player.playerId].alpha = player.alpha;
-    players[player.playerId].attack = player.attack;
-    players[player.playerId].wall = player.wall;
-    */
   });
   //envoi mise à jour de tout les players
   io.emit('playerUpdates', players);
