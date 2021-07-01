@@ -10,7 +10,7 @@ const config = {
     arcade: {
       debug: false,
       gravity: {
-        y: 200
+        y: 400
       }
     }
   },
@@ -159,7 +159,7 @@ function update() {
      }
 
      if (input.space) {
-       player.setVelocityY(-100)
+       player.setVelocityY(-300)
      }
      if (player.y > 420 && top) {
      }
