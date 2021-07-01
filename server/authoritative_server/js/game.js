@@ -44,7 +44,8 @@ function create() {
 
   // self.zone = this.add.zone(735, 447 + 220).setSize(150, 40).setOrigin(0.5, 0.5);
 
-    // self.zone = this.add.zone(playerInfo.x, playerInfo.y +210).setSize(650, 40).setOrigin(0.5, 0.5);
+  this.zone = self.add.zone(735, 460 + 220).setSize(150, 40).setOrigin(0.5, 0.5);
+    // this.zone = this.add.zone(playerInfo.x, playerInfo.y +210).setSize(650, 40).setOrigin(0.5, 0.5);
     /*
     self.physics.add.existing(self.zone);
     self.zone.body.friction.x = 0;
@@ -72,6 +73,10 @@ function create() {
       x: /*Math.floor(Math.random() * 700) + 50*/ 1000,
       y: 447,
       playerId: socket.id,
+      platform: {
+        x: 735,
+        y: 460,
+      },
       input: {
         left: false,
         right: false,
@@ -110,6 +115,7 @@ function create() {
 function update() {
   this.players.getChildren().forEach((player) => {
     const input = players[player.playerId].input;
+    const playerplatform = players[player.playerId].platform;
 
     // player.setVelocityY(0);
      // player.setSize(200);
