@@ -455,7 +455,7 @@ export default class Multijoueur extends Phaser.Scene {
 
     if (iscurrent) {
       self.cameras.main.startFollow(self.player);
-      self.player.setCollideWorldBounds(true);
+      // self.player.setCollideWorldBounds(true);
       self.physics.add.overlap(self.player, self.doors, function(player, doors) {
         player.y < 399 ? doors.alpha = 0.5 : doors.alpha = 1
       });
