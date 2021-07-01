@@ -74,8 +74,8 @@ function create() {
       y: 447,
       playerId: socket.id,
       platform: {
-        x: 735,
-        y: 460,
+        x: 20,
+        y: 0,
       },
       input: {
         left: false,
@@ -132,6 +132,7 @@ function update() {
          // player.y -= 2;
          player.depth = player.depth - 1;
          player.anim = 'goback';
+         playerplatform.x = playerplatform.x + 20;
        }
        if (player.x > 605 /*&& player.scale >= 0.223*/ ) {
          player.scale = player.scale - 0.003;
