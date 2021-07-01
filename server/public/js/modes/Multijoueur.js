@@ -438,7 +438,7 @@ export default class Multijoueur extends Phaser.Scene {
       // self.players.add(self.player);
       self.physics.add.collider(self.player, self.zone);
 
-
+/*
       self.zone2 = self.add.zone(playerInfo.x,447 +230).setSize(150, 40).setOrigin(0.5, 0.5);
 
 
@@ -449,6 +449,7 @@ export default class Multijoueur extends Phaser.Scene {
       self.zone2.depth = 30
 
       self.physics.add.collider(self.player, self.zone2);
+      */
 
 
 // ;
