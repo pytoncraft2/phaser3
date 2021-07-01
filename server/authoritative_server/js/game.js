@@ -10,7 +10,7 @@ const config = {
     arcade: {
       debug: false,
       gravity: {
-        y: 0
+        y: 30
       }
     }
   },
@@ -190,6 +190,10 @@ function handlePlayerInput(self, playerId, input) {
 
 function addPlayer(self, playerInfo) {
   const player = self.physics.add.sprite(playerInfo.x, playerInfo.y, 'profil').setOrigin(0.5).setScale(0.38).setSize(220);
+  player.body.allowGravity = false;
+  // player.body.allowGravity = false;
+// self.zone2.body.immovable = true;
+
   self.zone = self.add.zone(735, 460 + 220).setSize(150, 40).setOrigin(0.5, 0.5);
 
 
