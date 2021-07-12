@@ -25,5 +25,9 @@
                         "Phaser"
                 ]
           },
-          "include": ["src/**/*"]
+  "compilerOptions": {
+    "target": "es5",
+    "sourceMap": true
+  },
+  "include": [ "**/*.ts" ]
 }
