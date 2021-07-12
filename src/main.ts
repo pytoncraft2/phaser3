@@ -4,6 +4,7 @@ import Phaser from 'phaser'
 import Solo from './scenes/Solo'
 import Menu from './scenes/Menu'
 import Multijoueur from './scenes/Multijoueur'
+import Selection from './scenes/Selection'
 
 const config: Phaser.Types.Core.GameConfig = {
 	type: Phaser.AUTO,
@@ -21,7 +22,7 @@ const config: Phaser.Types.Core.GameConfig = {
         debug: false
     }
 	},
-	scene: [Menu, Solo, Multijoueur]
+	scene: [Menu, Selection, Solo, Multijoueur]
 }
 
 export default new Phaser.Game(config)
