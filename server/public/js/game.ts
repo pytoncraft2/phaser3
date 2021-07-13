@@ -1,3 +1,4 @@
+import * as Phaser from 'phaser'
 import Menu from './Menu.js'
 import Selection from './Selection.js'
 import Solo from './modes/Solo.js'
@@ -23,5 +24,6 @@ var config = {
   scene: [ Menu, Multijoueur, Solo, Selection ]
 };
 
-var game = new Phaser.Game(config);
+// var game = new Phaser.Game(config);
+export = config;
 // Phaser.Types.Core.GameConfig
