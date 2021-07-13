@@ -1,5 +1,4 @@
 const players = {};
-
 const config = {
   type: Phaser.HEADLESS,
   parent: 'phaser-example',
