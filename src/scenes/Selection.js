@@ -18,16 +18,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var Selection = (function (_super) {
     __extends(Selection, _super);
     function Selection() {
-        var _this = _super.call(this, {
+        return _super.call(this, {
             key: "Selection"
         }) || this;
-        _this.liste = ['dessinatrice1_', 'dessinatrice2_', 'dessinatrice3_', 'dessinatrice4_', 'naruto_'];
-        _this.player = '';
-        _this.frame = '';
-        return _this;
     }
     Selection.prototype.init = function (data) {
-        var mode = data.mode;
+        this.mode = data.mode;
         this.liste = ['dessinatrice1_', 'dessinatrice2_', 'dessinatrice3_', 'dessinatrice4_', 'naruto_'];
     };
     Selection.prototype.preload = function () {
@@ -42,13 +38,14 @@ var Selection = (function (_super) {
         var x = 400;
         var y = 400;
         var up = 0;
+        this.text = this.add.text(75, 350, ['Selection']).setFontSize(18).setFontFamily('Trebuchet MS').setColor('#00ffff');
         this.liste.forEach(function (item, i) {
             _this.player = 'player' + i.toString();
             _this.player = self.add.image(x + up, y, item).setScale(0.38).setOrigin(0.5, 0.5);
             up += 200;
             _this.player.setInteractive().on('pointerdown', function () {
                 self.scene.start('Multijoueur', {
-                    personnage: 4
+                    personnage: this.frame.texture.key
                 });
             });
         });

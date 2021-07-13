@@ -18,14 +18,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var Menu = (function (_super) {
     __extends(Menu, _super);
     function Menu() {
-        var _this = _super.call(this, {
+        return _super.call(this, {
             key: "Menu"
         }) || this;
-        _this.goSelectionM = '';
-        _this.goSelectionS = '';
-        _this.fullscreen = '';
-        _this.logo = '';
-        return _this;
     }
     Menu.prototype.preload = function () {
         this.load.image('bgMenu', 'assets/fond/bgMenu.png');
@@ -37,6 +32,7 @@ var Menu = (function (_super) {
         this.goSelectionM = this.add.text(650, 400, ['Multijoueur']).setFontSize(42).setFontFamily('Trebuchet MS').setColor('#6badce').setShadow(2, 2, "white", 2, true, true);
         this.fullscreen = this.add.text(640, 500, ['Pleine Ecran']).setFontSize(42).setFontFamily('Trebuchet MS').setColor('#6badce').setShadow(2, 2, "white", 2, true, true);
         this.fullscreen.setInteractive().on('pointerup', function () {
+            this.scale.isFullscreen ? this.scale.stopFullscreen() : this.scale.startFullscreen();
         }, this);
         this.goSelectionM.setInteractive().on('pointerdown', function () {
             self.scene.start('Selection', {
@@ -49,7 +45,8 @@ var Menu = (function (_super) {
             });
         });
         this.logo = this.add.text(530, 30, 'Steam-Fighter', {
-            font: "74px Arial Black"
+            font: "74px Arial Black",
+            fill: "#009286"
         });
         this.logo.setShadow(2, 2, "#333333", 2, true, true);
     };
