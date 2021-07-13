@@ -20,7 +20,7 @@ var config = {
         debug: false
     }
 },
-  scene: [ Menu, Multijoueur, Solo, Selection ]
+  scene: [Menu, Selection, Solo, Multijoueur]
 };
 
 var game = new Phaser.Game(config);
