@@ -70,15 +70,30 @@ export default class Multijoueur extends Phaser.Scene {
     this.cameras.main.setBounds(-2074, 0, 3574, 666);
     this.physics.world.setBounds(-2074, 0, 3574, 666);
     this.cameras.main.fadeIn(4000);
+        const frames = this.anims.generateFrameNames('dessinatrice1', {
+          start: 7,
+          end: 11,
+          prefix: 'dos',
+          suffix: '.png'
+        })
 
     this.anims.create({
-      key: "attack1_dessinatrice1",
-      frames: this.anims.generateFrameNumbers('dessinatrice1', {
-        frames: ['profil', 'position_a1', 'position_a2', 'position_a3', 'profil']
-      }),
-      frameRate: 6,
-      repeat: 0
-    });
+      key: 'attack1_dessinatrice1',
+      frames: frames,
+      repeat: -1
+    })
+        console.log(frames)
+    //
+    // this.anims.create({
+    //   key: "attack1_dessinatrice1",
+    //   frames: this.anims.generateFrameNames('dessinatrice1', {
+    //     start: 0,
+    //     end: 5,
+    //     prefix: 'jump',
+    //     suffix: '.png'
+    //   }),
+    //   repeat: 0
+    // });
 
     this.anims.create({
       key: "goback_dessinatrice1",
@@ -105,6 +120,9 @@ export default class Multijoueur extends Phaser.Scene {
       frameRate: 5,
       repeat: 0
     });
+
+
+
 
     this.anims.create({
       key: "attack1_naruto",
