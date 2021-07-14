@@ -81,6 +81,16 @@ export default class Multijoueur extends Phaser.Scene {
     });
 
     this.anims.create({
+      key: "run_dessinatrice1",
+      frames: this.anims.generateFrameNumbers('dessinatrice1', {
+        frames: ['pas_jkd','pas_jkd2', 'pas_jkd4','pas_jkd3']
+      }),
+      frameRate: 6,
+      repeat: 0
+    });
+
+
+    this.anims.create({
       key: "goback_dessinatrice1",
       frames: this.anims.generateFrameNumbers('dessinatrice1', {
         frames: ['dos5', 'dos7.8', 'dos8', 'dos9', 'dos10', 'dos11', 'dos3']

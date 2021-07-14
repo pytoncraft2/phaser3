@@ -104,12 +104,12 @@ function update() {
     player.attack = false;
     player.wall = false;
 
-if (input.left) {
+if (input.left && !input.c) {
   player.setVelocityX(-300);
   player.flipX = true, player.anim = 'walk';
 }
 
-if (input.right) {
+if (input.right && !input.c) {
   player.setVelocityX(300);
   player.flipX = false, player.anim = 'walk';
 }
@@ -165,6 +165,7 @@ if (input.right) {
       console.log("CCCCCCCCCCCCCCCCCCCCCC");
       if (input.left) player.setVelocityX(-800);
       if (input.right) player.setVelocityX(800);
+      player.anim = 'run';
     }
 
 
