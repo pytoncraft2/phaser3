@@ -104,9 +104,15 @@ function update() {
     player.attack = false;
     player.wall = false;
 
-    input.left ? (player.setVelocityX(-300), player.flipX = true, player.anim = 'walk') :
-      input.right ? (player.setVelocityX(300), player.flipX = false, player.anim = 'walk') :
-      player.setVelocityX(0)
+if (input.left) {
+  player.setVelocityX(-300);
+  player.flipX = true, player.anim = 'walk';
+}
+
+if (input.right) {
+  player.setVelocityX(300);
+  player.flipX = false, player.anim = 'walk';
+}
 
     if (input.up) {
       if (player.x < 605 /*&& player.y > 405*/ ) {
@@ -153,6 +159,10 @@ function update() {
     if (input.space) {
       console.log('espace');
       player.anim = 'jump';
+    }
+
+    if (input.c) {
+      console.log("CCCCCCCCCCCCCCCCCCCCCC");
     }
 
 

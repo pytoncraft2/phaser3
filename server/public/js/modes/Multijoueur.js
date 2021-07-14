@@ -74,7 +74,7 @@ export default class Multijoueur extends Phaser.Scene {
     this.anims.create({
       key: "attack1_dessinatrice1",
       frames: this.anims.generateFrameNumbers('dessinatrice1', {
-        frames: ['profil', 'position_a1', 'position_a2', 'position_a3', 'profil']
+        frames: ['profil', 'position_a1', 'position_a2', 'position_a3', 'profil','pas_jkd3']
       }),
       frameRate: 6,
       repeat: 0
@@ -95,7 +95,7 @@ export default class Multijoueur extends Phaser.Scene {
       frames: this.anims.generateFrameNumbers('dessinatrice1', {
         frames: ['jump0', 'jump1', 'jump2', 'jump3', 'jump4', 'jump5', 'jump0']
       }),
-      frameRate: 6,
+      frameRate: 8,
       repeat: 0
     });
 
@@ -111,7 +111,7 @@ export default class Multijoueur extends Phaser.Scene {
     this.anims.create({
       key: "walk_dessinatrice1",
       frames: this.anims.generateFrameNumbers('dessinatrice1', {
-        frames: ['profil3', 'profil4', 'profil5', 'profil6']
+        frames: ['profil_jkd11', 'profil_jkd13', 'profil_jkd14', 'profil_jkd15','profil_jkd8']
       }),
       frameRate: 5,
       repeat: 0
@@ -241,12 +241,14 @@ export default class Multijoueur extends Phaser.Scene {
 
     this.aKeyPressed = this.input.keyboard.addKey('A');
     this.tKeyPressed = this.input.keyboard.addKey('T');
+    this.cKeyPressed = this.input.keyboard.addKey('CTRL');
     this.cursors = this.input.keyboard.createCursorKeys();
     this.leftKeyPressed = false;
     this.rightKeyPressed = false;
     this.upKeyPressed = false;
     this.downKeyPressed = false;
     this.spaceKeyPressed = false;
+    this.cKey = false;
     this.aKey = false;
     this.tKey = false;
 
@@ -266,7 +268,8 @@ export default class Multijoueur extends Phaser.Scene {
       down = this.downKeyPressed,
       space = this.spaceKeyPressed,
       ak = this.aKey,
-      tk = this.tKey;
+      tk = this.tKey,
+      ck = this.cKey;
 
     this.cursors.left.isDown ? this.leftKeyPressed = true :
       this.cursors.right.isDown ? this.rightKeyPressed = true :
@@ -279,6 +282,8 @@ export default class Multijoueur extends Phaser.Scene {
     this.aKeyPressed.isDown ? this.aKey = true : this.aKey = false
     this.tKeyPressed.isDown ? this.tKey = true : this.tKey = false
 
+    this.cKeyPressed.isDown ? this.cKey = true : this.cKey = false
+
     this.cursors.space.isDown ? this.spaceKeyPressed = true : this.spaceKeyPressed = false
 
 
@@ -288,6 +293,7 @@ export default class Multijoueur extends Phaser.Scene {
       down !== this.downKeyPressed ||
       ak !== this.aKey ||
       tk !== this.tKey ||
+      ck !== this.cKey ||
       space !== this.spaceKeyPressed) {
       this.socket.emit('playerInput', {
         left: this.leftKeyPressed,
@@ -297,6 +303,7 @@ export default class Multijoueur extends Phaser.Scene {
         a: this.aKey,
         t: this.tKey,
         space: this.spaceKeyPressed,
+        c: this.cKey,
       });
     }
   }
