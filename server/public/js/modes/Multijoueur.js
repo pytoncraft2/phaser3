@@ -74,7 +74,7 @@ export default class Multijoueur extends Phaser.Scene {
     this.anims.create({
       key: "attack1_dessinatrice1",
       frames: this.anims.generateFrameNumbers('dessinatrice1', {
-        frames: ['profil', 'position_a1', 'position_a2', 'position_a3', 'profil','pas_jkd3']
+        frames: ['profil', 'position_a1', 'position_a2', 'position_a3', 'profil','pas_jkd']
       }),
       frameRate: 6,
       repeat: 0
