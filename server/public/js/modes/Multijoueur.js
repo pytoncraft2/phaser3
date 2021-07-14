@@ -1,49 +1,69 @@
-import * as Phaser from 'phaser';
+/**
+ * @package Steam-Fighter
+ * @copyright 2021 TeamBui
+ * @author timothee.hennequin@epitech.eu
+ * Identifiant de la class Multijoueur
+ * @type {String}
+ */
 
-var config = {
-  type: Phaser.AUTO,
-  parent: 'phaser-example',
-  width: 800,
-  height: 600,
-  scene: {
-    preload: preload,
-    create: create,
-    update: update
+export default class Multijoueur extends Phaser.Scene {
+  constructor() {
+    super({
+      key: "Multijoueur"
+    });
   }
-};
 
-var game = new Phaser.Game(config);
+  /**
+   * Recupere la nom de la clé du joueur cliqué lors de la selection et supprime le "_"
+   * pour éviter les erreurs de meme noms d'images
+   * @param  {string} data clé/frame de l'image
+   * @return {void}
+   */
 
-function preload() {
-  var progress = this.add.graphics();
+  init(data) {
+    this.personnage = data.personnage.slice(0, -1);
+    this.liste = ['dessinatrice1', 'dessinatrice2', 'dessinatrice3', 'dessinatrice4', 'naruto'];
+  }
 
-  this.load.on('progress', function(value) {
+  /**
+   * Affiche bar de progression pendant le charchement des images selon valeurs du tableau this.liste
+   * @return {[type]} [description]
+   */
 
-    progress.clear();
-    progress.fillStyle(0xffffff, 1);
-    progress.fillRect(0, 200, 1400 * value, 60);
+  preload() {
+    var progress = this.add.graphics();
 
-  });
+    this.load.on('progress', function(value) {
 
-  this.load.on('complete', function() {
+      progress.clear();
+      progress.fillStyle(0xffffff, 1);
+      progress.fillRect(0, 200, 1400 * value, 60);
 
-    progress.destroy();
+    });
 
-  });
+    this.load.on('complete', function() {
 
-  this.liste.forEach((item, i) => {
-    this.load.atlas(item, 'assets/personnages/' + item + '/' + item + '.png', 'assets/personnages/' + item + '/' + item + '_atlas.json');
-  });
-  this.load.image('bg', 'assets/fond/bgGrand.png');
-  this.load.image('doors', 'assets/fond/doors.png');
-  this.load.image('bg2', 'assets/fond/bgMenu.png');
-}
+      progress.destroy();
 
+    });
 
+    this.liste.forEach((item, i) => {
+      this.load.atlas(item, 'assets/personnages/' + item + '/' + item + '.png', 'assets/personnages/' + item + '/' + item + '_atlas.json');
+    });
+    this.load.image('bg', 'assets/fond/bgGrand.png');
+    this.load.image('doors', 'assets/fond/doors.png');
+    this.load.image('bg2', 'assets/fond/bgMenu.png');
 
-function create() {
+  }
 
-
+  /**
+   * charge animation + images
+   * démarre connection socket
+   * écoute les evénement du serveur
+   * @return {void}
+   * // OPTIMIZE: Chargement des animation
+   */
+  create() {
     var self = this;
     console.log(self.scene.scene.physics.scene);
 
@@ -245,55 +265,66 @@ function create() {
 
   }
 
-
-function update() {
-  const left = this.leftKeyPressed,
-    right = this.rightKeyPressed,
-    up = this.upKeyPressed,
-    down = this.downKeyPressed,
-    space = this.spaceKeyPressed,
-    ak = this.aKey,
-    tk = this.tKey,
-    ck = this.cKey;
-
-  this.cursors.left.isDown ? this.leftKeyPressed = true :
-    this.cursors.right.isDown ? this.rightKeyPressed = true :
-    (this.leftKeyPressed = false, this.rightKeyPressed = false)
-
-  this.cursors.up.isDown ? this.upKeyPressed = true :
-    this.cursors.down.isDown ? this.downKeyPressed = true :
-    (this.upKeyPressed = false, this.downKeyPressed = false)
-
-  this.aKeyPressed.isDown ? this.aKey = true : this.aKey = false
-  this.tKeyPressed.isDown ? this.tKey = true : this.tKey = false
-
-  this.cKeyPressed.isDown ? this.cKey = true : this.cKey = false
-
-  this.cursors.space.isDown ? this.spaceKeyPressed = true : this.spaceKeyPressed = false
+  /**
+   * Verifie l'état des touches et envoie au server si c'est true
+   * @return {boolean} valeur des touches (true | false)
+   */
 
 
-  if (left !== this.leftKeyPressed ||
-    right !== this.rightKeyPressed ||
-    up !== this.upKeyPressed ||
-    down !== this.downKeyPressed ||
-    ak !== this.aKey ||
-    tk !== this.tKey ||
-    ck !== this.cKey ||
-    space !== this.spaceKeyPressed) {
-    this.socket.emit('playerInput', {
-      left: this.leftKeyPressed,
-      right: this.rightKeyPressed,
-      up: this.upKeyPressed,
-      down: this.downKeyPressed,
-      a: this.aKey,
-      t: this.tKey,
-      space: this.spaceKeyPressed,
-      c: this.cKey,
-    });
+  update() {
+    const left = this.leftKeyPressed,
+      right = this.rightKeyPressed,
+      up = this.upKeyPressed,
+      down = this.downKeyPressed,
+      space = this.spaceKeyPressed,
+      ak = this.aKey,
+      tk = this.tKey,
+      ck = this.cKey;
+
+    this.cursors.left.isDown ? this.leftKeyPressed = true :
+      this.cursors.right.isDown ? this.rightKeyPressed = true :
+      (this.leftKeyPressed = false, this.rightKeyPressed = false)
+
+    this.cursors.up.isDown ? this.upKeyPressed = true :
+      this.cursors.down.isDown ? this.downKeyPressed = true :
+      (this.upKeyPressed = false, this.downKeyPressed = false)
+
+    this.aKeyPressed.isDown ? this.aKey = true : this.aKey = false
+    this.tKeyPressed.isDown ? this.tKey = true : this.tKey = false
+
+    this.cKeyPressed.isDown ? this.cKey = true : this.cKey = false
+
+    this.cursors.space.isDown ? this.spaceKeyPressed = true : this.spaceKeyPressed = false
+
+
+    if (left !== this.leftKeyPressed ||
+      right !== this.rightKeyPressed ||
+      up !== this.upKeyPressed ||
+      down !== this.downKeyPressed ||
+      ak !== this.aKey ||
+      tk !== this.tKey ||
+      ck !== this.cKey ||
+      space !== this.spaceKeyPressed) {
+      this.socket.emit('playerInput', {
+        left: this.leftKeyPressed,
+        right: this.rightKeyPressed,
+        up: this.upKeyPressed,
+        down: this.downKeyPressed,
+        a: this.aKey,
+        t: this.tKey,
+        space: this.spaceKeyPressed,
+        c: this.cKey,
+      });
+    }
   }
-}
-
-function displayPlayers(self, playerInfo, iscurrent) {
+  /**
+   * Affiche le(s) nouveau(x) joueur(s) et definit ses parametres
+   * @param  {Object} self parametres class Multijoueur
+   * @param  {Object} playerInfo liste des parametres du joueur (scale,depth,x,y ...)
+   * @param  {Boolean} iscurrent true: camera suit le joueur actuel , false: ne suit pas
+   * @return {void}
+   */
+  displayPlayers(self, playerInfo, iscurrent) {
     self.player = self.physics.add.sprite(playerInfo.x, playerInfo.y, playerInfo.atlas, 'face1').setOrigin(0.5, 0.5).setDisplaySize(200, 200).setSize(200);
     self.player.playerId = playerInfo.playerId;
     self.players.add(self.player);
@@ -305,3 +336,4 @@ function displayPlayers(self, playerInfo, iscurrent) {
       });
     }
   }
+}
