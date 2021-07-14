@@ -15,7 +15,7 @@ Commandes :
 | `npm install` | Installation des dépendances.|
 | `npm start` | Executer le jeu. <br> Taper:  `Ctrl + c` pour stopper le serveur. |
 
-##IDEE
+## IDÉES
 
 Bombes
 Cartons
