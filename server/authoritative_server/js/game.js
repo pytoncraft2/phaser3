@@ -163,6 +163,8 @@ if (input.right) {
 
     if (input.c) {
       console.log("CCCCCCCCCCCCCCCCCCCCCC");
+      if (input.left) player.setVelocityX(-800);
+      if (input.right) player.setVelocityX(800);
     }
 
 
