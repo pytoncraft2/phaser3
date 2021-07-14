@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/socket.io": "^3.0.2",
     "canvas": "^2.7.0",
     "datauri": "^3.0.0",
     "express": "^5.0.0-alpha.8",
