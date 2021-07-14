@@ -113,13 +113,17 @@ function update() {
         player.scale = player.scale - 0.003;
         player.y -= 2;
         player.depth = player.depth - 1;
+        if (!input.space) {
         player.anim = 'goback';
+       }
       }
       if (player.x > 605 /*&& player.scale >= 0.223*/ ) {
         player.scale = player.scale - 0.003;
         player.y -= 2;
         player.depth = player.depth - 1;
+        if (!input.space) {
         player.anim = 'goback';
+        }
       }
     }
 
@@ -128,11 +132,15 @@ function update() {
       player.scale = player.scale + 0.003;
       player.y += 2;
       player.depth += 1;
+      if (!input.space) {
       player.anim = 'front';
+      }
     }
 
     if (input.a) {
+      if (!input.space) {
       player.anim = 'attack1';
+      }
       player.setSize(900);
       player.attack = true;
       player.wall = true;
