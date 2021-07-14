@@ -144,6 +144,7 @@ function update() {
 
     if (input.space) {
       console.log('espace');
+      player.anim = 'jump';
     }
 
 

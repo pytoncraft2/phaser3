@@ -89,6 +89,17 @@ export default class Multijoueur extends Phaser.Scene {
       repeat: 0
     });
 
+
+    this.anims.create({
+      key: "jump_dessinatrice1",
+      frames: this.anims.generateFrameNumbers('dessinatrice1', {
+        frames: ['jump0', 'jump1', 'jump2', 'jump3', 'jump4', 'jump5', 'jump6', 'jump0']
+      }),
+      frameRate: 6,
+      repeat: 0
+    });
+
+
     this.anims.create({
       key: "front_dessinatrice1",
       frames: this.anims.generateFrameNumbers('dessinatrice1', {
@@ -100,7 +111,7 @@ export default class Multijoueur extends Phaser.Scene {
     this.anims.create({
       key: "walk_dessinatrice1",
       frames: this.anims.generateFrameNumbers('dessinatrice1', {
-        frames: ['profil_jkd15', 'profil_jkd14', 'profil_jkd13', 'profil_jkd14', 'profil_jkd8']
+        frames: ['profil3', 'profil4', 'profil5', 'profil6']
       }),
       frameRate: 5,
       repeat: 0
@@ -140,109 +151,6 @@ export default class Multijoueur extends Phaser.Scene {
       frameRate: 5,
       repeat: 0
     });
-    this.anims.create({
-      key: "attack1_dessinatrice2",
-      frames: this.anims.generateFrameNumbers('dessinatrice2', {
-        frames: ['profil', 'position_a1', 'position_a2', 'position_a3', 'profil']
-      }),
-      frameRate: 6,
-      repeat: 0
-    });
-
-    this.anims.create({
-      key: "goback_dessinatrice2",
-      frames: this.anims.generateFrameNumbers('dessinatrice2', {
-        frames: ['dos5', 'dos7.8', 'dos8', 'dos9', 'dos10', 'dos11', 'dos3']
-      }),
-      frameRate: 7,
-      repeat: 0
-    });
-
-    this.anims.create({
-      key: "front_dessinatrice2",
-      frames: this.anims.generateFrameNumbers('dessinatrice2', {
-        frames: ['face5', 'face2', 'face3', 'face4', 'face1']
-      }),
-      frameRate: 6,
-      repeat: 0
-    });
-    this.anims.create({
-      key: "walk_dessinatrice2",
-      frames: this.anims.generateFrameNumbers('dessinatrice2', {
-        frames: ['profil_jkd15', 'profil_jkd14', 'profil_jkd13', 'profil_jkd14', 'profil_jkd8']
-      }),
-      frameRate: 5,
-      repeat: 0
-    });
-    this.anims.create({
-      key: "attack1_dessinatrice3",
-      frames: this.anims.generateFrameNumbers('dessinatrice3', {
-        frames: ['profil', 'position_a1', 'position_a2', 'position_a3', 'profil']
-      }),
-      frameRate: 6,
-      repeat: 0
-    });
-
-    this.anims.create({
-      key: "goback_dessinatrice3",
-      frames: this.anims.generateFrameNumbers('dessinatrice3', {
-        frames: ['dos5', 'dos7.8', 'dos8', 'dos9', 'dos10', 'dos11', 'dos3']
-      }),
-      frameRate: 7,
-      repeat: 0
-    });
-
-    this.anims.create({
-      key: "front_dessinatrice3",
-      frames: this.anims.generateFrameNumbers('dessinatrice3', {
-        frames: ['face5', 'face2', 'face3', 'face4', 'face1']
-      }),
-      frameRate: 6,
-      repeat: 0
-    });
-    this.anims.create({
-      key: "walk_dessinatrice3",
-      frames: this.anims.generateFrameNumbers('dessinatrice3', {
-        frames: ['profil_jkd15', 'profil_jkd14', 'profil_jkd13', 'profil_jkd14', 'profil_jkd8']
-      }),
-      frameRate: 5,
-      repeat: 0
-    });
-    this.anims.create({
-      key: "attack1_dessinatrice4",
-      frames: this.anims.generateFrameNumbers('dessinatrice4', {
-        frames: ['profil', 'position_a1', 'position_a2', 'position_a3', 'profil']
-      }),
-      frameRate: 6,
-      repeat: 0
-    });
-
-    this.anims.create({
-      key: "goback_dessinatrice4",
-      frames: this.anims.generateFrameNumbers('dessinatrice4', {
-        frames: ['dos5', 'dos7.8', 'dos8', 'dos9', 'dos10', 'dos11', 'dos3']
-      }),
-      frameRate: 7,
-      repeat: 0
-    });
-
-    this.anims.create({
-      key: "front_dessinatrice4",
-      frames: this.anims.generateFrameNumbers('dessinatrice4', {
-        frames: ['face5', 'face2', 'face3', 'face4', 'face1']
-      }),
-      frameRate: 6,
-      repeat: 0
-    });
-    this.anims.create({
-      key: "walk_dessinatrice4",
-      frames: this.anims.generateFrameNumbers('dessinatrice4', {
-        frames: ['profil_jkd15', 'profil_jkd14', 'profil_jkd13', 'profil_jkd14', 'profil_jkd8']
-      }),
-      frameRate: 5,
-      repeat: 0
-    });
-
     /**
      * CONNEXION
      * Démarre connexion socket
