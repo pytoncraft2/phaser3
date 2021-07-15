@@ -201,8 +201,8 @@ function addPlayer(self, playerInfo) {
   player.setMaxVelocity(200);
   player.playerId = playerInfo.playerId;
   player.alpha = playerInfo.alpha;
-  player.body.allowGravity = false
   self.players.add(player);
+  player.body.allowGravity = false
 }
 
 function removePlayer(self, playerId) {
