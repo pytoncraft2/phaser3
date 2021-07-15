@@ -32,3 +32,5 @@ Déplacement latérale / Esquive : meme image position combat (double pression t
 Déplacement en Z collision
 
 Mode vue restreint autour du personnage sombre
+
+Tir
