@@ -329,6 +329,7 @@ export default class Multijoueur extends Phaser.Scene {
   displayPlayers(self, playerInfo, iscurrent) {
     self.player = self.physics.add.sprite(playerInfo.x, playerInfo.y, playerInfo.atlas, 'face1').setOrigin(0.5, 0.5).setDisplaySize(200, 200).setSize(200);
     self.player.playerId = playerInfo.playerId;
+    self.player.body.allowGravity = false
     self.players.add(self.player);
     if (iscurrent) {
       self.cameras.main.startFollow(self.player);
