@@ -10,7 +10,7 @@ const config = {
     arcade: {
       debug: false,
       gravity: {
-        y: 0
+        y: 100
       }
     }
   },
@@ -25,14 +25,20 @@ const config = {
 function create() {
   const self = this;
   let count = 0;
-  this.players = this.physics.add.group();
+  this.players = this.physics.add.group({
+      immovable: true,
+      allowGravity: false
+  });
+
   this.physics.add.collider(this.players, this.players, col, (player, player2) => {
 
     if (players[player.playerId].anim == 'attack1') {
       count++;
       console.log(count);
+      console.log(player2);
       if (count == 20) {
       player2.alpha = player2.alpha - 0.2;
+      player2.setVelocityY(300);
       count = 0;
       }
     }
@@ -98,7 +104,7 @@ function create() {
 function update() {
   this.players.getChildren().forEach((player) => {
     const input = players[player.playerId].input;
-    player.setVelocity(0);
+    // player.setVelocity(0);
     player.setSize(200);
     player.anim = false;
     player.attack = false;

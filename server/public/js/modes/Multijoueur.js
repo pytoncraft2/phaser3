@@ -173,10 +173,15 @@ export default class Multijoueur extends Phaser.Scene {
       }
     });
 
-    this.players = this.add.group();
+    this.players = this.add.group({
+        immovable: true,
+        allowGravity: false
+    });
 
     this.add.image(-300, 350, 'bg').setDepth(-54);
     this.doors = this.physics.add.image(-300, 280, 'doors').setDepth(-20);
+    this.doors.body.allowGravity = false;
+    this.doors.body.immovable = true;
 
     /**
      * JOUEUR PRINCIPAL
@@ -229,10 +234,6 @@ export default class Multijoueur extends Phaser.Scene {
       Object.keys(players).forEach(function(id) {
         self.players.getChildren().forEach(function(player) {
           if (players[id].playerId === player.playerId) {
-            player.flipX = (players[id].flipX);
-            player.setScale(players[id].scale);
-            player.setPosition(players[id].x, players[id].y);
-            player.setDepth(players[id].depth);
             player.setAlpha(players[id].alpha);
 
             if (players[id].anim && players[id].anim !== false) {
@@ -327,10 +328,13 @@ export default class Multijoueur extends Phaser.Scene {
   displayPlayers(self, playerInfo, iscurrent) {
     self.player = self.physics.add.sprite(playerInfo.x, playerInfo.y, playerInfo.atlas, 'face1').setOrigin(0.5, 0.5).setDisplaySize(200, 200).setSize(200);
     self.player.playerId = playerInfo.playerId;
+    self.player.allowGravity = false
     self.players.add(self.player);
+
     if (iscurrent) {
       self.cameras.main.startFollow(self.player);
-      self.player.setCollideWorldBounds(true);
+      // self.player.setCollideWorldBounds(true);
+    self.player.allowGravity = false
       self.physics.add.overlap(self.player, self.doors, function(player, doors) {
         player.y < 399 ? doors.alpha = 0.5 : doors.alpha = 1
       });
