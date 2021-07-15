@@ -31,10 +31,13 @@ function create() {
     if (players[player.playerId].anim == 'attack1') {
       count++;
       // console.log(count);
-      console.log(player2.body);
+      // console.log(player2.body);
       if (count == 20) {
       player2.alpha = player2.alpha - 0.2;
-      player2.body.x = player2.body.x + 100;
+      player2.body.x = player2.body.x + (player2.flipX !== player.flipX ? 100 : -100);
+      console.log(player2.flipX);
+      console.log(player.flipX);
+      // flipx ? +100 : -100;
       // player2.body.allowGravity = true;
       // player2.setVelocityY(300);
       count = 0;
