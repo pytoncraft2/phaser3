@@ -30,3 +30,5 @@ Bar d'endurance / Vie
 Déplacement latérale / Esquive : meme image position combat (double pression touche / CTRL)
 
 Déplacement en Z collision
+
+Mode vue restreint autour du personnage sombre
