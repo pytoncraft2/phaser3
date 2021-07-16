@@ -32,9 +32,9 @@ function create() {
       count++;
       // console.log(count);
       // console.log(player2.body);
+      player2.body.x = player2.body.x + (player2.flipX !== player.flipX ? 100 : -100);
       if (count == 20) {
       player2.alpha = player2.alpha - 0.2;
-      player2.body.x = player2.body.x + (player2.flipX !== player.flipX ? 100 : -100);
       console.log(player2.flipX);
       console.log(player.flipX);
       // flipx ? +100 : -100;
