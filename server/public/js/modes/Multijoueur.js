@@ -100,10 +100,20 @@ export default class Multijoueur extends Phaser.Scene {
     });
 
 
+    // this.anims.create({
+    //   key: "jump_dessinatrice1",
+    //   frames: this.anims.generateFrameNumbers('dessinatrice1', {
+    //     frames: ['jump0', 'jump1', 'jump1.1', 'jump2', 'jump3', 'jump4', 'jump5', 'jump5.1', 'jump0']
+    //   }),
+    //   frameRate: 8,
+    //   repeat: 0
+    // });
+    //
+
     this.anims.create({
       key: "jump_dessinatrice1",
       frames: this.anims.generateFrameNumbers('dessinatrice1', {
-        frames: ['jump0', 'jump1', 'jump1.1', 'jump2', 'jump3', 'jump4', 'jump5', 'jump5.1', 'jump0']
+        frames: ['jumpa0', 'jumpa1', 'jumpa2', 'jumpa3', 'jumpa4', 'jumpa5', 'jumpa6']
       }),
       frameRate: 8,
       repeat: 0
