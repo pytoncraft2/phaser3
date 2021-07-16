@@ -105,7 +105,7 @@ export default class Multijoueur extends Phaser.Scene {
       frames: this.anims.generateFrameNumbers('dessinatrice1', {
         frames: ['jump0', 'jump1', 'jump1.1', 'jump2', 'jump3', 'jump4', 'jump5', 'jump5.1', 'jump0']
       }),
-      frameRate: 1,
+      frameRate: 8,
       repeat: 0
     });
 
