@@ -14,9 +14,9 @@
             }
         },
         {
-            "filename": "profil_jkd15",
+            "filename": "profil_jkd14",
             "frame": {
-                "w": 427,
+                "w": 275,
                 "h": 969,
                 "x": 336,
                 "y": 0
@@ -31,7 +31,7 @@
             "frame": {
                 "w": 333,
                 "h": 969,
-                "x": 763,
+                "x": 611,
                 "y": 0
             },
             "anchor": {
@@ -44,7 +44,7 @@
             "frame": {
                 "w": 335,
                 "h": 969,
-                "x": 1096,
+                "x": 944,
                 "y": 0
             },
             "anchor": {
@@ -57,7 +57,7 @@
             "frame": {
                 "w": 336,
                 "h": 969,
-                "x": 1431,
+                "x": 1279,
                 "y": 0
             },
             "anchor": {
@@ -70,7 +70,7 @@
             "frame": {
                 "w": 314,
                 "h": 969,
-                "x": 1767,
+                "x": 1615,
                 "y": 0
             },
             "anchor": {
@@ -300,7 +300,7 @@
             }
         },
         {
-            "filename": "pas_jkd2",
+            "filename": "pas_jkd3",
             "frame": {
                 "w": 865,
                 "h": 969,
@@ -313,7 +313,7 @@
             }
         },
         {
-            "filename": "pas_jkd3",
+            "filename": "pas_jkd4",
             "frame": {
                 "w": 865,
                 "h": 969,
@@ -326,9 +326,9 @@
             }
         },
         {
-            "filename": "pas_jkd4",
+            "filename": "position_a1",
             "frame": {
-                "w": 865,
+                "w": 787,
                 "h": 969,
                 "x": 865,
                 "y": 4955
@@ -339,11 +339,11 @@
             }
         },
         {
-            "filename": "position_a1",
+            "filename": "pas_jkd2",
             "frame": {
-                "w": 787,
+                "w": 865,
                 "h": 969,
-                "x": 1730,
+                "x": 1652,
                 "y": 4955
             },
             "anchor": {
@@ -430,11 +430,37 @@
             }
         },
         {
-            "filename": "profil_jkd14",
+            "filename": "profil_jkd15",
             "frame": {
-                "w": 275,
+                "w": 427,
                 "h": 969,
                 "x": 924,
+                "y": 5924
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "jump1.1",
+            "frame": {
+                "w": 884,
+                "h": 2184,
+                "x": 1351,
+                "y": 5924
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "jump5.1",
+            "frame": {
+                "w": 768,
+                "h": 1972,
+                "x": 2235,
                 "y": 5924
             },
             "anchor": {
