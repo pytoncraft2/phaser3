@@ -15,7 +15,7 @@ Commandes :
 | `npm install` | Installation des dépendances.|
 | `npm start` | Executer le jeu. <br> Taper:  `Ctrl + c` pour stopper le serveur. |
 
-## IDÉES
+## IDÉES 💡
 
 Bombes
 Cartons
@@ -34,3 +34,5 @@ Déplacement en Z collision
 Mode vue restreint autour du personnage sombre
 
 Tir
+
+Fusion de deux personnages & controle des capacités d'un personnages à deux joueurs & taille plus grande
