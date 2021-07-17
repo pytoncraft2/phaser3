@@ -38,3 +38,7 @@ Tir
 Fusion de deux personnages & controle des capacités d'un personnages à deux joueurs & taille plus grande
 
 protection
+
+Robots géant, humain vs streamer
+
+
