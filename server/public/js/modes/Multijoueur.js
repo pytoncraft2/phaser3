@@ -67,9 +67,7 @@ export default class Multijoueur extends Phaser.Scene {
     this.load.image('bg2', 'assets/fond/bgMenu.png');
 
     this.load.setPath('assets/spine/')
-    this.load.spine('boy', 'spineboy.json', 'spineboy.atlas')
-
-
+    this.load.spine('boy', 'spineboy-pro.json', [ 'spineboy-pro.atlas' ], true);
 
   }
 
@@ -81,10 +79,14 @@ export default class Multijoueur extends Phaser.Scene {
    * // OPTIMIZE: Chargement des animation
    */
   create() {
-    const spineBoy = this.add.spine(400, 600, 'boy', 'idle', true)
     var self = this;
-    console.log(self.scene.scene.physics.scene);
+    const spineBoy = self.add.spine(400, 600, 'boy', 'idle', true)
 
+//     const man = this.add.spine(512, 650, 'boy');
+//
+// const container = this.add.spineContainer();
+//
+// container.add(man);
     this.cameras.main.setBounds(-2074, 0, 3574, 666);
     this.physics.world.setBounds(-2074, 0, 3574, 666);
     this.cameras.main.fadeIn(4000);
