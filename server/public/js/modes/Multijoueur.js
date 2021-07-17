@@ -40,9 +40,6 @@ export default class Multijoueur extends Phaser.Scene {
 
   preload() {
 
-
-
-
     var progress = this.add.graphics();
 
     this.load.on('progress', function(value) {
