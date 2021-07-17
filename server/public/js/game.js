@@ -20,7 +20,13 @@ var config = {
         debug: false
     }
 },
-  scene: [ Menu, Selection, Solo, Multijoueur]
+  scene: [ Menu, Selection, Solo, Multijoueur],
+  pack: {
+  files: [
+    { type: 'scenePlugin', key: 'SpinePlugin', url: 'SpinePlugin.min.js', sceneKey: 'spine' }
+  ]
+}
+
 
 };
 

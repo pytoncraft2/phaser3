@@ -9,7 +9,15 @@
 export default class Multijoueur extends Phaser.Scene {
   constructor() {
     super({
-      key: "Multijoueur"
+      key: "Multijoueur",
+      pack: {
+        files: [{
+          type: 'scenePlugin',
+          key: 'SpinePlugin',
+          url: 'SpinePlugin.min.js',
+          sceneKey: 'spine'
+        }]
+      }
     });
   }
 
@@ -31,6 +39,10 @@ export default class Multijoueur extends Phaser.Scene {
    */
 
   preload() {
+
+
+
+
     var progress = this.add.graphics();
 
     this.load.on('progress', function(value) {
@@ -54,6 +66,11 @@ export default class Multijoueur extends Phaser.Scene {
     this.load.image('doors', 'assets/fond/doors.png');
     this.load.image('bg2', 'assets/fond/bgMenu.png');
 
+    this.load.setPath('assets/spine/')
+    this.load.spine('boy', 'spineboy.json', 'spineboy.atlas')
+
+
+
   }
 
   /**
@@ -64,6 +81,7 @@ export default class Multijoueur extends Phaser.Scene {
    * // OPTIMIZE: Chargement des animation
    */
   create() {
+    const spineBoy = this.add.spine(400, 600, 'boy', 'idle', true)
     var self = this;
     console.log(self.scene.scene.physics.scene);
 
@@ -74,7 +92,7 @@ export default class Multijoueur extends Phaser.Scene {
     this.anims.create({
       key: "attack1_dessinatrice1",
       frames: this.anims.generateFrameNumbers('dessinatrice1', {
-        frames: ['profil', 'position_a1', 'position_a2', 'position_a3', 'profil','pas_jkd']
+        frames: ['profil', 'position_a1', 'position_a2', 'position_a3', 'profil', 'pas_jkd']
       }),
       frameRate: 6,
       repeat: 0
@@ -83,7 +101,7 @@ export default class Multijoueur extends Phaser.Scene {
     this.anims.create({
       key: "run_dessinatrice1",
       frames: this.anims.generateFrameNumbers('dessinatrice1', {
-        frames: ['pas_jkd','pas_jkd2', 'pas_jkd4']
+        frames: ['pas_jkd', 'pas_jkd2', 'pas_jkd4']
       }),
       frameRate: 5,
       repeat: 0
@@ -121,7 +139,7 @@ export default class Multijoueur extends Phaser.Scene {
     this.anims.create({
       key: "walk_dessinatrice1",
       frames: this.anims.generateFrameNumbers('dessinatrice1', {
-        frames: ['profil_jkd11', 'profil_jkd13', 'profil_jkd14', 'profil_jkd15','profil_jkd8']
+        frames: ['profil_jkd11', 'profil_jkd13', 'profil_jkd14', 'profil_jkd15', 'profil_jkd8']
       }),
       frameRate: 5,
       repeat: 0
