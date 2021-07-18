@@ -65,6 +65,7 @@ export default class Multijoueur extends Phaser.Scene {
 
     this.load.setPath('assets/spine/')
     this.load.spine('boy', 'spineboy-pro.json', [ 'spineboy-pro.atlas' ], true);
+    this.load.spine('dessinatrice1spine', 'skeleton.json', [ 'skeleton.atlas' ], true);
 
   }
 
@@ -77,7 +78,18 @@ export default class Multijoueur extends Phaser.Scene {
    */
   create() {
     var self = this;
-    const spineBoy = self.add.spine(400, 600, 'boy', 'idle', true)
+    const spineDessinatrice = self.add.spine(1000, 647, 'dessinatrice1spine', 'animation', true)
+    // spineDessinatrice.setScale(0.4);
+    // var coin = this.add.spine(400, 200, 'coin', 'animation', true);
+
+    //  Resize the Spine dimensions because the original skeleton includes the shine bone,
+    //  rendering a simple bounds check useless. Not all Spine objects will require this, but this one does.
+    // spineDessinatrice.setSize(280, 280);
+
+    this.physics.add.existing(spineDessinatrice);
+    spineDessinatrice.setScale(0.4)
+    spineDessinatrice.body.allowGravity = false
+    // const spineBoy = self.add.spine(400, 600, 'boy', 'hoverboard', true)
 
 //     const man = this.add.spine(512, 650, 'boy');
 //
@@ -344,10 +356,14 @@ export default class Multijoueur extends Phaser.Scene {
    * @return {void}
    */
   displayPlayers(self, playerInfo, iscurrent) {
+    console.log(playerInfo.x);
+    console.log(playerInfo.y);
     self.player = self.physics.add.sprite(playerInfo.x, playerInfo.y, playerInfo.atlas, 'face1').setOrigin(0.5, 0.5).setDisplaySize(200, 200).setSize(200);
     self.player.playerId = playerInfo.playerId;
     self.player.body.allowGravity = false
     self.players.add(self.player);
+
+
     if (iscurrent) {
       self.cameras.main.startFollow(self.player);
       self.player.setCollideWorldBounds(true);
