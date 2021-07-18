@@ -41,4 +41,20 @@ protection
 
 Robots géant, humain vs streamer
 
+Pieces #moderne | capacités différentes/pouvoir pour les pieces
+
+Parcours sur le toit / saut
+
+Vaincre la status ennemi pour gagner
+
+
+
+ 
+
+
+
+
+
+
+
 
