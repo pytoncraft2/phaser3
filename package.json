@@ -17,6 +17,7 @@
     "express": "^5.0.0-alpha.8",
     "jsdom": "^16.5.3",
     "phaser": "^3.54.0",
+    "typescript": "^3.7.4",
     "socket.io": "^4.0.1"
   }
 }

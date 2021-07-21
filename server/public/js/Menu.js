@@ -21,7 +21,7 @@ export default class Menu extends Phaser.Scene {
    * @return {String}
    */
   create() {
-    var bgMenu = this.add.image(750, 350, 'bgMenu');
+    this.add.image(750, 350, 'bgMenu');
     const self = this;
     this.goSelectionS = this.add.text(695, 300, ['Solo']).setFontSize(42).setFontFamily('Trebuchet MS').setColor('#6badce').setShadow(2, 2, "white", 2, true, true);
     this.goSelectionM = this.add.text(650, 400, ['Multijoueur']).setFontSize(42).setFontFamily('Trebuchet MS').setColor('#6badce').setShadow(2, 2, "white", 2, true, true);
@@ -47,8 +47,7 @@ export default class Menu extends Phaser.Scene {
 
     //Logo
     this.logo = this.add.text(530, 30, 'Steam-Fighter', {
-      font: "74px Arial Black",
-      fill: "#009286"
+      font: "74px Arial Black"
     });
     this.logo.setShadow(2, 2, "#333333", 2, true, true);
   }
