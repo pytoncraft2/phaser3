@@ -59,14 +59,16 @@ export default class Multijoueur extends Phaser.Scene {
     this.liste.forEach((item, i) => {
       this.load.atlas(item, 'assets/personnages/' + item + '/' + item + '.png', 'assets/personnages/' + item + '/' + item + '_atlas.json');
     });
-    this.load.image('bg', 'assets/fond/bgGrand.png');
-    this.load.image('doors', 'assets/fond/doors.png');
-    this.load.image('bg2', 'assets/fond/bgMenu.png');
 
-    this.load.setPath('assets/spine/')
-    this.load.spine('boy', 'spineboy-pro.json', [ 'spineboy-pro.atlas' ], true);
+    this.load.setPath('assets/fond/')
+    this.load.image('bg', 'bgGrand.png');
+    this.load.image('doors', 'doors.png');
+    this.load.image('bg2', 'bgMenu.png');
+
+    this.load.setPath('assets/spine/images')
+    this.load.spine('dessinatrice1spine', 'spineboy-pro.json', [ 'spineboy-pro.atlas' ], true);
     // this.load.spine('dessinatrice1spine', 'skeleton.json', [ 'skeleton.atlas' ], true);
-    this.load.spine('dessinatrice1spine', 'skeleton1.json', [ 'skeleton1.atlas' ], true);
+    // this.load.spine('dessinatrice1spine', 'skeleton1.json', [ 'skeleton1.atlas' ], true);
 
   }
 
@@ -78,21 +80,26 @@ export default class Multijoueur extends Phaser.Scene {
    * // OPTIMIZE: Chargement des animation
    */
   create() {
+    const spineDessinatrice = this.add.spine(1000, 647, 'dessinatrice1spine', 'death', true)
     var self = this;
-    const spineDessinatrice = self.add.spine(1000, 647, 'dessinatrice1spine', 'idle', true)
+
+    // const spineDessinatrice2 = self.add.spine(1000, 647, 'dessinatrice2spine', 'idle', true)
     // spineDessinatrice.setScale(0.4);
     // var coin = this.add.spine(400, 200, 'coin', 'animation', true);
 
     //  Resize the Spine dimensions because the original skeleton includes the shine bone,
     //  rendering a simple bounds check useless. Not all Spine objects will require this, but this one does.
     // spineDessinatrice.setSize(280, 280);
+    // this.physics.add.existing(spineDessinatrice2);
+    // spineDessinatrice2.setScale(0.4)
+    // spineDessinatrice2.body.allowGravity = false
 
-    this.physics.add.existing(spineDessinatrice);
+  this.physics.add.existing(spineDessinatrice);
     spineDessinatrice.setScale(0.4)
     spineDessinatrice.body.allowGravity = false
     // const spineBoy = self.add.spine(400, 600, 'boy', 'hoverboard', true)
 
-//     const man = this.add.spine(512, 650, 'boy');
+    // const man = this.add.spine(512, 650, 'boy');
 //
 // const container = this.add.spineContainer();
 //
