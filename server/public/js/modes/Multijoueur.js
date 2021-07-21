@@ -65,7 +65,8 @@ export default class Multijoueur extends Phaser.Scene {
 
     this.load.setPath('assets/spine/')
     this.load.spine('boy', 'spineboy-pro.json', [ 'spineboy-pro.atlas' ], true);
-    this.load.spine('dessinatrice1spine', 'skeleton.json', [ 'skeleton.atlas' ], true);
+    // this.load.spine('dessinatrice1spine', 'skeleton.json', [ 'skeleton.atlas' ], true);
+    this.load.spine('dessinatrice1spine', 'skeleton1.json', [ 'skeleton1.atlas' ], true);
 
   }
 
@@ -78,7 +79,7 @@ export default class Multijoueur extends Phaser.Scene {
    */
   create() {
     var self = this;
-    const spineDessinatrice = self.add.spine(1000, 647, 'dessinatrice1spine', 'animation', true)
+    const spineDessinatrice = self.add.spine(1000, 647, 'dessinatrice1spine', 'idle', true)
     // spineDessinatrice.setScale(0.4);
     // var coin = this.add.spine(400, 200, 'coin', 'animation', true);
 
