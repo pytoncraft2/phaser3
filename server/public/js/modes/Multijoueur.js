@@ -5,8 +5,11 @@
  * Identifiant de la class Multijoueur
  * @type {String}
  */
+const SPINEBOY_KEY = 'spineboy'
 
 export default class Multijoueur extends Phaser.Scene {
+  animationNames = [];
+  animationIndex = 0;
   constructor() {
     super({
       key: "Multijoueur",
@@ -67,6 +70,7 @@ export default class Multijoueur extends Phaser.Scene {
 
     this.load.setPath('assets/spine/images')
     this.load.spine('dessinatrice1spine', 'spineboy-pro.json', [ 'spineboy-pro.atlas' ], true);
+    this.load.spine(SPINEBOY_KEY, 'spineboy-pro.json', 'spineboy-pro.atlas')
     // this.load.spine('dessinatrice1spine', 'skeleton.json', [ 'skeleton.atlas' ], true);
     // this.load.spine('dessinatrice1spine', 'skeleton1.json', [ 'skeleton1.atlas' ], true);
 
@@ -80,9 +84,14 @@ export default class Multijoueur extends Phaser.Scene {
    * // OPTIMIZE: Chargement des animation
    */
   create() {
-    const spineDessinatrice = this.add.spine(1000, 647, 'dessinatrice1spine', 'death', true)
+    // const spineDessinatrice = this.add.spine(1000, 647, 'dessinatrice1spine', 'death', true)
     var self = this;
+    const startAnim = 'idle'
 
+    this.spineBoy = this.createSpineBoy(startAnim)
+    this.cursors = this.input.keyboard.createCursorKeys()
+
+    this.initializeAnimationsState(this.spineBoy)
     // const spineDessinatrice2 = self.add.spine(1000, 647, 'dessinatrice2spine', 'idle', true)
     // spineDessinatrice.setScale(0.4);
     // var coin = this.add.spine(400, 200, 'coin', 'animation', true);
@@ -94,9 +103,9 @@ export default class Multijoueur extends Phaser.Scene {
     // spineDessinatrice2.setScale(0.4)
     // spineDessinatrice2.body.allowGravity = false
 
-  this.physics.add.existing(spineDessinatrice);
-    spineDessinatrice.setScale(0.4)
-    spineDessinatrice.body.allowGravity = false
+  // this.physics.add.existing(spineDessinatrice);
+    // spineDessinatrice.setScale(0.4)
+    // spineDessinatrice.body.allowGravity = false
     // const spineBoy = self.add.spine(400, 600, 'boy', 'hoverboard', true)
 
     // const man = this.add.spine(512, 650, 'boy');
@@ -304,6 +313,35 @@ export default class Multijoueur extends Phaser.Scene {
 
   }
 
+  createSpineBoy(startAnim = 'idle')
+	{
+		const spineBoy = this.add.spine(1000, 647, SPINEBOY_KEY, startAnim, true)
+
+		spineBoy.scaleX = 0.5
+		spineBoy.scaleY = 0.5
+
+		return spineBoy
+	}
+
+  initializeAnimationsState(spineGO)
+{
+  const startAnim = spineGO.getCurrentAnimation().name
+
+  spineGO.getAnimationList().forEach((name, idx) => {
+    this.animationNames.push(name)
+    if (name === startAnim)
+    {
+      this.animationIndex = idx
+    }
+  })
+}
+
+changeAnimation(index)
+{
+  const name = this.animationNames[index]
+  this.spineBoy.play(name, true)
+}
+
   /**
    * Verifie l'état des touches et envoie au server si c'est true
    * @return {boolean} valeur des touches (true | false)
@@ -355,6 +393,35 @@ export default class Multijoueur extends Phaser.Scene {
         c: this.cKey,
       });
     }
+
+    const size = this.animationNames.length
+		if (this.cursors.up.isDown)
+		{
+      console.log('up down');
+			if (this.animationIndex >= size - 1)
+			{
+				this.animationIndex = 0
+			}
+			else
+			{
+				++this.animationIndex
+			}
+
+			this.changeAnimation(this.animationIndex)
+		}
+		else if (this.cursors.down.isDown)
+		{
+			if (this.animationIndex <= 0)
+			{
+				this.animationIndex = size - 1
+			}
+			else
+			{
+				--this.animationIndex
+			}
+
+			this.changeAnimation(this.animationIndex)
+		}
   }
   /**
    * Affiche le(s) nouveau(x) joueur(s) et definit ses parametres
