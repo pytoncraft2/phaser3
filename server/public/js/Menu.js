@@ -12,7 +12,6 @@ export default class Menu extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image('bgMenu', 'assets/fond/bgMenu.png');
   }
 
   /**
@@ -21,11 +20,10 @@ export default class Menu extends Phaser.Scene {
    * @return {String}
    */
   create() {
-    this.add.image(750, 350, 'bgMenu');
     const self = this;
-    this.goSelectionS = this.add.text(695, 300, ['Solo']).setFontSize(42).setFontFamily('Trebuchet MS').setColor('#6badce').setShadow(2, 2, "white", 2, true, true);
-    this.goSelectionM = this.add.text(650, 400, ['Multijoueur']).setFontSize(42).setFontFamily('Trebuchet MS').setColor('#6badce').setShadow(2, 2, "white", 2, true, true);
-    this.fullscreen = this.add.text(640, 500, ['Pleine Ecran']).setFontSize(42).setFontFamily('Trebuchet MS').setColor('#6badce').setShadow(2, 2, "white", 2, true, true);
+    this.goSelectionS = this.add.text(695, 300, ['Solo']).setFontSize(42).setFontFamily('Trebuchet MS').setColor('#6badce');
+    this.goSelectionM = this.add.text(650, 400, ['Multijoueur']).setFontSize(42).setFontFamily('Trebuchet MS').setColor('#6badce');
+    this.fullscreen = this.add.text(640, 500, ['Pleine Ecran']).setFontSize(42).setFontFamily('Trebuchet MS').setColor('#6badce');
 
     // Pleine ecran
     this.fullscreen.setInteractive().on('pointerup', function() {
