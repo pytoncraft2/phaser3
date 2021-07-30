@@ -69,7 +69,7 @@ export default class Multijoueur extends Phaser.Scene {
     this.load.image('bg2', 'bgMenu.png');
 
     this.load.setPath('assets/spine/images')
-    this.load.spine('dessinatrice1spine', 'spineboy-pro.json', [ 'spineboy-pro.atlas' ], true);
+    this.load.spine('dessinatrice1spine', 'spineboy-pro.json', ['spineboy-pro.atlas'], true);
     this.load.spine(SPINEBOY_KEY, 'spineboy-pro.json', 'spineboy-pro.atlas')
     // this.load.spine('dessinatrice1spine', 'skeleton.json', [ 'skeleton.atlas' ], true);
     // this.load.spine('dessinatrice1spine', 'skeleton1.json', [ 'skeleton1.atlas' ], true);
@@ -103,16 +103,16 @@ export default class Multijoueur extends Phaser.Scene {
     // spineDessinatrice2.setScale(0.4)
     // spineDessinatrice2.body.allowGravity = false
 
-  // this.physics.add.existing(spineDessinatrice);
+    // this.physics.add.existing(spineDessinatrice);
     // spineDessinatrice.setScale(0.4)
     // spineDessinatrice.body.allowGravity = false
     // const spineBoy = self.add.spine(400, 600, 'boy', 'hoverboard', true)
 
     // const man = this.add.spine(512, 650, 'boy');
-//
-// const container = this.add.spineContainer();
-//
-// container.add(man);
+    //
+    // const container = this.add.spineContainer();
+    //
+    // container.add(man);
     this.cameras.main.setBounds(-2074, 0, 3574, 666);
     this.physics.world.setBounds(-2074, 0, 3574, 666);
     this.cameras.main.fadeIn(4000);
@@ -313,36 +313,36 @@ export default class Multijoueur extends Phaser.Scene {
 
   }
 
-  createSpineBoy(startAnim = 'idle')
-	{
-		const spineBoy = this.add.spine(1000, 647, SPINEBOY_KEY, startAnim, true)
+  createSpineBoy(startAnim = 'idle') {
+    const spineBoy = this.add.spine(1000, 647, SPINEBOY_KEY, startAnim, true)
+    spineBoy.setSize(280, 680);
+    this.physics.add.existing(spineBoy);
+    spineBoy.body.allowGravity = false
+
     var anims = spineBoy.getAnimationList();
     console.log(anims);
 
-		spineBoy.scaleX = 0.5
-		spineBoy.scaleY = 0.5
+    spineBoy.scaleX = 0.5
+    spineBoy.scaleY = 0.5
 
-		return spineBoy
-	}
+    return spineBoy
+  }
 
-  initializeAnimationsState(spineGO)
-{
-  const startAnim = spineGO.getCurrentAnimation().name
+  initializeAnimationsState(spineGO) {
+    const startAnim = spineGO.getCurrentAnimation().name
 
-  spineGO.getAnimationList().forEach((name, idx) => {
-    this.animationNames.push(name)
-    if (name === startAnim)
-    {
-      this.animationIndex = idx
-    }
-  })
-}
+    spineGO.getAnimationList().forEach((name, idx) => {
+      this.animationNames.push(name)
+      if (name === startAnim) {
+        this.animationIndex = idx
+      }
+    })
+  }
 
-changeAnimation(index)
-{
-  const name = this.animationNames[index]
-  this.spineBoy.play(name, true)
-}
+  changeAnimation(index) {
+    const name = this.animationNames[index]
+    this.spineBoy.play(name, true)
+  }
 
   /**
    * Verifie l'état des touches et envoie au server si c'est true
@@ -399,30 +399,32 @@ changeAnimation(index)
     const size = this.animationNames.length
     const startAnim = this.spineBoy.getCurrentAnimation().name
 
-		if (this.cursors.right.isDown) {
+    if (this.cursors.right.isDown) {
+      if (startAnim !== 'walk') {
       this.spineBoy.play('walk');
-      console.log("____________");
-      console.log(startAnim);
+      this.spineBoy.on('complete', (spine) => {
+          this.spineBoy.play('idle');
+      })
+      }
     }
 
-		if (this.cursors.left.isDown) {
+    if (this.cursors.left.isDown) {
+      if (startAnim !== 'walk') {
       this.spineBoy.play('walk');
-      console.log("____________");
-      console.log(startAnim);
+      this.spineBoy.on('complete', (spine) => {
+          this.spineBoy.play('idle');
+      })
+      }
     }
 
     if (this.cursors.space.isDown) {
       if (startAnim !== 'jump') {
-      this.spineBoy.play('jump');
-      this.spineBoy.on('complete', (spine) => {
-      console.log('Loop Completed')
-      this.spineBoy.play('idle');
-      })
+        this.spineBoy.play('jump');
+        this.spineBoy.on('complete', (spine) => {
+          this.spineBoy.play('idle');
+        })
       }
-      console.log("____________");
-      console.log(startAnim);
     }
-
   }
   /**
    * Affiche le(s) nouveau(x) joueur(s) et definit ses parametres
