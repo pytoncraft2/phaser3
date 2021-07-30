@@ -378,31 +378,27 @@ export default class Multijoueur extends Phaser.Scene {
     let walk2 = false;
 
     if (this.cursors.right.isDown && startAnim !== 'walk') {
-      // if (startAnim !== 'walk' && dir === false) {
       this.spineBoy.play('walk');
-
-          // this.spineBoy.body.setOffset(width - 200 , height)
           this.spineBoy.body.setSize(280, 680)
+          this.spineBoy.body.setVelocityX(300)
           this.spineBoy.scaleX = 0.5;
           this.spineBoy.body.setOffset(0 , 0)
-          // dir = true;
           this.spineBoy.on('complete', (spine) => {
           this.spineBoy.play('idle');
+          this.spineBoy.body.setVelocityX(0)
         })
-      // }
     }
 
     if (this.cursors.left.isDown) {
       walk2 = true;
       if (startAnim !== 'walk' && walk2 === true) {
           this.spineBoy.play('walk');
-          // this.spineBoy.body.setSize(280, 680)
+          this.spineBoy.body.setVelocityX(-300)
           this.spineBoy.scaleX = -0.5;
           this.spineBoy.body.setOffset(280 , 0)
-          // this.spineBoy.body.setOffset(280 , 0)
-          // dir = false;
           this.spineBoy.on('complete', (spine) => {
           this.spineBoy.play('idle');
+          this.spineBoy.body.setVelocityX(0)
           walk2 = false;
         })
       }
