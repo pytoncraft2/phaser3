@@ -316,6 +316,8 @@ export default class Multijoueur extends Phaser.Scene {
   createSpineBoy(startAnim = 'idle')
 	{
 		const spineBoy = this.add.spine(1000, 647, SPINEBOY_KEY, startAnim, true)
+    var anims = spineBoy.getAnimationList();
+    console.log(anims);
 
 		spineBoy.scaleX = 0.5
 		spineBoy.scaleY = 0.5
@@ -395,33 +397,32 @@ changeAnimation(index)
     }
 
     const size = this.animationNames.length
-		if (this.cursors.up.isDown)
-		{
-      console.log('up down');
-			if (this.animationIndex >= size - 1)
-			{
-				this.animationIndex = 0
-			}
-			else
-			{
-				++this.animationIndex
-			}
+    const startAnim = this.spineBoy.getCurrentAnimation().name
 
-			this.changeAnimation(this.animationIndex)
-		}
-		else if (this.cursors.down.isDown)
-		{
-			if (this.animationIndex <= 0)
-			{
-				this.animationIndex = size - 1
-			}
-			else
-			{
-				--this.animationIndex
-			}
+		if (this.cursors.right.isDown) {
+      this.spineBoy.play('walk');
+      console.log("____________");
+      console.log(startAnim);
+    }
 
-			this.changeAnimation(this.animationIndex)
-		}
+		if (this.cursors.left.isDown) {
+      this.spineBoy.play('walk');
+      console.log("____________");
+      console.log(startAnim);
+    }
+
+    if (this.cursors.space.isDown) {
+      if (startAnim !== 'jump') {
+      this.spineBoy.play('jump');
+      this.spineBoy.on('complete', (spine) => {
+      console.log('Loop Completed')
+      this.spineBoy.play('idle');
+      })
+      }
+      console.log("____________");
+      console.log(startAnim);
+    }
+
   }
   /**
    * Affiche le(s) nouveau(x) joueur(s) et definit ses parametres
