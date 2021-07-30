@@ -91,28 +91,6 @@ export default class Multijoueur extends Phaser.Scene {
     this.spineBoy = this.createSpineBoy(startAnim)
     this.cursors = this.input.keyboard.createCursorKeys()
 
-    this.initializeAnimationsState(this.spineBoy)
-    // const spineDessinatrice2 = self.add.spine(1000, 647, 'dessinatrice2spine', 'idle', true)
-    // spineDessinatrice.setScale(0.4);
-    // var coin = this.add.spine(400, 200, 'coin', 'animation', true);
-
-    //  Resize the Spine dimensions because the original skeleton includes the shine bone,
-    //  rendering a simple bounds check useless. Not all Spine objects will require this, but this one does.
-    // spineDessinatrice.setSize(280, 280);
-    // this.physics.add.existing(spineDessinatrice2);
-    // spineDessinatrice2.setScale(0.4)
-    // spineDessinatrice2.body.allowGravity = false
-
-    // this.physics.add.existing(spineDessinatrice);
-    // spineDessinatrice.setScale(0.4)
-    // spineDessinatrice.body.allowGravity = false
-    // const spineBoy = self.add.spine(400, 600, 'boy', 'hoverboard', true)
-
-    // const man = this.add.spine(512, 650, 'boy');
-    //
-    // const container = this.add.spineContainer();
-    //
-    // container.add(man);
     this.cameras.main.setBounds(-2074, 0, 3574, 666);
     this.physics.world.setBounds(-2074, 0, 3574, 666);
     this.cameras.main.fadeIn(4000);
@@ -318,6 +296,7 @@ export default class Multijoueur extends Phaser.Scene {
     spineBoy.setSize(280, 680);
     this.physics.add.existing(spineBoy);
     spineBoy.body.allowGravity = false
+    // spineBoy.body.setOffset(0, 50);
 
     var anims = spineBoy.getAnimationList();
     console.log(anims);
@@ -393,23 +372,38 @@ export default class Multijoueur extends Phaser.Scene {
 
     const size = this.animationNames.length
     const startAnim = this.spineBoy.getCurrentAnimation().name
+    const bounds = this.spineBoy.getBounds()
+    const width = bounds.size.x
+    const height = bounds.size.y
+    let dir = false;
 
     if (this.cursors.right.isDown) {
-      if (startAnim !== 'walk') {
+      // if (startAnim !== 'walk' && dir === false) {
       this.spineBoy.play('walk');
-      this.spineBoy.on('complete', (spine) => {
+
+          // this.spineBoy.body.setOffset(width - 200 , height)
+          this.spineBoy.body.setSize(280, 680)
+          this.spineBoy.scaleX = -0.5;
+          this.spineBoy.body.setOffset(280 , 0)
+          // dir = true;
+          this.spineBoy.on('complete', (spine) => {
           this.spineBoy.play('idle');
-      })
-      }
+        })
+      // }
     }
 
     if (this.cursors.left.isDown) {
-      if (startAnim !== 'walk') {
-      this.spineBoy.play('walk');
-      this.spineBoy.on('complete', (spine) => {
+      // if (startAnim !== 'walk') {
+          this.spineBoy.play('walk');
+          // this.spineBoy.body.setSize(280, 680)
+          this.spineBoy.scaleX = 0.5;
+          this.spineBoy.body.setOffset(280 , 0)
+          // this.spineBoy.body.setOffset(280 , 0)
+          // dir = false;
+          this.spineBoy.on('complete', (spine) => {
           this.spineBoy.play('idle');
-      })
-      }
+        })
+      // }
     }
 
     if (this.cursors.space.isDown) {
