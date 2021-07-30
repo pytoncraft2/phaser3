@@ -339,11 +339,6 @@ export default class Multijoueur extends Phaser.Scene {
     })
   }
 
-  changeAnimation(index) {
-    const name = this.animationNames[index]
-    this.spineBoy.play(name, true)
-  }
-
   /**
    * Verifie l'état des touches et envoie au server si c'est true
    * @return {boolean} valeur des touches (true | false)
