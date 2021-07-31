@@ -163,12 +163,13 @@ export default class Multijoueur extends Phaser.Scene {
             player.setPosition(players[id].x, players[id].y);
             player.setDepth(players[id].depth);
             player.setAlpha(players[id].alpha);
-            // player.setOffset(players[id].offset)
+            let cur = player.getCurrentAnimation().name
 
-            console.log(player.getCurrentAnimation().name);
-
-            if (players[id].anim && players[id].anim !== false) {
+            if (players[id].anim !== cur) {
               player.play('' + players[id].anim + '');
+              player.on('complete', (spine) => {
+                player.play('idle');
+              })
             }
           }
         });
