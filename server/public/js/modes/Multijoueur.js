@@ -33,7 +33,8 @@ export default class Multijoueur extends Phaser.Scene {
 
   init(data) {
     this.personnage = data.personnage.slice(0, -1);
-    this.liste = ['dessinatrice1', 'dessinatrice2', 'dessinatrice3', 'dessinatrice4', 'naruto'];
+    console.log(data);
+    this.liste = ['dessinatrice1'];
   }
 
   /**
@@ -46,21 +47,13 @@ export default class Multijoueur extends Phaser.Scene {
     var progress = this.add.graphics();
 
     this.load.on('progress', function(value) {
-
       progress.clear();
       progress.fillStyle(0xffffff, 1);
       progress.fillRect(0, 200, 1400 * value, 60);
-
     });
 
     this.load.on('complete', function() {
-
       progress.destroy();
-
-    });
-
-    this.liste.forEach((item, i) => {
-      this.load.atlas(item, 'assets/personnages/' + item + '/' + item + '.png', 'assets/personnages/' + item + '/' + item + '_atlas.json');
     });
 
     this.load.setPath('assets/fond/')
@@ -95,96 +88,6 @@ export default class Multijoueur extends Phaser.Scene {
     this.physics.world.setBounds(-2074, 0, 3574, 666);
     this.cameras.main.fadeIn(4000);
 
-    this.anims.create({
-      key: "attack1_dessinatrice1",
-      frames: this.anims.generateFrameNumbers('dessinatrice1', {
-        frames: ['profil', 'position_a1', 'position_a2', 'position_a3', 'profil', 'pas_jkd']
-      }),
-      frameRate: 6,
-      repeat: 0
-    });
-
-    this.anims.create({
-      key: "run_dessinatrice1",
-      frames: this.anims.generateFrameNumbers('dessinatrice1', {
-        frames: ['pas_jkd', 'pas_jkd2', 'pas_jkd4']
-      }),
-      frameRate: 5,
-      repeat: 0
-    });
-
-
-    this.anims.create({
-      key: "goback_dessinatrice1",
-      frames: this.anims.generateFrameNumbers('dessinatrice1', {
-        frames: ['dos5', 'dos7.8', 'dos8', 'dos9', 'dos10', 'dos11', 'dos3']
-      }),
-      frameRate: 7,
-      repeat: 0
-    });
-
-
-    this.anims.create({
-      key: "jump_dessinatrice1",
-      frames: this.anims.generateFrameNumbers('dessinatrice1', {
-        frames: ['jump0', 'jump1', 'jump1.1', 'jump2', 'jump3', 'jump4', 'jump5', 'jump5.1', 'jump0']
-      }),
-      frameRate: 8,
-      repeat: 0
-    });
-
-
-    this.anims.create({
-      key: "front_dessinatrice1",
-      frames: this.anims.generateFrameNumbers('dessinatrice1', {
-        frames: ['face5', 'face2', 'face3', 'face4', 'face1']
-      }),
-      frameRate: 6,
-      repeat: 0
-    });
-    this.anims.create({
-      key: "walk_dessinatrice1",
-      frames: this.anims.generateFrameNumbers('dessinatrice1', {
-        frames: ['profil_jkd11', 'profil_jkd13', 'profil_jkd14', 'profil_jkd15', 'profil_jkd8']
-      }),
-      frameRate: 5,
-      repeat: 0
-    });
-
-    this.anims.create({
-      key: "attack1_naruto",
-      frames: this.anims.generateFrameNumbers('naruto', {
-        frames: ['profil', 'position_a1', 'position_a2', 'position_a3', 'profil']
-      }),
-      frameRate: 6,
-      repeat: 0
-    });
-
-    this.anims.create({
-      key: "goback_naruto",
-      frames: this.anims.generateFrameNumbers('naruto', {
-        frames: ['dos5', 'dos7.8', 'dos8', 'dos9', 'dos10', 'dos11', 'dos3']
-      }),
-      frameRate: 7,
-      repeat: 0
-    });
-
-    this.anims.create({
-      key: "front_naruto",
-      frames: this.anims.generateFrameNumbers('naruto', {
-        frames: ['face1', 'face2', 'face3', 'face4', 'face5', 'face7']
-      }),
-      frameRate: 6,
-      repeat: 0
-    });
-    this.anims.create({
-      key: "walk_naruto",
-      frames: this.anims.generateFrameNumbers('naruto', {
-        frames: ['profil3', 'profil4', 'profil5', 'profil6']
-      }),
-      frameRate: 5,
-      repeat: 0
-    });
     /**
      * CONNEXION
      * Démarre connexion socket

@@ -19,7 +19,7 @@ export default class Selection extends Phaser.Scene {
 
   init(data) {
     this.mode = data.mode
-    this.liste = ['dessinatrice1_', 'dessinatrice2_', 'dessinatrice3_', 'dessinatrice4_','naruto_'];
+    this.liste = ['dessinatrice1_'];
   }
 
   /**
@@ -54,7 +54,7 @@ export default class Selection extends Phaser.Scene {
 
       this.player.setInteractive().on('pointerdown', function() {
         self.scene.start('Multijoueur', {
-          personnage: this.frame.texture.key
+          personnage: 'spineBoy'
         });
       });
     });
