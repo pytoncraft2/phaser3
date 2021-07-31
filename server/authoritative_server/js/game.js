@@ -110,16 +110,66 @@ function update() {
     player.anim = false;
     player.attack = false;
     player.wall = false;
+    let walk2 = false;
 
-if (input.left && !input.c) {
-  player.setVelocityX(-300);
-  player.flipX = true, player.anim = 'walk';
+// if (input.left && !input.c) {
+  // player.setVelocityX(-300);
+  // player.flipX = true, player.anim = 'walk';
+// }
+
+if (input.right) {
+
+  if (player.anim !== 'walk' && walk2 === false) {
+      player.setSize(280, 680)
+  if (input.c) {
+      player.setVelocityX(600)
+      if (player.anim !== 'run') {
+      player.anim = 'run'
+      }
+    } else {
+      player.setVelocityX(300)
+      if (player.anim !== 'walk') {
+      player.anim = 'walk'
+      }
+    }
+      player.scaleX = 0.5;
+      player.setOffset(0 , 0)
+      player.on('complete', (spine) => {
+      player.anim = 'idle';
+      player.setVelocityX(0)
+    })
+  }
 }
 
-if (input.right && !input.c) {
-  player.setVelocityX(300);
-  player.flipX = false, player.anim = 'walk';
+if (input.left) {
+  walk2 = true;
+  if (player.anim !== 'walk' && walk2 === true) {
+  if (input.c) {
+      player.setVelocityX(-600)
+      if (player.anim !== 'run') {
+      player.anim = 'run'
+      }
+    } else {
+      player.setVelocityX(-300)
+      if (player.anim !== 'walk') {
+      player.anim = 'walk'
+      }
+    }
+      player.scaleX = -0.5;
+      player.setOffset(280 , 0)
+      player.on('complete', (spine) => {
+      player.anim = 'idle';
+      player.setVelocityX(0)
+      walk2 = false;
+    })
+  }
 }
+
+
+// if (input.right && !input.c) {
+  // player.setVelocityX(300);
+  // player.flipX = false, player.anim = 'walk';
+// }
 
     if (input.up) {
       if (player.x < 605 /*&& player.y > 405*/ ) {
@@ -152,7 +202,7 @@ if (input.right && !input.c) {
 
     if (input.a) {
       if (!input.space) {
-      player.anim = 'attack1';
+      player.anim = 'shoot';
       }
       player.setSize(900);
       player.attack = true;
@@ -164,12 +214,12 @@ if (input.right && !input.c) {
     }
 
     if (input.space) {
-      console.log('espace');
+      // console.log('espace');
       player.anim = 'jump';
     }
 
     if (input.c) {
-      console.log("CCCCCCCCCCCCCCCCCCCCCC");
+      // console.log("CCCCCCCCCCCCCCCCCCCCCC");
       if (input.left) player.setVelocityX(-800);
       if (input.right) player.setVelocityX(800);
       player.anim = 'run';
@@ -186,6 +236,8 @@ if (input.right && !input.c) {
     players[player.playerId].alpha = player.alpha;
     players[player.playerId].attack = player.attack;
     players[player.playerId].wall = player.wall;
+    players[player.playerId].offsetX = player.offsetX;
+    players[player.playerId].offsetY = player.offsetY;
   });
   //envoi mise à jour de tout les players
   io.emit('playerUpdates', players);
