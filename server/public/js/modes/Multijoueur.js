@@ -71,8 +71,7 @@ export default class Multijoueur extends Phaser.Scene {
     this.load.setPath('assets/spine/images')
     this.load.spine('dessinatrice1spine', 'spineboy-pro.json', ['spineboy-pro.atlas'], true);
     this.load.spine(SPINEBOY_KEY, 'spineboy-pro.json', 'spineboy-pro.atlas')
-    this.load.setPath('assets/spine/')
-    this.load.spine('m', 'skeleton.json', [ 'skeleton.atlas' ], true);
+    // this.load.spine('dessinatrice1spine', 'skeleton.json', [ 'skeleton.atlas' ], true);
     // this.load.spine('dessinatrice1spine', 'skeleton1.json', [ 'skeleton1.atlas' ], true);
 
   }
@@ -85,7 +84,7 @@ export default class Multijoueur extends Phaser.Scene {
    * // OPTIMIZE: Chargement des animation
    */
   create() {
-    const spineDessinatrice = this.add.spine(1000, 647, 'm', 'idle', true).setScale(0.5)
+    // const spineDessinatrice = this.add.spine(1000, 647, 'dessinatrice1spine', 'death', true)
     var self = this;
     const startAnim = 'idle'
 
@@ -308,17 +307,6 @@ export default class Multijoueur extends Phaser.Scene {
     return spineBoy
   }
 
-  initializeAnimationsState(spineGO) {
-    const startAnim = spineGO.getCurrentAnimation().name
-
-    spineGO.getAnimationList().forEach((name, idx) => {
-      this.animationNames.push(name)
-      if (name === startAnim) {
-        this.animationIndex = idx
-      }
-    })
-  }
-
   /**
    * Verifie l'état des touches et envoie au server si c'est true
    * @return {boolean} valeur des touches (true | false)
@@ -376,25 +364,55 @@ export default class Multijoueur extends Phaser.Scene {
     const bounds = this.spineBoy.getBounds()
     const width = bounds.size.x
     const height = bounds.size.y
+    let velocityR;
     let walk2 = false;
 
-    if (this.cursors.right.isDown && startAnim !== 'walk') {
-      this.spineBoy.play('walk');
+    if (this.aKeyPressed.isDown && startAnim !== 'shoot') {
+      this.spineBoy.play('shoot')
+    }
+
+    // if (this.cKeyPressed.isDown && startAnim !== 'run') {
+      // this.spineBoy.play('run')
+    // }
+
+    if (this.cursors.right.isDown) {
+
+      if (startAnim !== 'walk' && walk2 === false) {
           this.spineBoy.body.setSize(280, 680)
+      if (this.cKeyPressed.isDown) {
+          this.spineBoy.body.setVelocityX(600)
+          if (startAnim !== 'run') {
+          this.spineBoy.play('run')
+          }
+        } else {
           this.spineBoy.body.setVelocityX(300)
+          if (startAnim !== 'walk') {
+          this.spineBoy.play('walk')
+          }
+        }
           this.spineBoy.scaleX = 0.5;
           this.spineBoy.body.setOffset(0 , 0)
           this.spineBoy.on('complete', (spine) => {
           this.spineBoy.play('idle');
           this.spineBoy.body.setVelocityX(0)
         })
+      }
     }
 
     if (this.cursors.left.isDown) {
       walk2 = true;
       if (startAnim !== 'walk' && walk2 === true) {
-          this.spineBoy.play('walk');
+      if (this.cKeyPressed.isDown) {
+          this.spineBoy.body.setVelocityX(-600)
+          if (startAnim !== 'run') {
+          this.spineBoy.play('run')
+          }
+        } else {
           this.spineBoy.body.setVelocityX(-300)
+          if (startAnim !== 'walk') {
+          this.spineBoy.play('walk')
+          }
+        }
           this.spineBoy.scaleX = -0.5;
           this.spineBoy.body.setOffset(280 , 0)
           this.spineBoy.on('complete', (spine) => {
