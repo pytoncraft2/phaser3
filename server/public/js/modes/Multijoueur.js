@@ -79,10 +79,10 @@ export default class Multijoueur extends Phaser.Scene {
   create() {
     // const spineDessinatrice = this.add.spine(1000, 647, 'dessinatrice1spine', 'death', true)
     var self = this;
-    const startAnim = 'idle'
-
-    this.spineBoy = this.createSpineBoy(startAnim)
-    this.cursors = this.input.keyboard.createCursorKeys()
+    // const startAnim = 'idle'
+    //
+    // this.spineBoy = this.createSpineBoy(startAnim)
+    // this.cursors = this.input.keyboard.createCursorKeys()
 
     this.cameras.main.setBounds(-2074, 0, 3574, 666);
     this.physics.world.setBounds(-2074, 0, 3574, 666);
@@ -261,17 +261,17 @@ export default class Multijoueur extends Phaser.Scene {
         c: this.cKey,
       });
     }
-
+/*
     const size = this.animationNames.length
-    const startAnim = this.spineBoy.getCurrentAnimation().name
-    const bounds = this.spineBoy.getBounds()
+    const startAnim = this.player.getCurrentAnimation().name
+    const bounds = this.player.getBounds()
     const width = bounds.size.x
     const height = bounds.size.y
     let velocityR;
     let walk2 = false;
 
     if (this.aKeyPressed.isDown && startAnim !== 'shoot') {
-      this.spineBoy.play('shoot')
+      this.player.play('shoot')
     }
 
     // if (this.cKeyPressed.isDown && startAnim !== 'run') {
@@ -281,23 +281,23 @@ export default class Multijoueur extends Phaser.Scene {
     if (this.cursors.right.isDown) {
 
       if (startAnim !== 'walk' && walk2 === false) {
-          this.spineBoy.body.setSize(280, 680)
+          this.player.body.setSize(280, 680)
       if (this.cKeyPressed.isDown) {
-          this.spineBoy.body.setVelocityX(600)
+          this.player.body.setVelocityX(600)
           if (startAnim !== 'run') {
-          this.spineBoy.play('run')
+          this.player.play('run')
           }
         } else {
-          this.spineBoy.body.setVelocityX(300)
+          this.player.body.setVelocityX(300)
           if (startAnim !== 'walk') {
-          this.spineBoy.play('walk')
+          this.player.play('walk')
           }
         }
-          this.spineBoy.scaleX = 0.5;
-          this.spineBoy.body.setOffset(0 , 0)
-          this.spineBoy.on('complete', (spine) => {
-          this.spineBoy.play('idle');
-          this.spineBoy.body.setVelocityX(0)
+          this.player.scaleX = 0.5;
+          this.player.body.setOffset(0 , 0)
+          this.player.on('complete', (spine) => {
+          this.player.play('idle');
+          this.player.body.setVelocityX(0)
         })
       }
     }
@@ -306,21 +306,21 @@ export default class Multijoueur extends Phaser.Scene {
       walk2 = true;
       if (startAnim !== 'walk' && walk2 === true) {
       if (this.cKeyPressed.isDown) {
-          this.spineBoy.body.setVelocityX(-600)
+          this.player.body.setVelocityX(-600)
           if (startAnim !== 'run') {
-          this.spineBoy.play('run')
+          this.player.play('run')
           }
         } else {
-          this.spineBoy.body.setVelocityX(-300)
+          this.player.body.setVelocityX(-300)
           if (startAnim !== 'walk') {
-          this.spineBoy.play('walk')
+          this.player.play('walk')
           }
         }
-          this.spineBoy.scaleX = -0.5;
-          this.spineBoy.body.setOffset(280 , 0)
-          this.spineBoy.on('complete', (spine) => {
-          this.spineBoy.play('idle');
-          this.spineBoy.body.setVelocityX(0)
+          this.player.scaleX = -0.5;
+          this.player.body.setOffset(280 , 0)
+          this.player.on('complete', (spine) => {
+          this.player.play('idle');
+          this.player.body.setVelocityX(0)
           walk2 = false;
         })
       }
@@ -328,12 +328,13 @@ export default class Multijoueur extends Phaser.Scene {
 
     if (this.cursors.space.isDown) {
       if (startAnim !== 'jump') {
-        this.spineBoy.play('jump');
-        this.spineBoy.on('complete', (spine) => {
-          this.spineBoy.play('idle');
+        this.player.play('jump');
+        this.player.on('complete', (spine) => {
+          this.player.play('idle');
         })
       }
     }
+    */
   }
   /**
    * Affiche le(s) nouveau(x) joueur(s) et definit ses parametres
@@ -345,16 +346,20 @@ export default class Multijoueur extends Phaser.Scene {
   displayPlayers(self, playerInfo, iscurrent) {
     console.log(playerInfo.x);
     console.log(playerInfo.y);
-    self.player = self.physics.add.sprite(playerInfo.x, playerInfo.y, playerInfo.atlas, 'face1').setOrigin(0.5, 0.5).setDisplaySize(200, 200).setSize(200);
+    // self.player = self.physics.add.sprite(playerInfo.x, playerInfo.y, playerInfo.atlas, 'face1').setOrigin(0.5, 0.5).setDisplaySize(200, 200).setSize(200);
+    // self.player = self.add.spine(1000, 647, SPINEBOY_KEY, startAnim, true);
+    const startAnim = 'idle'
+    self.player = this.createSpineBoy(startAnim)
+
     self.player.playerId = playerInfo.playerId;
-    self.player.body.allowGravity = false
+    // self.player.body.allowGravity = false
     self.players.add(self.player);
 
 
     if (iscurrent) {
       self.cameras.main.startFollow(self.player);
-      self.player.setCollideWorldBounds(true);
-      self.player.body.allowGravity = false
+      // self.player.setCollideWorldBounds(true);
+      // self.player.body.allowGravity = false
       self.physics.add.overlap(self.player, self.doors, function(player, doors) {
         player.y < 399 ? doors.alpha = 0.5 : doors.alpha = 1
       });
