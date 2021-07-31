@@ -208,8 +208,8 @@ export default class Multijoueur extends Phaser.Scene {
     var anims = spineBoy.getAnimationList();
     console.log(anims);
 
-    spineBoy.scaleX = 0.5
-    spineBoy.scaleY = 0.5
+    // spineBoy.scaleX = 0.5
+    // spineBoy.scaleY = 0.5
 
     return spineBoy
   }
