@@ -80,16 +80,17 @@ export default class Multijoueur extends Phaser.Scene {
     this.logo = this.add.text(30, 170, 'Commandes', {
     font: "24px Arial Black"
     }).setColor('#6badce');
-    this.add.text(80, 200, '↑', {
+    this.add.text(80, 210, '↑', {
     font: "24px Arial Black"
     }).setColor('#20333D');
-    this.add.text(50, 230, '← ↓ →', {
+    this.add.text(50, 240, '← ↓ →', {
     font: "24px Arial Black"
     }).setColor('#20333D');
-    this.add.text(10, 300, 'Sauter ► Espace', {
+
+    this.add.text(1, 300, 'Attaquer ► A', {
     font: "24px Arial Black"
     }).setColor('#20333D');
-    this.add.text(10, 330, 'Attaquer ► A', {
+    this.add.text(4, 330, 'Sauter ► Espace', {
     font: "24px Arial Black"
     }).setColor('#20333D');
     this.add.text(-5, 360, 'Courir ► CTRL →', {
