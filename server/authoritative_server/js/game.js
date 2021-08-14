@@ -105,18 +105,20 @@ function create() {
 function update() {
   this.players.getChildren().forEach((player) => {
     const input = players[player.playerId].input;
+    console.log(player.body.offset.x);
     player.setVelocity(0);
     player.setSize(200);
     player.anim = false;
     player.attack = false;
     player.wall = false;
-
+/*
 if (input.left && !input.c) {
   player.setVelocityX(-300);
   if (player.anim !== 'walk') {
-  player.flipX = true, player.anim = 'walk';
+  player.anim = 'walk';
   }
 }
+*/
 
 if (input.right && !input.c) {
   player.setVelocityX(300);
@@ -174,12 +176,35 @@ if (input.right && !input.c) {
       }
     }
 
-    if (input.c) {
-      console.log("CCCCCCCCCCCCCCCCCCCCCC");
-      if (input.left) player.setVelocityX(-800);
-      if (input.right) player.setVelocityX(800);
-      player.anim = 'run';
+    // if (input.c) {
+      // if (input.left) player.setVelocityX(-800);
+      // if (input.right) player.setVelocityX(800);
+      // player.anim = 'run';
+    // }
+    if (input.left) {
+      walk2 = true;
+      if (player.anim !== 'walk' && walk2 === true) {
+          player.anim = 'walk';
+          player.setVelocityX(-300)
+          player.scaleX = -0.5;
+          player.setOffset(280 , 0)
+          // this.spineBoy.play('idle');
+          // this.spineBoy.body.setVelocityX(0)
+          walk2 = false;
+      }
     }
+
+    if (input.right) {
+      player.anim = 'walk';
+      player.setSize(280, 680)
+      player.setVelocityX(300)
+      player.scaleX = 0.5;
+      player.setOffset(0 , 0)
+      // this.spineBoy.on('complete', (spine) => {
+      // this.spineBoy.play('idle');
+      // this.spineBoy.body.setVelocityX(0)
+    // })
+  }
 
 
     players[player.playerId].x = player.x;
@@ -192,6 +217,9 @@ if (input.right && !input.c) {
     players[player.playerId].alpha = player.alpha;
     players[player.playerId].attack = player.attack;
     players[player.playerId].wall = player.wall;
+    players[player.playerId].offsetX = player.body.offset.x;
+    players[player.playerId].offsetY = player.body.offset.y;
+    players[player.playerId].scaleX = player.scaleX;
   });
   //envoi mise à jour de tout les players
   io.emit('playerUpdates', players);

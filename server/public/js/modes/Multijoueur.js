@@ -180,8 +180,9 @@ export default class Multijoueur extends Phaser.Scene {
         self.players.getChildren().forEach(function(player) {
           if (players[id].playerId === player.playerId) {
             player.flipX = (players[id].flipX);
-            player.setScale(players[id].scale);
+            player.scaleX = players[id].scaleX;
             player.setPosition(players[id].x, players[id].y);
+            player.setOffset(players[id].offsetX, players[id].offsetY);
             player.setDepth(players[id].depth);
             player.setAlpha(players[id].alpha);
             let cur = player.getCurrentAnimation().name
@@ -389,5 +390,7 @@ export default class Multijoueur extends Phaser.Scene {
         player.y < 399 ? doors.alpha = 0.5 : doors.alpha = 1
       });
     }
+    console.log("offffsssett:");
+    console.log(self.player.body.offset.x);
   }
 }
