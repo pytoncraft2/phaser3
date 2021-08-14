@@ -77,6 +77,26 @@ export default class Multijoueur extends Phaser.Scene {
    * // OPTIMIZE: Chargement des animation
    */
   create() {
+    this.logo = this.add.text(30, 170, 'Commandes', {
+    font: "24px Arial Black"
+    }).setColor('#6badce');
+    this.add.text(80, 200, '↑', {
+    font: "24px Arial Black"
+    }).setColor('#20333D');
+    this.add.text(50, 230, '← ↓ →', {
+    font: "24px Arial Black"
+    }).setColor('#20333D');
+    this.add.text(10, 300, 'Sauter ► Espace', {
+    font: "24px Arial Black"
+    }).setColor('#20333D');
+    this.add.text(10, 330, 'Attaquer ► A', {
+    font: "24px Arial Black"
+    }).setColor('#20333D');
+    this.add.text(-5, 360, 'Courir ► CTRL →', {
+    font: "24px Arial Black"
+    }).setColor('#20333D');
+
+
     // const spineDessinatrice = this.add.spine(1000, 647, 'dessinatrice1spine', 'death', true)
     var self = this;
     // const startAnim = 'idle'
