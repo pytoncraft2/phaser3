@@ -106,76 +106,68 @@ function create() {
 function update() {
   this.players.getChildren().forEach((player) => {
     const input = players[player.playerId].input;
-    console.log(player.body.offset.x);
+    let walk2 = false;
     player.setVelocity(0);
     player.setSize(200);
     player.anim = false;
     player.attack = false;
     player.wall = false;
-/*
-if (input.left && !input.c) {
-  player.setVelocityX(-300);
-  if (player.anim !== 'walk') {
-  player.anim = 'walk';
-  }
-}
-*/
 
-if (input.right && !input.c) {
-  player.setVelocityX(300);
-  if (player.anim !== 'walk') {
-  player.flipX = false, player.anim = 'walk';
-  }
-}
-
-    if (input.up) {
-      if (player.x < 605 /*&& player.y > 405*/ ) {
-        player.scale = player.scale - 0.003;
-        player.y -= 2;
-        player.depth = player.depth - 1;
-        if (!input.space) {
-        player.anim = 'goback';
-       }
-      }
-      if (player.x > 605 /*&& player.scale >= 0.223*/ ) {
-        player.scale = player.scale - 0.003;
-        player.y -= 2;
-        player.depth = player.depth - 1;
-        if (!input.space) {
-        player.anim = 'goback';
-        }
-      }
+    if (input.a && player.anim !== 'shoot') {
+      player.anim = 'shoot'
     }
 
-    //bigger
-    if (input.down && player.scale <= 2) {
-      player.scaleY = player.scaleY + 0.003;
-      player.y += 2;
-      player.depth += 1;
-      if (!input.space) {
-      player.anim = 'front';
-      }
-    }
-
-    if (input.a) {
-      if (!input.space) {
-      player.anim = 'shoot';
-      }
-      player.setSize(900);
-      player.attack = true;
-      player.wall = true;
-    }
-
-    if (input.t) {
-      player.anim = 'heal';
-    }
-
-    // if (input.space) {
-      // console.log('espace');
-      // if (player.anim !== 'walk') {
-      // player.anim = 'jump';
-      // }
+    // if (input.c && startAnim !== 'run') {
+      // this.spineBoy.play('run')
     // }
+
+    if (input.right) {
+
+      if (player.anim !== 'walk' && walk2 === false) {
+          player.setSize(280, 680)
+      if (input.c) {
+          player.setVelocityX(600)
+          if (player.anim !== 'run') {
+          player.anim = 'run'
+          }
+        } else {
+          player.setVelocityX(300)
+          if (player.anim !== 'walk') {
+          player.anim = 'walk'
+          }
+        }
+          player.scaleX = 0.5;
+          player.setOffset(0 , 0)
+          // player.on('complete', (spine) => {
+          // player.play('idle');
+          // player.setVelocityX(0)
+        // })
+      }
+    }
+
+    if (input.left) {
+      walk2 = true;
+      if (player.anim !== 'walk' && walk2 === true) {
+      if (input.c) {
+          player.setVelocityX(-600)
+          if (player.anim !== 'run') {
+          player.anim = 'run'
+          }
+        } else {
+          player.setVelocityX(-300)
+          if (player.anim !== 'walk') {
+          player.anim = 'walk'
+          }
+        }
+          player.scaleX = -0.5;
+          player.setOffset(280 , 0)
+          // player.on('complete', (spine) => {
+          // player.play('idle');
+          // player.setVelocityX(0)
+          // walk2 = false;
+        // })
+      }
+    }
 
     if (input.space) {
       if (player.anim !== 'jump') {
@@ -185,39 +177,6 @@ if (input.right && !input.c) {
         // })
       }
     }
-
-    // if (input.c) {
-      // if (input.left) player.setVelocityX(-800);
-      // if (input.right) player.setVelocityX(800);
-      // player.anim = 'run';
-    // }
-    if (input.left) {
-      walk2 = true;
-      if (player.anim !== 'walk' && walk2 === true) {
-          player.anim = 'walk';
-          player.setVelocityX(-300)
-          player.scaleX = -0.38;
-          // player.scaleY = -0.38;
-          player.setOffset(280 , 0)
-          // this.spineBoy.play('idle');
-          // this.spineBoy.body.setVelocityX(0)
-          walk2 = false;
-      }
-    }
-
-    if (input.right) {
-      player.anim = 'walk';
-      player.setSize(280, 680)
-      player.setVelocityX(300)
-      player.scaleX = 0.38;
-      // player.scaleY = 0.38;
-      player.setOffset(0 , 0)
-      // this.spineBoy.on('complete', (spine) => {
-      // this.spineBoy.play('idle');
-      // this.spineBoy.body.setVelocityX(0)
-    // })
-  }
-
 
     players[player.playerId].x = player.x;
     players[player.playerId].y = player.y;
