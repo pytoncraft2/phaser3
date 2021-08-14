@@ -27,7 +27,7 @@ function create() {
   let count = 0;
   this.players = this.physics.add.group();
   this.physics.add.collider(this.players, this.players, col, (player, player2) => {
-
+/*
     if (players[player.playerId].anim == 'attack1') {
       count++;
       // console.log(count);
@@ -43,6 +43,7 @@ function create() {
       count = 0;
       }
     }
+    */
 
     if (players[player.playerId].anim == 'heal') {
       player2.alpha = player2.alpha + 0.2;
@@ -148,7 +149,7 @@ if (input.right && !input.c) {
 
     //bigger
     if (input.down && player.scale <= 2) {
-      player.scale = player.scale + 0.003;
+      player.scaleY = player.scaleY + 0.003;
       player.y += 2;
       player.depth += 1;
       if (!input.space) {
@@ -169,10 +170,19 @@ if (input.right && !input.c) {
       player.anim = 'heal';
     }
 
-    if (input.space) {
+    // if (input.space) {
       // console.log('espace');
-      if (player.anim !== 'walk') {
-      player.anim = 'jump';
+      // if (player.anim !== 'walk') {
+      // player.anim = 'jump';
+      // }
+    // }
+
+    if (input.space) {
+      if (player.anim !== 'jump') {
+        player.anim = 'jump';
+        // this.player.on('complete', (spine) => {
+          // this.player.play('idle');
+        // })
       }
     }
 
@@ -186,7 +196,8 @@ if (input.right && !input.c) {
       if (player.anim !== 'walk' && walk2 === true) {
           player.anim = 'walk';
           player.setVelocityX(-300)
-          player.scaleX = -0.5;
+          player.scaleX = -0.38;
+          // player.scaleY = -0.38;
           player.setOffset(280 , 0)
           // this.spineBoy.play('idle');
           // this.spineBoy.body.setVelocityX(0)
@@ -198,7 +209,8 @@ if (input.right && !input.c) {
       player.anim = 'walk';
       player.setSize(280, 680)
       player.setVelocityX(300)
-      player.scaleX = 0.5;
+      player.scaleX = 0.38;
+      // player.scaleY = 0.38;
       player.setOffset(0 , 0)
       // this.spineBoy.on('complete', (spine) => {
       // this.spineBoy.play('idle');
@@ -210,7 +222,6 @@ if (input.right && !input.c) {
     players[player.playerId].x = player.x;
     players[player.playerId].y = player.y;
     players[player.playerId].scale = player.scale;
-    players[player.playerId].flipX = player.flipX;
     players[player.playerId].anim = player.anim;
     players[player.playerId].depth = player.depth;
     players[player.playerId].size = player.size;
@@ -220,6 +231,7 @@ if (input.right && !input.c) {
     players[player.playerId].offsetX = player.body.offset.x;
     players[player.playerId].offsetY = player.body.offset.y;
     players[player.playerId].scaleX = player.scaleX;
+    players[player.playerId].scaleY = player.scaleY;
   });
   //envoi mise à jour de tout les players
   io.emit('playerUpdates', players);

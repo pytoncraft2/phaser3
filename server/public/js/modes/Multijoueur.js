@@ -179,8 +179,8 @@ export default class Multijoueur extends Phaser.Scene {
       Object.keys(players).forEach(function(id) {
         self.players.getChildren().forEach(function(player) {
           if (players[id].playerId === player.playerId) {
-            player.flipX = (players[id].flipX);
             player.scaleX = players[id].scaleX;
+            player.scaleY = players[id].scaleY;
             player.setPosition(players[id].x, players[id].y);
             player.setOffset(players[id].offsetX, players[id].offsetY);
             player.setDepth(players[id].depth);
