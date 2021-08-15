@@ -225,7 +225,7 @@ export default class Multijoueur extends Phaser.Scene {
     spineBoy.setSize(280, 180);
     this.physics.add.existing(spineBoy);
     spineBoy.body.allowGravity = false
-    // spineBoy.body.setOffset(0, 50);
+    spineBoy.body.setOffset(0, 50);
 
     var anims = spineBoy.getAnimationList();
     console.log(anims);
