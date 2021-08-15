@@ -169,6 +169,17 @@ function update() {
       }
     }
 
+    if (input.up) {
+      // player.scaleX = player.scaleX + 0.5;
+      player.depth -= 1;
+      player.y -= 2;
+    }
+    if (input.down) {
+      // player.scaleX = player.scaleX - 0.5;
+      player.depth += 1;
+      player.y += 2;
+    }
+
     if (input.space) {
       if (player.anim !== 'jump') {
         player.anim = 'jump';
