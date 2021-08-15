@@ -124,7 +124,7 @@ function update() {
     if (input.right) {
 
       if (player.anim !== 'walk' && walk2 === false) {
-          player.setSize(280, 680)
+          // player.setSize(280, 680)
       if (input.c) {
           player.setVelocityX(600)
           if (player.anim !== 'run') {
@@ -160,7 +160,7 @@ function update() {
           }
         }
           player.scaleX = -0.5;
-          player.setOffset(280, 0)
+          player.setOffset(280 , 0)
           // player.on('complete', (spine) => {
           // player.play('idle');
           // player.setVelocityX(0)
@@ -177,11 +177,10 @@ function update() {
         // })
       }
     }
-    // console.log(player.body.velocity);
 
-    // players[player.playerId].x = player.x;
-    // players[player.playerId].y = player.y;
-    players[player.playerId].velocityX = player.body.velocity.x;
+    players[player.playerId].x = player.x;
+    players[player.playerId].y = player.y;
+    // players[player.playerId].velocityX = player.velocity.;
     players[player.playerId].scale = player.scale;
     players[player.playerId].anim = player.anim;
     players[player.playerId].depth = player.depth;
@@ -189,8 +188,8 @@ function update() {
     players[player.playerId].alpha = player.alpha;
     players[player.playerId].attack = player.attack;
     players[player.playerId].wall = player.wall;
-    // players[player.playerId].offsetX = player.body.offset.x;
-    // players[player.playerId].offsetY = player.body.offset.y;
+    players[player.playerId].offsetX = player.body.offset.x;
+    players[player.playerId].offsetY = player.body.offset.y;
     players[player.playerId].scaleX = player.scaleX;
     players[player.playerId].scaleY = player.scaleY;
   });

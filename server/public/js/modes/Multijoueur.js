@@ -179,11 +179,10 @@ export default class Multijoueur extends Phaser.Scene {
       Object.keys(players).forEach(function(id) {
         self.players.getChildren().forEach(function(player) {
           if (players[id].playerId === player.playerId) {
-            // player.setScale(players[id].scaleX,players[id].scaleY)
             player.scaleX = players[id].scaleX;
             player.scaleY = players[id].scaleY;
-            // player.setPosition(players[id].x, players[id].y);
-            player.body.velocity.x = players[id].velocityX
+            player.setPosition(players[id].x, players[id].y);
+            player.setOffset(players[id].offsetX, players[id].offsetY);
             player.setDepth(players[id].depth);
             player.setAlpha(players[id].alpha);
             let cur = player.getCurrentAnimation().name
@@ -223,7 +222,7 @@ export default class Multijoueur extends Phaser.Scene {
 
   createSpineBoy(startAnim = 'idle') {
     const spineBoy = this.add.spine(1000, 647, SPINEBOY_KEY, startAnim, true)
-    // spineBoy.setSize(280, 180);
+    spineBoy.setSize(280, 180);
     this.physics.add.existing(spineBoy);
     spineBoy.body.allowGravity = false
     // spineBoy.body.setOffset(0, 50);
