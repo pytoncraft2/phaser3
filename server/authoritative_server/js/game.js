@@ -108,7 +108,7 @@ function update() {
     const input = players[player.playerId].input;
     let walk2 = false;
     player.setVelocity(0);
-    player.setSize(200);
+    // player.setSize(200);
     player.anim = false;
     player.attack = false;
     player.wall = false;
@@ -124,7 +124,7 @@ function update() {
     if (input.right) {
 
       if (player.anim !== 'walk' && walk2 === false) {
-          player.setSize(280, 680)
+          // player.setSize(280, 680)
       if (input.c) {
           player.setVelocityX(600)
           if (player.anim !== 'run') {
@@ -207,8 +207,9 @@ function handlePlayerInput(self, playerId, input) {
 }
 
 function addPlayer(self, playerInfo) {
-  const player = self.physics.add.sprite(playerInfo.x, playerInfo.y, 'profil').setOrigin(0.5).setScale(0.38).setSize(220);
+  const player = self.physics.add.sprite(playerInfo.x, playerInfo.y, 'profil').setOrigin(0.5).setScale(0.38).setSize(280, 180);
   player.setMaxVelocity(200);
+
   player.playerId = playerInfo.playerId;
   player.alpha = playerInfo.alpha;
   self.players.add(player);

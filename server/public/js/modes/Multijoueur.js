@@ -222,7 +222,7 @@ export default class Multijoueur extends Phaser.Scene {
 
   createSpineBoy(startAnim = 'idle') {
     const spineBoy = this.add.spine(1000, 647, SPINEBOY_KEY, startAnim, true)
-    spineBoy.setSize(280, 680);
+    // spineBoy.setSize(280, 180);
     this.physics.add.existing(spineBoy);
     spineBoy.body.allowGravity = false
     // spineBoy.body.setOffset(0, 50);
@@ -373,8 +373,8 @@ export default class Multijoueur extends Phaser.Scene {
     console.log(playerInfo.x);
     console.log(playerInfo.y);
     // self.player = self.physics.add.sprite(playerInfo.x, playerInfo.y, playerInfo.atlas, 'face1').setOrigin(0.5, 0.5).setDisplaySize(200, 200).setSize(200);
-    // self.player = self.add.spine(1000, 647, SPINEBOY_KEY, startAnim, true);
     const startAnim = 'idle'
+    // self.playerr = self.add.spine(1000, 647, SPINEBOY_KEY, startAnim, true);
     self.player = this.createSpineBoy(startAnim)
 
     self.player.playerId = playerInfo.playerId;
