@@ -177,9 +177,11 @@ function update() {
         // })
       }
     }
+    // console.log(player.body.velocity);
 
     players[player.playerId].x = player.x;
     players[player.playerId].y = player.y;
+    players[player.playerId].velocityX = player.body.velocity.x;
     players[player.playerId].scale = player.scale;
     players[player.playerId].anim = player.anim;
     players[player.playerId].depth = player.depth;
