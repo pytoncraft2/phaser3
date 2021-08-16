@@ -51,16 +51,25 @@ Vaincre la status ennemi pour gagner
 ## Histoire(solo)
 
 la streameuse allume le pc
-elle fait son live 
+
+elle fait son live
+
 evenement coupure ( affich une image noir)
+
 une maine sort de l'ecran attrape la streameuse
+
 elle est attirée dans le pc
+
 elle panique dans le pc( les viewers voit le live ce qu'il se passe)
+
 le view obscure va attaquer la streameuse
+
 Puis d un coup un ia ou un robot va donner des pouvoirs a la fille
+
 et la mode tuto.
 
 le but du jeu est de purifier les virus qui contamine les gens dans le monde network 
+
 celui qui a cree ce virus est un developpeur
 
 
