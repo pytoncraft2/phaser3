@@ -72,6 +72,9 @@ le but du jeu est de purifier les virus qui contamine les gens dans le monde net
 
 celui qui a cree ce virus est un developpeur
 
+. systeme de viewers
+- plus elle aide de viewers dans le network plus elle augmente le nb de viewers par consequent elle gagne plus d'euros = plus de sandwitch qui tombe du ciel
+
 
 
 
