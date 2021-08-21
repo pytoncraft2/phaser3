@@ -78,6 +78,13 @@ celui qui a cree ce virus est un developpeur
 
 
 
+## Personnage huzounet
+-missile no jutsu ( invoque des viewers qui tombent en diagonale  comme des missiles avec des bombes attachés)
+Mode histoire: lorsque lheroine recoit les pouvoirs de huzounet et quelle fait missile no jutsu  le nb de view diminue car elle sacrie ses viewers
+
+
+
+
 
  
 
