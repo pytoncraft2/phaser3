@@ -82,6 +82,8 @@ celui qui a cree ce virus est un developpeur
 - un logo rond personnage avec son prenom 
 - chat
 
+- Protection : Des zones de la map son uniquement accesible avec une protection (sinon elle perd de la vie/viewer)
+
 
 ## Personnage huzounet
 -missile no jutsu ( invoque des viewers qui tombent en diagonale  comme des missiles avec des bombes attachés)
