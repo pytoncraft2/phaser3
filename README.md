@@ -28,9 +28,9 @@ Cartons (boites)
 
 Bar d'endurance / Vie
 
-Déplacement latérale / Esquive : meme image position combat (double pression touche / CTRL)
+Déplacement latérale ✔️ / Esquive : meme image position combat (double pression touche / CTRL)
 
-Déplacement en Z collision
+Déplacement en Z collision ✔️
 
 Mode vue restreint autour du personnage sombre
 
@@ -62,13 +62,13 @@ elle est attirée dans le pc
 
 elle panique dans le pc( les viewers voit le live ce qu'il se passe)
 
-le view obscure va attaquer la streameuse
+le view obscure va attaquer la streameuse ✔️
 
 Puis d un coup un ia ou un robot va donner des pouvoirs a la fille
 
 et la mode tuto.
 
-le but du jeu est de purifier les virus qui contamine les gens dans le monde network 
+le but du jeu est de purifier les virus qui contamine les gens dans le monde network ✔️
 
 celui qui a cree ce virus est un developpeur
 
@@ -80,9 +80,9 @@ celui qui a cree ce virus est un developpeur
 - un bouton s'abonner
 - un nombre de viewer
 - un logo rond personnage avec son prenom 
-- chat
+- chat ✔️
 
-- Protection : Des zones de la map son uniquement accesible avec une protection (sinon elle perd de la vie/viewer)
+- Protection ✔️: Des zones de la map son uniquement accesible avec une protection (sinon elle perd de la vie/viewer)
 
 - Puissance: elle à un délai pour mettre une puissance plus forte ou moins forte avant d'attaquer
 
