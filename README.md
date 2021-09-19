@@ -84,6 +84,7 @@ celui qui a cree ce virus est un developpeur
 
 - Protection : Des zones de la map son uniquement accesible avec une protection (sinon elle perd de la vie/viewer)
 
+- Puissance: elle à un délai pour mettre une puissance plus forte ou moins forte avant d'attaquer
 
 ## Personnage huzounet
 -missile no jutsu ( invoque des viewers qui tombent en diagonale  comme des missiles avec des bombes attachés)
