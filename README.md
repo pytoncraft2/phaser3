@@ -24,9 +24,9 @@ Cartons
 Side kick -> repousse l'ennemie : coup de pied latérale
 Straight lead -> max dégats | pousse l'ennemie
 
-Cartons (boites)
+Cartons (boites) ✔️
 
-Bar d'endurance / Vie
+Bar d'endurance / Vie ✔️
 
 Déplacement latérale ✔️ / Esquive : meme image position combat (double pression touche / CTRL)
 
@@ -38,7 +38,7 @@ Tir
 
 Fusion de deux personnages & controle des capacités d'un personnages à deux joueurs & taille plus grande
 
-protection
+protection ✔️
 
 Robots géant, humain vs streamer
 
@@ -79,7 +79,7 @@ celui qui a cree ce virus est un developpeur
 
 - un bouton s'abonner
 - un nombre de viewer
-- un logo rond personnage avec son prenom 
+- un logo rond personnage avec son prenom ✔️
 - chat ✔️
 
 - Protection ✔️: Des zones de la map son uniquement accesible avec une protection (sinon elle perd de la vie/viewer)
