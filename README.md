@@ -78,7 +78,7 @@ celui qui a cree ce virus est un developpeur
 - Objectif principal: trouvé un moyen de sortir du monde network ou du live
 
 - un bouton s'abonner
-- un nombre de viewer
+- un nombre de viewer ✔️
 - un logo rond personnage avec son prenom ✔️
 - chat ✔️
 
